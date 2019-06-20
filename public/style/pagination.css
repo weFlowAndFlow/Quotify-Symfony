@@ -17,22 +17,21 @@
 	padding: 5px;
 	padding-top: 7px;
 	width: 45px;
-	transition: 0.6s;
 }
 
 .first:hover, .previous:hover, .page:hover, .next:hover, .last:hover {
-	background-color: rgb(45, 99, 0, 0.4);
-	transition: 0.8s;
+	background-color: rgb(237, 237, 237);
+	transition: 0.6s;
 }
 
 
 .current {
-	padding: 5px;
+	padding-top: 7px;
 	width: 45px;
 	margin-left: 2px;
 	margin-right: 2px;
 	font-weight: bold;
-	font-size: 24px;
+	font-size: 20px;
 }
 
 
@@ -52,10 +51,10 @@
 	}
 
 	.current {
-		padding: 0px;
+		padding-top: 3px;
 		width: 35px;
 		font-weight: bold;
-		font-size: 22px;
+		font-size: 18px;
 	}
 }
 

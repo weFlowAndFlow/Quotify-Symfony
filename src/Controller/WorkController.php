@@ -63,6 +63,16 @@ class WorkController extends AbstractController
         return $this->render('Inside/Quote/index.html.twig', array('quotes' => $quotes));
     }
 
+    /**
+     * @Route("/dates", name="qtf_work_dates")
+     */
+    public function indexDates(Environment $twig, Request $request, PaginatorInterface $paginator)
+    {
+
+
+        return $this->render('Inside/Date/index.html.twig');
+    }
+
   
 
 
