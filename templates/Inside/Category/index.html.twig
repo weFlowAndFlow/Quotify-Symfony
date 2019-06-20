@@ -1,0 +1,41 @@
+{# templates/Inside/Category/index.html.twig #}
+
+{% extends "Inside/layout.html.twig" %}
+
+{% block title %}
+	{{ parent() }} - Categories
+{% endblock %}
+
+
+{% block quote_body %}
+
+
+	
+		<table class="table table-hover">
+			{% for category in categories %}
+				<tr>
+					<td>{{ category.name }}</td>
+					<td>
+							{% if category.quotes|length == 0 %}
+								{{ category.quotes|length }} quote
+							{% endif %}
+
+						<a href="{{ path('qtf_category_quotes', {'id': category.id}) }}">
+							{% if category.quotes|length == 1 %}
+								{{ category.quotes|length }} quote
+							{% elseif category.quotes|length > 1 %}
+								{{ category.quotes|length }} quotes
+							{% endif %}
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+		
+
+	
+
+
+
+	
+{% endblock %}

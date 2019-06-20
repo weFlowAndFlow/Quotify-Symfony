@@ -1,0 +1,23 @@
+{# templates/Inside/Quote/index.html.twig #}
+
+{% extends "Inside/layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - Home
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('style/quote.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block quote_body %}
+
+
+
+
+    {{ form(form) }}
+
+
+
+{% endblock %}

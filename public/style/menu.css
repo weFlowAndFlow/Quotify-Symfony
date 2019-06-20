@@ -1,0 +1,42 @@
+
+.leftBar {
+	max-width: 250px;
+	margin-right: 2%;
+}
+
+.menu {
+	border: 1px solid rgb(226, 226, 226);
+	background-color: white;
+	min-width: 200px;
+}
+
+.menu ul {
+	list-style-type: none;
+	padding-left: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.menu li {
+	margin-top: 20px;
+}
+
+.menu a {
+	text-decoration: none;
+	color: rgb(45, 99, 0);
+}
+
+.menu a:hover {
+	text-decoration: none;
+	color: rgb(77, 168, 3);
+}
+
+
+
+@media all and (max-width: 768px)
+{
+	.leftBar {
+		display: none;
+	}
+
+}

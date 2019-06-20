@@ -1,0 +1,40 @@
+{# templates/Inside/Author/index.html.twig #}
+
+{% extends "Inside/layout.html.twig" %}
+
+{% block title %}
+	{{ parent() }} - Authors
+{% endblock %}
+
+
+{% block quote_body %}
+
+
+
+		<table class="table table-hover">
+			{% for author in authors %}
+				<tr>
+					<td>{{ author.displayName }}</td>
+					<td>
+							{% if author.quotes|length == 0 %}
+								{{ author.quotes|length }} quote
+							{% endif %}
+
+						<a href="{{ path('qtf_author_quotes', {'id': author.id}) }}">
+							{% if author.quotes|length == 1 %}
+								{{ author.quotes|length }} quote
+							{% elseif author.quotes|length > 1 %}
+								{{ author.quotes|length }} quotes
+							{% endif %}
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+
+	
+
+
+
+	
+{% endblock %}

@@ -1,0 +1,177 @@
+@font-face {
+  font-family: "charlotte";
+  src: url('charlotte.otf');
+}
+
+header {
+	background-image: linear-gradient(to bottom right, rgb(45, 99, 0), rgb(77, 168, 3, 1));
+	max-width: 100%;
+  height: 45px;
+}
+
+#ul-head {
+  list-style-type: none;
+  margin: auto;
+  padding: 5px;
+  font-size: 12px;
+  max-width: 1000px;
+}
+
+.menuIcon {
+  display: none;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+
+.menuIcon:hover {
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+#li-head-left {
+  float: left;
+  margin-left: 10px;
+}
+
+#li-head-right {
+  float: right;
+  margin-right: 5px;
+  position: relative;
+}
+
+.headerTitle {
+  font-family: "charlotte";
+  font-size: 16px;
+  color: white;
+  padding-right: 35px;
+  padding-left: 20px;
+  padding-top: 5px;
+  align-content: middle;
+  text-decoration: none;
+}
+
+.headerTitle a {
+  background-color: transparent;
+  text-decoration: none;
+  color: white;
+}
+
+.headerTitle a:hover {
+  background-color: transparent;
+  text-decoration: none;
+  color: rgb(77, 168, 3);
+}
+
+#profileSubMenu {
+  display: none;
+  background-color: rgb(77, 168, 3, 0.95);
+  border: 1px solid rgb(77, 168, 3, 1);
+  border-radius: 10px;
+
+  position: absolute;
+  width: 140px;
+  right: 0px;
+  top: 40px;
+  z-index: 1;
+
+  height: 0;
+  transition: height 0.2s;
+
+}
+
+#profileSubMenu a {
+  color: white;
+}
+
+.subMenuItem:hover {
+  background-color: white;
+}
+
+#profileSubMenu a:hover {
+  color: rgb(77, 168, 3, 1);
+}
+
+
+.li-item a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+
+.li-item a:hover {
+  border: 1px solid white;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.li-item-right {
+  float: right;
+}
+
+
+/* SIDE NAV */
+
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: rgb(219, 219, 219);
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: rgb(1, 119, 24);
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+
+
+
+
+
+
+/* MOBILE */
+
+@media all and (max-width: 768px)
+{
+
+
+  .menuIcon {
+    display: block;
+  }
+
+}
+
+

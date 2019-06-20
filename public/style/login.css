@@ -1,0 +1,65 @@
+
+.loginForm {
+  max-width: 330px;
+	margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+	padding: 30px;
+	border: 1px solid rgb(226, 226, 226);
+  background-color: white;
+  border-radius: 15px;
+  /*
+  box-shadow: 5px 5px 21px -6px rgba(179,179,179,1);
+  */
+}
+
+.loginLine {
+	margin-bottom: 30px;
+	margin-top: 30px;
+	margin-left: 20px;
+
+}
+
+.loginButtons {
+	margin-top: 10px;
+}
+
+.errorMessage {
+	color: #af1901;
+	text-align: center;
+}
+
+#loginUsername, #loginPassword {
+  border-radius: 15px;
+  height: 30px;
+  width: 220px;
+  font-size: 16px;
+  padding-left: 20px;
+  border: 1px solid rgb(77, 168, 3, 0.5);
+}
+
+#loginUsername:focus, #loginPassword:focus {
+  border: 2px solid rgb(226, 219, 2);
+  outline: none;
+}
+
+#loginButton {
+  border-radius: 15px;
+  height: 30px;
+  width: 220px;
+  font-size: 14px;
+  outline: none;
+  border: 1px solid rgb(189, 191, 189);
+  background-color: rgb(77, 168, 3, 0.8);
+  color: #f5ffef;
+  font-weight: bold;
+}
+
+
+
+#loginButton:focus {
+  background-color: rgb(77, 168, 3, 1);
+  border: 1px solid rgb(226, 219, 2);
+}
+
+

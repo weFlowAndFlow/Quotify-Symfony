@@ -1,0 +1,151 @@
+/* quotes as list */
+
+.quoteBlock {
+	margin: 5%;
+	margin-bottom: 0;
+	padding: 2%;
+	padding-bottom: 0;
+	box-shadow: 17px 12px 24px -27px rgba(173,173,173,0.87);
+	border-radius: 3px;	
+	background-color: rgb(250, 250, 250);
+}
+
+.quoteCategories {
+	font-size: 14px;
+	font-weight: lighter;
+	font-variant: small-caps;
+	text-transform: capitalize;
+	color: rgb(45, 99, 0);
+}
+
+.quoteCategories a {
+	color: rgb(45, 99, 0);
+}
+
+.quoteCategories a:hover {
+	color: rgb(77, 168, 3, 1);
+	text-decoration: none;
+}
+
+.quoteText {
+	font-family: Georgia;
+	font-style: italic;
+	font-size: 18px;
+	text-align: justify;
+	margin-top: 30px;
+	margin-left: 30px;
+	margin-right: 30px;
+	text-indent: 50px;
+}
+
+.seeMore {
+	font-size: 14px;
+	text-align: right;
+	margin-top: -20px;
+}
+
+.quoteAuthor {
+	font-family: Arial;
+	text-align: right;
+	font-weight: bold;
+	margin-bottom: -3px;
+	margin-top: 30px;
+	text-transform: capitalize;
+}
+
+.quoteAuthor a {
+	color: rgb(45, 99, 0);
+}
+
+.quoteAuthor a:hover {
+	color: rgb(77, 168, 3, 1);
+	text-decoration: none;
+}
+
+.quoteOriginalWork {
+	font-family: Arial;
+	text-align: right;
+	text-transform: capitalize;
+}
+
+.quoteOriginalWork a {
+	color: rgb(45, 99, 0);
+}
+
+.quoteOriginalWork a:hover {
+	color: rgb(77, 168, 3, 1);
+	text-decoration: none;
+}
+
+.quoteButtons {
+	text-align: left;
+	font-size: 14px;
+	color: rgb(77, 168, 3, 1);
+	margin-top: -20px;
+}
+
+.quoteButtons a {
+	color: rgb(77, 168, 3, 1);
+}
+
+.paginator {
+	width: 100%;
+	margin: auto;
+	padding-top: 30px;
+}
+
+/* single view */
+
+.quoteNotes {
+	margin: 7%;
+	padding: 2%;
+	border-radius: 3px;	
+	border: 1px solid lightgray;
+	font-family: Courier New;
+}
+
+.quoteEditButton, .quoteAddNotesButton {
+	border : 1px solid;
+	border-radius: 10px;
+	padding: 10px;	
+	padding-left: 15px;
+	padding-right: 15px;
+	text-decoration: none;
+	transition: 0.4s;
+	margin-top: 40px;
+	margin-left: 5%;
+}
+
+.quoteEditButton {
+	color: rgb(219, 193, 59);
+	border-color: rgb(219, 193, 59);
+}
+
+.quoteAddNotesButton {
+	color: rgb(77, 168, 3, 1);
+	border-color: rgb(77, 168, 3, 1);
+}
+
+.quoteEditButton:hover {
+	background-color: rgb(219, 193, 59);
+	color: white;
+	text-decoration: none;
+	transition: 0.4s;
+}
+
+.quoteAddNotesButton:hover {
+	background-color: rgb(77, 168, 3, 1);
+	color: white;
+	text-decoration: none;
+	transition: 0.4s;
+}
+
+@media all and (max-width: 768px)
+{
+	.quoteButtons {
+		text-align: center;
+		margin-top: 5px;
+		margin-bottom: 30px;
+	}
+
+}

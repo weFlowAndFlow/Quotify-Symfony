@@ -1,0 +1,111 @@
+{# templates/Inside/layout.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('style/inside.css') }}" rel="stylesheet" /> 
+	<link href="{{ asset('style/header.css') }}" rel="stylesheet" /> 
+	<link href="{{ asset('style/menu.css') }}" rel="stylesheet" /> 
+{% endblock %}
+
+{% block body %}
+
+	<!-- HEADER -->
+	{{ include("Inside/_header.html.twig") }}
+
+	<!-- MAIN DISPLAY -->
+	<div id="mainDisplay">
+
+		{# FLASH MESSAGES #}
+		<div class="flashMessage">
+
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success alert-dismissible fade show">
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+				</div>
+			{% endfor %}
+
+			{% for message in app.flashes('warning') %}
+				<div class="alert alert-warning alert-dismissible fade show">
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+				</div>
+			{% endfor %}
+
+			{% for message in app.flashes('error') %}
+				<div class="alert alert-danger alert-dismissible fade show">
+					{{ message }}
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+				</div>
+			{% endfor %}
+
+		</div>
+
+		<div class="mainContent">
+
+			<!-- menu -->
+			{{ include("Inside/_menu.html.twig") }}
+			
+			<!-- content-->
+			<div class="contentDisplay">
+
+				<!-- search bar + add button-->
+				<div class="contentHead">
+					<div class="searchBar">
+						<form action="#" method="POST">
+							<input id="searchInput" type="text" placeholder="Search" />
+							<input id="searchButton" type="submit" value="Go" />
+						</form>
+					</div>
+					<div class="addButtonDiv">
+						<a href="#" alt="Add new quote">+</a>
+					</div>
+				</div>
+
+				<!-- central content -->
+				<div class="contentHeart">
+					{% block quote_body %}{% endblock %}
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	{% endblock %}
+
+
+
+	{% block javascripts %}
+		{{ parent() }}
+
+		<script>
+		// Drop down menu (profile)
+		function openSubMenu() {
+			var x = document.getElementById("profileSubMenu");
+			if (x.style.display === "block") {
+				x.style.display = "none";
+				x.style.height = "0px";
+			} else {
+				x.style.display = "block";
+				x.style.height = "74px";
+			}
+		}
+
+		/* Set the width of the side navigation to 250px */
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "250px";
+		}
+
+		/* Set the width of the side navigation to 0 */
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+		}
+		</script>
+	{% endblock %}
+

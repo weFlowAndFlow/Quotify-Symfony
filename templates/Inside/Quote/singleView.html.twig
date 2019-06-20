@@ -1,0 +1,68 @@
+{# templates/Inside/Quote/index.html.twig #}
+
+{% extends "Inside/layout.html.twig" %}
+
+{% block title %}
+	{{ parent() }} - Home
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('style/quote.css') }}" rel="stylesheet" /> 
+{% endblock %}
+
+{% block quote_body %}
+
+	
+
+	
+		<div class="quoteBlock">
+
+				<p class="quoteCategories">
+					{% for category in quote.categories %}
+						<a href="{{ path('qtf_category_quotes', {'id': category.id}) }}"> #{{ category.name }} </a>
+					{% endfor %}
+				</p>
+
+				<p class="quoteText">
+					{{ quote.text }}
+				</p>
+
+ 				<p class="quoteAuthor">
+					<a href="{{ path('qtf_author_quotes', {'id': quote.author.id}) }}">{{ quote.author.displayName }} </a>
+ 				</p> 
+
+ 				{% if quote.originalWork is defined %}
+	 				<p class="quoteOriginalWork">
+	 					{% if quote.originalWork.title is defined %}
+							in '<a href="{{ path('qtf_work_quotes', {'id': quote.originalWork.id}) }}">{{ quote.originalWork.title }}</a>'
+						{% endif %}
+	 					{% if quote.originalWork.year is defined %}
+	 						({{ quote.originalWork.year }})
+	 					{% endif %}
+	 				</p>
+ 				{% endif %}
+
+
+			</div>
+
+
+				{% if quote.notes is defined and quote.notes|length > 0 %}
+	 				<p class="quoteNotes">
+	 					{{ quote.notes }}
+	 				</p>
+ 				{% endif %}
+
+	
+
+				<p>
+					<a href="{{ path('qtf_quote_edit', {'id': quote.id}) }}" class="quoteEditButton">Edit</a>
+
+					{% if quote.notes is not defined or quote.notes|length == 0 %}
+						<a href="{{ path('qtf_quote_edit', {'id': quote.id}) }}" class="quoteAddNotesButton">Add notes</a>
+ 					{% endif %}
+				</p>
+
+
+	
+{% endblock %}

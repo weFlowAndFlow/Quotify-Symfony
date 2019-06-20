@@ -1,0 +1,17 @@
+<header>
+	<ul id="ul-head">
+		<li id="li-head-left" class="menuIcon">
+			<span onclick="openNav()">
+				<img src="{{ asset('img/menuIcon.png') }}" width="30px" id="addButton" />
+			</span>
+		</li>
+		<li id="li-head-left" class="headerTitle"><a href="{{ path('qtf_quote_index') }}">{{ website_name }}</a></li>
+		<li id="li-head-right" class="li-item">
+			<a href="javascript:void(0);" class="icon" onclick="openSubMenu()">UserName &nbsp; &nabla;</a>
+			<div id="profileSubMenu">
+				<a href="index.php?section=profile" class="subMenuItem">Profile</a>
+				<a href="index.php?section=logout" class="subMenuItem">Logout</a>
+			</div>
+		</li>
+	</ul>
+</header>
