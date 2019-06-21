@@ -68,6 +68,12 @@ class WorkController extends AbstractController
      */
     public function indexDates(Environment $twig, Request $request, PaginatorInterface $paginator)
     {
+        $datesQuery = $this->getDoctrine()
+            ->getRepository(Quote::class)
+            ->createQueryBuilder('q')
+            ->select('DISTINCT(q.originalWork.date)')
+            ->getQuery();
+
 
 
         return $this->render('Inside/Date/index.html.twig');

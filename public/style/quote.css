@@ -34,8 +34,18 @@
 	margin-top: 20px;
 	margin-left: 3%;
 	margin-right: 3%;
+}
+
+.centered {
+	white-space: pre-line;
+	text-align: center;
+	text-align-last: center;
+}
+
+.justified {
 	white-space: pre-line;
 	text-align: justify;
+	text-align-last: left;
 }
 
 .seeMore {
