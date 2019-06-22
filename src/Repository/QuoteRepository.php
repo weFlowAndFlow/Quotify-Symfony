@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\OriginalWork;
 use App\Entity\Quote;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -48,6 +49,7 @@ class QuoteRepository extends ServiceEntityRepository
     }
     */
 
+
     /*
      * Retrieves a random quote from the database
      *
@@ -66,5 +68,70 @@ class QuoteRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleResult();
     }
+
+
+    /*
+     * Find all Quotes query
+     *
+     * @return Query
+     */
+    public function createQueryFindAll()
+    {
+        return $this->createQueryBuilder('q')
+            ->getQuery();
+    }
+
+    public function createQueryFindByOriginalWork($work)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.originalWork = :work')
+            ->setParameter('work', $work)
+            ->getQuery();
+    }
+
+    public function createQueryFindAllByAuthor($author)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.author = :author')
+            ->setParameter('author', $author)
+            ->getQuery()
+            ;
+    }
+
+    public function createQueryFindAllByCategory($category)
+    {
+        return $this->createQueryBuilder('q')
+            ->join('q.categories', 'c')
+            ->andWhere('c = :category')
+            ->setParameter('category', $category)
+            ->getQuery()
+            ;
+    }
+
+    /*
+     * Find all Quotes by year query
+     *
+     * @return Query
+     */
+    public function createQueryFindAllByYear($year)
+    {
+        if ($year == 9999)
+        {
+            return $this->createQueryBuilder('q')
+                ->join('q.originalWork', 'og')
+                ->andWhere('og.year = :val')
+                ->setParameter('val', null) // ne marche pas, vérifier comment déclarer un paramètre null
+                ->getQuery();
+        }
+        else
+        {
+            return $this->createQueryBuilder('q')
+                ->join('q.originalWork', 'og')
+                ->andWhere('og.year = :val')
+                ->setParameter('val', $year)
+                ->getQuery();
+        }
+    }
+
 
 }

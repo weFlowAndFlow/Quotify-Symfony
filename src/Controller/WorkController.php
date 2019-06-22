@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\OriginalWork;
 use App\Entity\Quote;
+use App\Repository\OriginalWorkRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,17 +24,8 @@ class WorkController extends AbstractController
    */
     public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
     {
-        $worksQuery = $this->getDoctrine()
-            ->getRepository(OriginalWork::class)
-            ->createQueryBuilder('o')
-            ->orderBy('o.title')
-            ->getQuery();
-
-        $works = $paginator->paginate(
-            $worksQuery,
-            $request->query->getInt('page', 1),
-            30
-        );
+        $worksQuery = $this->getDoctrine()->getRepository(OriginalWork::class)->createQueryFindAll();
+        $works = $paginator->paginate($worksQuery, $request->query->getInt('page', 1),30);
 
         return $this->render('Inside/Work/index.html.twig', array('works' => $works));
     }
@@ -44,21 +36,8 @@ class WorkController extends AbstractController
     public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator)
     {
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->find($id);
-
-        $quotesQuery = $this->getDoctrine()
-            ->getRepository(Quote::class)
-            ->createQueryBuilder('q')
-            ->andWhere('q.originalWork = :work')
-            ->setParameter('work', $work)
-            ->getQuery()
-        ;
-
-
-        $quotes = $paginator->paginate(
-            $quotesQuery,
-            $request->query->getInt('page', 1),
-            10
-        );
+        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindByOriginalWork($work);
+        $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
 
         return $this->render('Inside/Quote/index.html.twig', array('quotes' => $quotes));
     }
@@ -66,17 +45,22 @@ class WorkController extends AbstractController
     /**
      * @Route("/dates", name="qtf_work_dates")
      */
-    public function indexDates(Environment $twig, Request $request, PaginatorInterface $paginator)
+    public function indexDates(Environment $twig)
     {
-        $datesQuery = $this->getDoctrine()
-            ->getRepository(Quote::class)
-            ->createQueryBuilder('q')
-            ->select('DISTINCT(q.originalWork.date)')
-            ->getQuery();
+        $dates = $this->getDoctrine()->getRepository(OriginalWork::class)->findDates();
 
+        return $this->render('Inside/Date/index.html.twig', array('dates' => $dates));
+    }
 
+    /**
+     * @Route("/dates/{year}/quotes", name="qtf_work_year", requirements={"year" = "\d+"})
+     */
+    public function viewQuotesByYear($year, Environment $twig, Request $request, PaginatorInterface $paginator)
+    {
+        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByYear($year);
+        $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
 
-        return $this->render('Inside/Date/index.html.twig');
+        return $this->render('Inside/Quote/index.html.twig', array('quotes' => $quotes));
     }
 
   

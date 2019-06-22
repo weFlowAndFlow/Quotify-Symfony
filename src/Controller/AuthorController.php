@@ -23,17 +23,8 @@ class AuthorController extends AbstractController
    */
   public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
   {
-  	$authorsQuery = $this->getDoctrine()
-  	->getRepository(Author::class)
-  	->createQueryBuilder('a')
-    ->orderBy('a.name')
-  	->getQuery();
-
-  	$authors = $paginator->paginate(
-  		$authorsQuery,
-  		$request->query->getInt('page', 1),
-  		30
-  	);
+  	$authorsQuery = $this->getDoctrine()->getRepository(Author::class)->createQueryFindAll();
+  	$authors = $paginator->paginate($authorsQuery, $request->query->getInt('page', 1),30);
 
   	return $this->render('Inside/Author/index.html.twig', array('authors' => $authors));
   }
@@ -44,21 +35,8 @@ class AuthorController extends AbstractController
   public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator)
   {
   	$author = $this->getDoctrine()->getRepository(Author::class)->find($id);
-
-  	$quotesQuery = $this->getDoctrine()
-  		->getRepository(Quote::class)
-  		->createQueryBuilder('q')
-  		->andWhere('q.author = :author')
-  		->setParameter('author', $author)
-  		->getQuery()
-  		;
-
-
-  	$quotes = $paginator->paginate(
-  		$quotesQuery,
-  		$request->query->getInt('page', 1),
-  		10
-  	);
+  	$quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByAuthor($author);
+  	$quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
 
   	return $this->render('Inside/Quote/index.html.twig', array('quotes' => $quotes));
   }

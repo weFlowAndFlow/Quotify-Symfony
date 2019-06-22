@@ -60,11 +60,22 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ;
     }
 
-    public function createOriginalWorkByAuthorQueryBuilder(Quote $quote)
+    public function findDates()
     {
         return $this->createQueryBuilder('og')
-            ->andWhere('og.author.id = :val')
-            ->setParameter('val', $quote->getAuthor()->getId())
+            ->select('og.year')
+            ->distinct(true)
+            ->getQuery()
+            ->getResult()
             ;
     }
+
+    public function createQueryFindAll()
+    {
+        return $this->createQueryBuilder('o')
+            ->orderBy('o.title')
+            ->getQuery();
+    }
+
+
 }

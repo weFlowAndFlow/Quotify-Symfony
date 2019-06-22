@@ -28,18 +28,18 @@
 
  				<p class="quoteAuthor">
 					<a href="{{ path('qtf_author_quotes', {'id': quote.author.id}) }}">{{ quote.author.displayName }} </a>
- 				</p> 
+ 				</p>
 
- 				{% if quote.originalWork is defined %}
-	 				<p class="quoteOriginalWork">
-	 					{% if quote.originalWork.title is defined %}
-							in '<a href="{{ path('qtf_work_quotes', {'id': quote.originalWork.id}) }}">{{ quote.originalWork.title }}</a>'
-						{% endif %}
-	 					{% if quote.originalWork.year is defined %}
-	 						({{ quote.originalWork.year }})
-	 					{% endif %}
-	 				</p>
- 				{% endif %}
+			{% if quote.originalWork is defined %}
+				<p class="quoteOriginalWork">
+					{% if quote.originalWork.title is defined and quote.originalWork.title is not null %}
+						in '<a href="{{ path('qtf_work_quotes', {'id': quote.originalWork.id}) }}">{{ quote.originalWork.title }}</a>'
+					{% endif %}
+					{% if quote.originalWork.year is defined and quote.originalWork.year is not null %}
+						({{ quote.originalWork.year }})
+					{% endif %}
+				</p>
+			{% endif %}
 
 
 			</div>

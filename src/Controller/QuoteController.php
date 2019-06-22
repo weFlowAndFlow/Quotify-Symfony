@@ -24,16 +24,8 @@ class QuoteController extends AbstractController
      */
     public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
     {
-        $quotesQuery = $this->getDoctrine()
-            ->getRepository(Quote::class)
-            ->createQueryBuilder('q')
-            ->getQuery();
-
-        $quotes = $paginator->paginate(
-            $quotesQuery,
-            $request->query->getInt('page', 1),
-            10
-        );
+        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAll();
+        $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
 
         return $this->render('Inside/Quote/index.html.twig', array('quotes' => $quotes));
     }
@@ -43,9 +35,7 @@ class QuoteController extends AbstractController
      */
     public function view($id)
     {
-        $quote = $this->getDoctrine()
-            ->getRepository(Quote::class)
-            ->find($id);
+        $quote = $this->getDoctrine()->getRepository(Quote::class)->find($id);
 
         return $this->render('Inside/Quote/singleView.html.twig', array('quote' => $quote));
     }
@@ -83,7 +73,6 @@ class QuoteController extends AbstractController
      */
     public function delete($id)
     {
-
         return new Response("Suppression de l'annonce d'id : ".$id);
     }
 

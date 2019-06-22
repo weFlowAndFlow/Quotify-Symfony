@@ -47,4 +47,12 @@ class AuthorRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function createQueryFindAll()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.name')
+            ->getQuery();
+    }
+
 }
