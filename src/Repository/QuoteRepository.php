@@ -78,6 +78,7 @@ class QuoteRepository extends ServiceEntityRepository
     public function createQueryFindAll()
     {
         return $this->createQueryBuilder('q')
+            ->orderBy('q.id', 'DESC')
             ->getQuery();
     }
 
@@ -119,8 +120,7 @@ class QuoteRepository extends ServiceEntityRepository
         {
             return $this->createQueryBuilder('q')
                 ->join('q.originalWork', 'og')
-                ->andWhere('og.year = :val')
-                ->setParameter('val', null) // ne marche pas, vérifier comment déclarer un paramètre null
+                ->andWhere('og.year is NULL')
                 ->getQuery();
         }
         else

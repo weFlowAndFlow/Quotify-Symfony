@@ -3,7 +3,7 @@
 {% extends "Inside/layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - Home
+    {{ parent() }} - Quotes
 {% endblock %}
 
 {% block stylesheets %}
@@ -16,6 +16,10 @@
     {% if quotes is empty %}
         {{ 'No result' }}
     {% else %}
+
+        {% if displayTitle is defined %}
+            {{ displayTitle }}
+        {% endif %}
 
         {% for quote in quotes %}
             <div class="quoteBlock">

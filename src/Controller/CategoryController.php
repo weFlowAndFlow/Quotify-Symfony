@@ -38,8 +38,9 @@ class CategoryController extends AbstractController
     $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
     $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByCategory($category);
     $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
+      $displayTitle = "All quotes for ".$category->getName()." category";
 
-    return $this->render('Inside/Quote/index.html.twig', array('quotes' => $quotes));
+      return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
   }
 
   

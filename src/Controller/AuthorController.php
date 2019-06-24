@@ -37,8 +37,9 @@ class AuthorController extends AbstractController
   	$author = $this->getDoctrine()->getRepository(Author::class)->find($id);
   	$quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByAuthor($author);
   	$quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
+      $displayTitle = "All quotes for ".$author->getDisplayName();
 
-  	return $this->render('Inside/Quote/index.html.twig', array('quotes' => $quotes));
+      return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
   }
 
   

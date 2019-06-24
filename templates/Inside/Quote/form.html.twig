@@ -1,0 +1,53 @@
+{# templates/Inside/Quote/form.html.twig #}
+
+{% extends "Inside/layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - Home
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('style/quote.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block quote_body %}
+
+
+    {# {{ form(form) }} #}
+
+
+    {{ form_start(form) }}
+    {{ form_row(form.text) }}
+    {{ form_row(form.author) }}
+    {{ form_row(form.originalWork) }}
+    {{ form_row(form.categories) }}
+    {{ form_row(form.notes) }}
+    {{ form_row(form.save) }}
+    {{ form_end(form) }}
+
+
+{% endblock %}
+
+	{% block javascripts %}
+        {{ parent() }}
+
+        <script>
+            var $author = $('#quote_author');
+            $author.change(function() {
+                var $form = $(this).closest('form');
+                var data = {};
+                data[$author.attr('name')] = $author.val();
+                $.ajax({
+                    url : $form.attr('action'),
+                    type: $form.attr('method'),
+                    data : data,
+                    success: function(html) {
+                        $('#quote_originalWork').replaceWith(
+                            $(html).find('#quote_originalWork')
+                        );
+                    }
+                });
+            });
+        </script>
+    {% endblock %}

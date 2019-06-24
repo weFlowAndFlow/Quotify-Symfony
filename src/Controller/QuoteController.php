@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Quote;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,8 +27,9 @@ class QuoteController extends AbstractController
     {
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAll();
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
+        $displayTitle = "All quotes";
 
-        return $this->render('Inside/Quote/index.html.twig', array('quotes' => $quotes));
+        return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
 
     /**
@@ -38,6 +40,38 @@ class QuoteController extends AbstractController
         $quote = $this->getDoctrine()->getRepository(Quote::class)->find($id);
 
         return $this->render('Inside/Quote/singleView.html.twig', array('quote' => $quote));
+    }
+
+    /**
+     * @Route("/create", name="qtf_quote_create")
+     */
+    public function create(Request $request)
+    {
+
+        $quote = new Quote();
+
+        // *** A SUPPRIMER QUAND LA GESTION UTILISATEUR SERA IMPLEMENTEE ***
+        $user = $this->getDoctrine()->getRepository(User::class)->find(1);
+        $quote->setUser($user);
+        // ***
+
+
+        $form = $this->createForm(QuoteType::class, $quote);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($quote);
+            $em->flush();
+
+            $this->addFlash('success', 'The quote has been added.');
+
+            return $this->redirectToRoute('qtf_quote_view', array('id' => $quote->getId()));
+        }
+
+
+        return $this->render('Inside/Quote/form.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -65,7 +99,7 @@ class QuoteController extends AbstractController
         }
 
 
-        return $this->render('Inside/Quote/edit.html.twig', array('form' => $form->createView()));
+        return $this->render('Inside/Quote/form.html.twig', array('form' => $form->createView()));
     }
 
     /**

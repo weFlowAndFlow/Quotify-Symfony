@@ -34,7 +34,7 @@ class OriginalWork
     private $quotes;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="originalWorks")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Author", inversedBy="originalWorks", cascade={"persist"})
      */
     private $authors;
 

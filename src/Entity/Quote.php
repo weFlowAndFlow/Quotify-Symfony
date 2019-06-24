@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuoteRepository")
@@ -41,6 +42,7 @@ class Quote
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\OriginalWork", inversedBy="quotes", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $originalWork;
 

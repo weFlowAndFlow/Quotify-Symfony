@@ -6,8 +6,12 @@
 	padding: 2%;
 	padding-bottom: 0;
 	box-shadow: 17px 12px 24px -27px rgba(173,173,173,0.87);
-	border-radius: 3px;	
-	background-color: rgb(250, 250, 250);
+	border-radius: 3px;
+	background-color:  rgb(250, 250, 250) ;
+	background-image: url('../img/quotationMarks.png');
+	background-size: 150px;
+	background-position: left top;
+	background-repeat: no-repeat;
 }
 
 .quoteCategories {

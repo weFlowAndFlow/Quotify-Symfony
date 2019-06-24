@@ -114,7 +114,11 @@ It had seemed like the beginning of happiness, and Clarissa is still sometimes s
   	$q4->setAuthor($aut2);
   	$q4->setUser($user1);
 
-    $aut1->addOriginalWork($og1);
+      $aut1->addOriginalWork($og1);
+      $aut2->addOriginalWork($og3);
+      $aut4->addOriginalWork($og2);
+      $aut1->addOriginalWork($og1);
+      $aut3->addOriginalWork($og3);
 
   	// Persist
   	$em = $this->getDoctrine()->getManager();

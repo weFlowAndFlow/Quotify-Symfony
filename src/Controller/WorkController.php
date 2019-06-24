@@ -38,8 +38,9 @@ class WorkController extends AbstractController
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->find($id);
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindByOriginalWork($work);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
+        $displayTitle = "All quotes for ". $work->getTitle();
 
-        return $this->render('Inside/Quote/index.html.twig', array('quotes' => $quotes));
+        return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
 
     /**
@@ -59,8 +60,10 @@ class WorkController extends AbstractController
     {
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByYear($year);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
+        $year = $year == 9999 ? 'undefined date' : $year;
+        $displayTitle = "All quotes for ".$year;
 
-        return $this->render('Inside/Quote/index.html.twig', array('quotes' => $quotes));
+        return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
 
   
