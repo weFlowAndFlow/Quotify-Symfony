@@ -9,9 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Environment;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use App\Form\QuoteType;
 
 /**
@@ -23,7 +22,7 @@ class QuoteController extends AbstractController
     /**
      * @Route("/", name="qtf_quote_index")
      */
-    public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
+    public function index(Request $request, PaginatorInterface $paginator)
     {
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAll();
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
@@ -53,7 +52,7 @@ class QuoteController extends AbstractController
         // *** A SUPPRIMER QUAND LA GESTION UTILISATEUR SERA IMPLEMENTEE ***
         $user = $this->getDoctrine()->getRepository(User::class)->find(1);
         $quote->setUser($user);
-        // ***
+        // ***   ***
 
 
         $form = $this->createForm(QuoteType::class, $quote);
@@ -118,6 +117,13 @@ class QuoteController extends AbstractController
         try
         {
             $quote = $this->getDoctrine()->getRepository(Quote::class)->findRandom();
+
+            if ($quote == null)
+            {
+                $this->addFlash('error', "Oops! It seems you don't have any quote in your account yet. Add one by clicking the '+' button");
+                return $this->redirectToRoute('qtf_quote_index');
+            }
+
             return $this->render('Inside/Quote/singleView.html.twig', array('quote' => $quote));
         }
         catch (Exception $ex)

@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\OriginalWork;
+
 use App\Entity\Quote;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -51,8 +51,9 @@ class QuoteRepository extends ServiceEntityRepository
 
 
     /*
-     * Retrieves a random quote from the database
+     * Retrieves a random quote from the database or null if there is no quote
      *
+     * @throws NonUniqueResultException
      * @return Quote
      */
     public function findRandom()
@@ -62,11 +63,18 @@ class QuoteRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
 
-        return $this->createQueryBuilder('q')
-            ->setFirstResult(rand(0, $count - 1))
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getSingleResult();
+        if($count > 0)
+        {
+            return $this->createQueryBuilder('q')
+                ->setFirstResult(rand(0, $count - 1))
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleResult();
+        }
+        else
+        {
+          return null;
+        }
     }
 
 

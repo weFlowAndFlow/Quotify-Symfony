@@ -4,7 +4,9 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,6 +18,7 @@ class AuthorType extends AbstractType
         $builder
 	        ->add('forename', TextType::class, array('required' => false))
 	        ->add('name', TextType::class, array('required' => true))
+            ->add('save', SubmitType::class)
         ;
     }
 

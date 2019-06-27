@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // src/Form/QuoteType.php
 namespace App\Form;
@@ -6,6 +6,7 @@ namespace App\Form;
 use App\Repository\OriginalWorkRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -25,7 +26,9 @@ class QuoteType extends AbstractType
     {
 
         $builder
-            ->add('text', TextareaType::class)
+            ->add('text', TextareaType::class, [
+                'empty_data' => ''
+            ])
 	        ->add('author', EntityType::class, array(
 			        'class' => 'App\Entity\Author',
 			        'choice_label' => 'displayName',
@@ -69,6 +72,8 @@ class QuoteType extends AbstractType
             $formModifier($event->getForm()->getParent(), $author);
         }
         );
+
+
 
     }
 

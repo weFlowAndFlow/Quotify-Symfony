@@ -3,8 +3,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Author;
 use App\Entity\OriginalWork;
 use App\Entity\Quote;
+use App\Form\AuthorType;
+use App\Form\OriginalWorkType;
 use App\Repository\OriginalWorkRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,7 +57,7 @@ class WorkController extends AbstractController
     }
 
     /**
-     * @Route("/dates/{year}/quotes", name="qtf_work_year", requirements={"year" = "\d+"})
+     * @Route("/dates/{year}/quotes", name="qtf_work_year", requirements={"year" = "^-?[1-9]\d*$"})
      */
     public function viewQuotesByYear($year, Environment $twig, Request $request, PaginatorInterface $paginator)
     {
@@ -66,6 +69,30 @@ class WorkController extends AbstractController
         return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
 
+    /**
+     * @Route("/create", name="qtf_work_create")
+     */
+    public function create(Request $request, PaginatorInterface $paginator)
+    {
+        $work = new OriginalWork();
+
+        $form = $this->createForm(OriginalWorkType::class, $work);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($work);
+            $em->flush();
+
+            $this->addFlash('success', 'The original work has been added.');
+
+            return $this->redirectToRoute('qtf_quote_create');
+        }
+
+
+        return $this->render('Inside/Work/form.html.twig', ['form' => $form->createView()]);
+    }
   
 
 

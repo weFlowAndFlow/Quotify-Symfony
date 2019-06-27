@@ -21,6 +21,8 @@ class Quote
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=10)
+     * @Assert\NotBlank
      */
     private $text;
 
@@ -32,22 +34,26 @@ class Quote
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="quotes")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="quotes", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $author;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\OriginalWork", inversedBy="quotes", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\Valid()
      */
     private $originalWork;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="quotes", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $categories;
 
@@ -95,11 +101,6 @@ class Quote
         $this->user = $user;
 
         return $this;
-    }
-
-    public function getCategory(): ?Category
-    {
-        return $this->category;
     }
 
     public function getAuthor(): ?Author

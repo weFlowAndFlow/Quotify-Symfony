@@ -5,9 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
+ * @UniqueEntity(fields="name")
  */
 class Category
 {
@@ -20,6 +23,8 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=40)
+     * @Assert\Length(min=3)
+     * @Assert\NotBlank
      */
     private $name;
 
@@ -66,7 +71,7 @@ class Category
     {
         if (!$this->quotes->contains($quote)) {
             $this->quotes[] = $quote;
-            $quote->setCategory($this);
+            $quote->addCategory($this);
         }
 
         return $this;
@@ -76,10 +81,6 @@ class Category
     {
         if ($this->quotes->contains($quote)) {
             $this->quotes->removeElement($quote);
-            // set the owning side to null (unless already changed)
-            if ($quote->getCategory() === $this) {
-                $quote->setCategory(null);
-            }
         }
 
         return $this;

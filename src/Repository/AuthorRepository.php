@@ -51,7 +51,7 @@ class AuthorRepository extends ServiceEntityRepository
     public function createQueryFindAll()
     {
         return $this->createQueryBuilder('a')
-            ->orderBy('a.name')
+            ->orderBy('a.name', 'ASC')
             ->getQuery();
     }
 
