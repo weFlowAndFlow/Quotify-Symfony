@@ -118,41 +118,12 @@
 	font-family: Courier New;
 }
 
-.quoteEditButton, .quoteAddNotesButton {
-	border : 1px solid;
-	border-radius: 10px;
-	padding: 10px;	
-	padding-left: 15px;
-	padding-right: 15px;
-	text-decoration: none;
-	transition: 0.4s;
-	margin-top: 40px;
-	margin-left: 5%;
+.singleQuoteButtons {
+	text-align: center;
+	margin-top: 7%;
+	margin-bottom: 5%;
 }
 
-.quoteEditButton {
-	color: rgb(219, 193, 59);
-	border-color: rgb(219, 193, 59);
-}
-
-.quoteAddNotesButton {
-	color: rgb(77, 168, 3, 1);
-	border-color: rgb(77, 168, 3, 1);
-}
-
-.quoteEditButton:hover {
-	background-color: rgb(219, 193, 59);
-	color: white;
-	text-decoration: none;
-	transition: 0.4s;
-}
-
-.quoteAddNotesButton:hover {
-	background-color: rgb(77, 168, 3, 1);
-	color: white;
-	text-decoration: none;
-	transition: 0.4s;
-}
 
 @media all and (max-width: 768px)
 {
@@ -169,5 +140,11 @@
 		margin-top: 5px;
 		margin-bottom: 30px;
 	}
+
+	.singleQuoteButtons {
+		margin-top: 15%;
+		margin-bottom: 10%;
+	}
+
 
 }

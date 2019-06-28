@@ -77,22 +77,29 @@ class AuthorController extends AbstractController
     {
         $author = $this->getDoctrine()->getRepository(Author::class)->find($id);
 
-        $form = $this->createForm(AuthorType::class, $author);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid())
+        if ($author == null)
         {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($author);
-            $em->flush();
-
-            $this->addFlash('success', 'The author has been modified.');
-
-            return $this->redirectToRoute('qtf_author_quotes', ['id' => $id]);
+            $this->addFlash('error', 'Oops! Something went wrong. The author could not be found.');
+            return $this->redirectToRoute('qtf_author_index');
         }
+        else
+            {
+            $form = $this->createForm(AuthorType::class, $author);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($author);
+                $em->flush();
+
+                $this->addFlash('success', 'The author has been modified.');
+
+                return $this->redirectToRoute('qtf_author_quotes', ['id' => $id]);
+            }
 
 
-        return $this->render('Inside/Author/form.html.twig', ['form' => $form->createView()]);
+            return $this->render('Inside/Author/form.html.twig', ['form' => $form->createView()]);
+        }
     }
 
     /**

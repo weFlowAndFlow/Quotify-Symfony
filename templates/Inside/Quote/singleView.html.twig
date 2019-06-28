@@ -53,14 +53,41 @@
 
 	
 
-				<p>
-					<a href="{{ path('qtf_quote_edit', {'id': quote.id}) }}" class="quoteEditButton">Edit</a>
+				<div class="singleQuoteButtons">
+					<a href="{{ path('qtf_quote_edit', {'id': quote.id}) }}" class="btn btn-outline-warning buttonSize">Edit</a>
 
 					{% if quote.notes is not defined or quote.notes|length == 0 %}
-						<a href="{{ path('qtf_quote_edit', {'id': quote.id}) }}" class="quoteAddNotesButton">Add notes</a>
+						<a href="{{ path('qtf_quote_edit', {'id': quote.id}) }}" class="btn btn-outline-success buttonSize">Add notes</a>
  					{% endif %}
-				</p>
+
+					<a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal" data-target="#deleteModal">Delete</a>
+				</div>
 
 
+	<!-- Delete Modal -->
+	<div class="modal fade" id="deleteModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Warning</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					You are about to permanently delete this quote. You won't be able to retrieve it. Do you wish to proceed ?
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">No, go back</button>
+					<a href="{{ path('qtf_quote_delete', {'id' : quote.id}) }} " class="btn btn-outline-danger">Yes, Delete</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
 	
 {% endblock %}

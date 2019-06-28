@@ -85,13 +85,72 @@ class WorkController extends AbstractController
             $em->persist($work);
             $em->flush();
 
-            $this->addFlash('success', 'The original work has been added.');
+            $this->addFlash('success', 'The original work has been modified.');
 
-            return $this->redirectToRoute('qtf_quote_create');
+            return $this->redirectToRoute('qtf_work_index');
         }
 
 
         return $this->render('Inside/Work/form.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="qtf_work_edit", requirements={"id" = "\d+"})
+     */
+    public function edit($id, Request $request, PaginatorInterface $paginator)
+    {
+        $work = $this->getDoctrine()->getRepository(OriginalWork::class)->find($id);
+
+        if ($work == null)
+        {
+            $this->addFlash('error', 'Oops! Something went wrong. The original work could not be found.');
+            return $this->redirectToRoute('qtf_work_index');
+        }
+        else {
+
+            $form = $this->createForm(OriginalWorkType::class, $work);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($work);
+                $em->flush();
+
+                $this->addFlash('success', 'The original work has been added.');
+
+                return $this->redirectToRoute('qtf_work_index');
+            }
+
+
+            return $this->render('Inside/Work/form.html.twig', ['form' => $form->createView()]);
+        }
+    }
+
+    /**
+     * @Route("/{id}/delete", name="qtf_work_delete", requirements={"id" = "\d+"})
+     */
+    public function delete($id, Request $request, PaginatorInterface $paginator)
+    {
+        $work = $this->getDoctrine()->getRepository(OriginalWork::class)->find($id);
+
+        if ($work == null)
+        {
+            $this->addFlash('error', 'Oops! Something went wrong. The original work could not be found.');
+        }
+        elseif (count($work->getQuotes()) > 0)
+        {
+            $this->addFlash('warning', 'This original work can not be deleted : it references quotes in the database.');
+        }
+        else
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($work);
+            $em->flush();
+            $this->addFlash('success', 'The original work has been deleted.');
+        }
+
+
+        return $this->redirectToRoute('qtf_work_index');
     }
   
 

@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Author;
 use App\Entity\Quote;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -79,34 +80,60 @@ class QuoteController extends AbstractController
     public function edit($id, Request $request)
     {
         $currentQuote = $this->getDoctrine()->getRepository(Quote::class)->find($id);
-        $form = $this->createForm(QuoteType::class, $currentQuote);
 
-        if ($request->isMethod('POST'))
+        if ($currentQuote == null)
         {
-            $form->handleRequest($request);
+            $this->addFlash('error', 'Oops! Something went wrong. The quote could not be found.');
+            return $this->redirectToRoute('qtf_quote_index');
+        }
+        else
+        {
+            $form = $this->createForm(QuoteType::class, $currentQuote);
 
-            if ($form->isValid())
+            if ($request->isMethod('POST'))
             {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($currentQuote);
-                $em->flush();
+                $form->handleRequest($request);
 
-                $this->addFlash('success', 'The quote has been modified and saved.');
+                if ($form->isValid())
+                {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($currentQuote);
+                    $em->flush();
 
-                return $this->redirectToRoute('qtf_quote_view', array('id' => $currentQuote->getId()));
+                    $this->addFlash('success', 'The quote has been modified and saved.');
+
+                    return $this->redirectToRoute('qtf_quote_view', array('id' => $currentQuote->getId()));
+                }
             }
+
+
+            return $this->render('Inside/Quote/form.html.twig', array('form' => $form->createView()));
         }
 
 
-        return $this->render('Inside/Quote/form.html.twig', array('form' => $form->createView()));
     }
 
     /**
-     * @Route("/delete/{id}", name="qtf_quote_delete", requirements={"id" = "\d+"})
+     * @Route("/{id}/delete", name="qtf_quote_delete", requirements={"id" = "\d+"})
      */
     public function delete($id)
     {
-        return new Response("Suppression de l'annonce d'id : ".$id);
+        $quote = $this->getDoctrine()->getRepository(Quote::class)->find($id);
+
+        if ($quote == null)
+        {
+            $this->addFlash('error', 'Oops! Something went wrong. The quote could not be found.');
+        }
+        else
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($quote);
+            $em->flush();
+            $this->addFlash('success', 'The quote has been deleted.');
+        }
+
+
+        return $this->redirectToRoute('qtf_quote_index');
     }
 
     /**

@@ -6,34 +6,72 @@
 	{{ parent() }} - Authors
 {% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('style/lists.css') }}" rel="stylesheet" />
+{% endblock %}
 
 {% block quote_body %}
 
 
 
-		<table class="table table-hover">
-			{% for author in authors %}
-				<tr>
-					<td><a href="{{ path('qtf_author_delete', {'id': author.id}) }}" class="btn btn-outline-danger">Delete</a></td>
-					<td><a href="{{ path('qtf_author_edit', {'id': author.id}) }}" class="btn btn-outline-warning">Edit</a></td>
-					<td>{{ author.forename }}</td>
-					<td>{{ author.name }}</td>
-					<td>
-							{% if author.quotes|length == 0 %}
-								{{ author.quotes|length }} quote
-							{% endif %}
+	<div class="addFieldData"><a href="{{ path('qtf_author_create') }}">Add new author</a></div>
+	<div class="list">
+		{% for author in authors %}
+			<div class="row entry">
+				<div class="col-sm-3">{{ author.forename }}</div>
+				<div class="col-sm-3">{{ author.name }}</div>
+				<div class="col-sm-2">
+					{% if author.quotes|length == 0 %}
+						{{ author.quotes|length }} quote
+					{% endif %}
 
-						<a href="{{ path('qtf_author_quotes', {'id': author.id}) }}">
-							{% if author.quotes|length == 1 %}
-								{{ author.quotes|length }} quote
-							{% elseif author.quotes|length > 1 %}
-								{{ author.quotes|length }} quotes
-							{% endif %}
-						</a>
-					</td>
-				</tr>
-			{% endfor %}
-		</table>
+					<a href="{{ path('qtf_author_quotes', {'id': author.id}) }}">
+						{% if author.quotes|length == 1 %}
+							{{ author.quotes|length }} quote
+						{% elseif author.quotes|length > 1 %}
+							{{ author.quotes|length }} quotes
+						{% endif %}
+					</a>
+				</div>
+				<div class="col-sm-4">
+					<a href="{{ path('qtf_author_edit', {'id': author.id}) }}" class="btn btn-outline-warning buttonSize">Edit</a>
+					{% if author.quotes|length == 0 %}
+					<a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal" data-target="#deleteModal-{{ author.id }}">Delete</a>
+					{% endif %}
+					</div>
+			</div>
+
+
+			<!-- Delete Modal -->
+			<div class="modal fade" id="deleteModal-{{ author.id }}">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Warning</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							You are about to permanently delete {{ author.displayName }} from the database. You won't be able to retrieve it. Do you wish to proceed ?
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">No, go back</button>
+							<a href="{{ path('qtf_author_delete', {'id': author.id}) }}" class="btn btn-outline-danger">Yes, Delete</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<hr />
+		{% endfor %}
+	</div>
 
 
 
@@ -42,5 +80,6 @@
 	</div>
 
 
-	
+
+
 {% endblock %}

@@ -7,37 +7,82 @@
 {% endblock %}
 
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('style/lists.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
 {% block quote_body %}
 
 
-	
-		<table class="table table-hover">
-			{% for category in categories %}
-				<tr>
-					<td>{{ category.name }}</td>
-					<td>
-							{% if category.quotes|length == 0 %}
-								{{ category.quotes|length }} quote
-							{% endif %}
 
-						<a href="{{ path('qtf_category_quotes', {'id': category.id}) }}">
-							{% if category.quotes|length == 1 %}
-								{{ category.quotes|length }} quote
-							{% elseif category.quotes|length > 1 %}
-								{{ category.quotes|length }} quotes
-							{% endif %}
-						</a>
-					</td>
-				</tr>
-			{% endfor %}
-		</table>
+
+	<div class="addFieldData"><a href="{{ path('qtf_category_create') }}">Add new category</a></div>
+
+	<div class="list">
+		{% for category in categories %}
+			<div class="row entry">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-3">{{ category.name }}</div>
+				<div class="col-sm-2">
+					{% if category.quotes|length == 0 %}
+						{{ category.quotes|length }} quote
+					{% endif %}
+
+					<a href="{{ path('qtf_category_quotes', {'id': category.id}) }}">
+						{% if category.quotes|length == 1 %}
+							{{ category.quotes|length }} quote
+						{% elseif category.quotes|length > 1 %}
+							{{ category.quotes|length }} quotes
+						{% endif %}
+					</a>
+				</div>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-4">
+					<a href="{{ path('qtf_category_edit', {'id' : category.id}) }}" class="btn btn-outline-warning buttonSize">Edit</a>
+					{% if category.quotes|length == 0 %}
+					<a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal" data-target="#deleteModal-{{ category.id }}">Delete</a>
+					{% endif %}
+				</div>
+			</div>
+
+
+			<!-- Delete Modal -->
+			<div class="modal fade" id="deleteModal-{{ category.id }}">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Warning</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							You are about to permanently delete the {{ category.name }} category. You won't be able to retrieve it. Do you wish to proceed ?
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">No, go back</button>
+							<a href="{{ path('qtf_category_delete', {'id' : category.id}) }}" class="btn btn-outline-danger">Yes, Delete</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<hr />
+		{% endfor %}
+	</div>
 
 
 	<div class="paginator">
 		{{ knp_pagination_render(categories) }}
 	</div>
 
-	
 
 
 

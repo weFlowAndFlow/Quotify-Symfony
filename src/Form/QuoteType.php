@@ -7,6 +7,7 @@ use App\Repository\OriginalWorkRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -31,25 +32,37 @@ class QuoteType extends AbstractType
             ])
 	        ->add('author', EntityType::class, array(
 			        'class' => 'App\Entity\Author',
+                    'query_builder' => function(EntityRepository $repository) {
+                    return $repository->createQueryBuilder('a')->orderBy('a.name', 'ASC');
+                },
 			        'choice_label' => 'displayName',
 			        'multiple' => false,
 			        'expanded' => false,
                     'placeholder' => ''))
 	        ->add('categories', EntityType::class, array(
 			        'class' => 'App\Entity\Category',
+                    'query_builder' => function(EntityRepository $repository) {
+                    return $repository->createQueryBuilder('c')->orderBy('c.name', 'ASC');
+                },
 			        'choice_label' => 'name',
 			        'multiple' => true,
-			        'expanded' => true))
+			        'expanded' => true,
+                    'label_attr' => ['class' => 'checkbox-inline']
+            ))
 	        ->add('notes', TextareaType::class, array('required' => false))
 	        ->add('save', SubmitType::class)
         ;
 
+        // Display original works from the selected author
         $formModifier = function (FormInterface $form, Author $author = null)
         {
             $works = null === $author ? [] : $author->getOriginalWorks();
 
             $form->add('originalWork', EntityType::class, [
                 'class' => 'App\Entity\OriginalWork',
+                'query_builder' => function(EntityRepository $repository) {
+                    return $repository->createQueryBuilder('w')->orderBy('w.title', 'ASC');
+                },
 		        'choice_label' => 'title',
                 'multiple' => false,
                 'expanded' => false,

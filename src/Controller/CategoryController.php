@@ -5,7 +5,9 @@ namespace App\Controller;
 
 use App\Entity\Quote;
 use App\Entity\Category;
+use App\Form\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Tests\Compiler\C;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,6 +45,90 @@ class CategoryController extends AbstractController
       return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
   }
 
+    /**
+     * @Route("/create", name="qtf_category_create")
+     */
+    public function create(Request $request, PaginatorInterface $paginator)
+    {
+        $category = new Category();
+
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($category);
+            $em->flush();
+
+            $this->addFlash('success', 'The category has been added.');
+
+            return $this->redirectToRoute('qtf_quote_create');
+        }
+
+
+        return $this->render('Inside/Category/form.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="qtf_category_edit", requirements={"id" = "\d+"})
+     */
+    public function edit($id, Request $request, PaginatorInterface $paginator)
+    {
+        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
+
+
+        if ($category == null)
+        {
+            $this->addFlash('error', 'Oops! Something went wrong. The category could not be found.');
+            return $this->redirectToRoute('qtf_category_index');
+        }
+        else {
+
+            $form = $this->createForm(CategoryType::class, $category);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($category);
+                $em->flush();
+
+                $this->addFlash('success', 'The category has been modified.');
+
+                return $this->redirectToRoute('qtf_category_index');
+            }
+
+
+            return $this->render('Inside/Category/form.html.twig', ['form' => $form->createView()]);
+        }
+    }
+
+    /**
+     * @Route("/{id}/delete", name="qtf_category_delete", requirements={"id" = "\d+"})
+     */
+    public function delete($id, Request $request, PaginatorInterface $paginator)
+    {
+        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
+
+        if ($category == null)
+        {
+            $this->addFlash('error', 'Oops! Something went wrong. The category could not be found.');
+        }
+        elseif (count($category->getQuotes()) > 0)
+        {
+            $this->addFlash('warning', 'This category can not be deleted : it references quotes in the database.');
+        }
+        else
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($category);
+            $em->flush();
+            $this->addFlash('success', 'The category has been deleted.');
+        }
+
+
+        return $this->redirectToRoute('qtf_category_index');
+    }
   
 
 

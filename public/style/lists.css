@@ -1,0 +1,27 @@
+.list {
+    width:100%;
+    margin: auto;
+}
+
+.buttonSize {
+    font-size: 12px;
+}
+
+.entry {
+    margin-bottom: 2%;
+    margin-top: 3%;
+}
+
+@media all and (max-width: 768px)
+{
+    .entry {
+        min-width: auto;
+        text-align: center;
+        margin-bottom: 12%;
+        padding-top: 6%;
+    }
+
+    .buttonSize {
+        margin-top: 6%;
+    }
+}

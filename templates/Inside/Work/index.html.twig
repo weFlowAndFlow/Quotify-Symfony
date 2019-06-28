@@ -7,14 +7,23 @@
 {% endblock %}
 
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('style/lists.css') }}" rel="stylesheet" />
+{% endblock %}
+
 {% block quote_body %}
 
 
-	<table class="table table-hover">
+
+	<div class="addFieldData"><a href="{{ path('qtf_work_create') }}">Add new original work</a></div>
+
+	<div class="list">
 		{% for work in works %}
-			<tr>
-				<td>{{ work.title }}</td>
-				<td>
+			<div class="row entry">
+				<div class="col-sm-4">{{ work.title }}</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
 					{% if work.quotes|length == 0 %}
 						{{ work.quotes|length }} quote
 					{% endif %}
@@ -26,15 +35,53 @@
 							{{ work.quotes|length }} quotes
 						{% endif %}
 					</a>
-				</td>
-			</tr>
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-4">
+					<a href="{{ path('qtf_work_edit', {'id': work.id}) }}" class="btn btn-outline-warning buttonSize">Edit</a>
+					{% if work.quotes|length == 0 %}
+					<a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal" data-target="#deleteModal-{{ work.id }}">Delete</a>
+					{% endif %}
+				</div>
+			</div>
+
+			<!-- Delete Modal -->
+			<div class="modal fade" id="deleteModal-{{ work.id }}">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Warning</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							You are about to permanently delete {{ work.title }} from the database. You won't be able to retrieve it. Do you wish to proceed ?
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">No, go back</button>
+							<a href="{{ path('qtf_work_delete', {'id': work.id}) }}" class="btn btn-outline-danger">Yes, Delete</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<hr />
 		{% endfor %}
-	</table>
+	</div>
 
 
 	<div class="paginator">
 		{{ knp_pagination_render(works) }}
 	</div>
 
-	
+
+
+
+
 {% endblock %}
