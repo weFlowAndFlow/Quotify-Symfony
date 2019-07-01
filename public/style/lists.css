@@ -1,3 +1,7 @@
+.undefined {
+    text-align: right;
+}
+
 .list {
     width:100%;
     margin: auto;
@@ -7,21 +11,60 @@
     font-size: 12px;
 }
 
+
 .entry {
-    margin-bottom: 2%;
-    margin-top: 3%;
+    padding-bottom: 2%;
+    padding-top: 3%;
 }
 
-@media all and (max-width: 768px)
-{
+.entry:hover {
+    background-color: #f7f7f7;
+}
+
+
+.addNew {
+    margin-bottom: 10%;
+    margin-top: 7%;
+    text-align: center;
+}
+
+.workTitle {
+    font-weight: bold;
+    margin: 0;
+}
+
+.byAuthor {
+    font-size: smaller;
+}
+
+.quoteNumber {
+    text-align: center;
+}
+
+.buttons {
+    text-align: left;
+}
+
+
+@media all and (max-width: 768px) {
+
+
+
     .entry {
         min-width: auto;
         text-align: center;
-        margin-bottom: 12%;
         padding-top: 6%;
+        padding-bottom: 6%;
     }
 
     .buttonSize {
         margin-top: 6%;
+    }
+}
+
+@media all and (max-width: 590px)
+{
+    .buttons {
+        text-align: center;
     }
 }

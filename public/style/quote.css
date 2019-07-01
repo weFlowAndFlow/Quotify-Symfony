@@ -1,5 +1,12 @@
 /* quotes as list */
 
+.quoteListTitle {
+	text-align: center;
+	margin-top: 3%;
+	font-weight: bold;
+	color: rgb(79, 79, 79);
+}
+
 .quoteBlock {
 	margin: 5%;
 	margin-bottom: 0;
@@ -50,12 +57,12 @@
 	white-space: pre-line;
 	text-align: justify;
 	text-align-last: left;
+	-webkit-text-align-last: left;
 }
 
 .seeMore {
 	font-size: 14px;
-	text-align: right;
-	margin-top: -20px;
+	text-align: center;
 }
 
 .quoteAuthor {
@@ -63,7 +70,7 @@
 	text-align: right;
 	font-weight: bold;
 	margin-bottom: -3px;
-	margin-top: 50px;
+	margin-top: 1%;
 	text-transform: capitalize;
 }
 
@@ -94,13 +101,9 @@
 .quoteButtons {
 	text-align: left;
 	font-size: 14px;
-	color: rgb(77, 168, 3, 1);
 	margin-top: -20px;
 }
 
-.quoteButtons a {
-	color: rgb(77, 168, 3, 1);
-}
 
 .paginator {
 	width: 100%;
@@ -132,12 +135,20 @@
 	}
 
 	.quoteText {
+		font-size: 16px;
+	}
+
+	.quoteAuthor {
+		font-size: 14px;
+	}
+
+	.quoteOriginalWork {
 		font-size: 14px;
 	}
 
 	.quoteButtons {
 		text-align: center;
-		margin-top: 5px;
+		margin-top: 10%;
 		margin-bottom: 30px;
 	}
 

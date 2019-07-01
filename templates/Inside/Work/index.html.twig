@@ -15,15 +15,43 @@
 {% block quote_body %}
 
 
+	<p class="undefined">
+		<a href="{{ path('qtf_work_quotes_undefined') }}">
+		{% if undefined == 1 %}
+			{{ undefined }} undefined quote
+		{% elseif undefined > 1 %}
+			{{ undefined }} undefined quotes
+		{% endif %}
+	</p>
 
-	<div class="addFieldData"><a href="{{ path('qtf_work_create') }}">Add new original work</a></div>
+
+	<div class="addNew">
+		<a href="{{ path('qtf_work_create', {'caller' : 'qtf_work_index'}) }}" class="btn btn-outline-success">Add new original work</a>
+	</div>
 
 	<div class="list">
 		{% for work in works %}
 			<div class="row entry">
-				<div class="col-sm-4">{{ work.title }}</div>
+				<div class="col-sm-4">
+					<p class="workTitle">
+					{{ work.title }}
+					</p>
+					<p class="byAuthor">
+						{% if work.authors is defined %}
+							{% for author in work.authors %}
+								{% if loop.first %}
+								By
+								{% endif %}
+							{{ author.displayName }}
+								{% if not loop.last %}
+									&
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+					</p>
+				</div>
 				<div class="col-sm-1"></div>
-				<div class="col-sm-2">
+				<div class="col-sm-2 quoteNumber">
 					{% if work.quotes|length == 0 %}
 						{{ work.quotes|length }} quote
 					{% endif %}
@@ -37,8 +65,8 @@
 					</a>
 				</div>
 				<div class="col-sm-1"></div>
-				<div class="col-sm-4">
-					<a href="{{ path('qtf_work_edit', {'id': work.id}) }}" class="btn btn-outline-warning buttonSize">Edit</a>
+				<div class="col-sm-4 buttons">
+					<a href="{{ path('qtf_work_edit', {'id': work.id, 'caller' : 'qtf_author_index'}) }}" class="btn btn-outline-warning buttonSize">Edit</a>
 					{% if work.quotes|length == 0 %}
 					<a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal" data-target="#deleteModal-{{ work.id }}">Delete</a>
 					{% endif %}
@@ -71,7 +99,6 @@
 				</div>
 			</div>
 
-			<hr />
 		{% endfor %}
 	</div>
 

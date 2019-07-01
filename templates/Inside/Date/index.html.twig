@@ -6,32 +6,32 @@
     {{ parent() }} - Date
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('style/timeline.css') }}" rel="stylesheet"/>
+{% endblock %}
 
 {% block quote_body %}
 
 
-
-
-
-    <table class="table table-hover">
+    <div class="timeline">
         {% for date in dates %}
             {% for d in date %}
-                {% if d is not empty %}
-                    <tr>
-                        <td>{{ d }}</td>
-                        <td><a href="{{ path('qtf_work_year', {'year': d}) }}">xx quotes</a></td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td>Undefined</td>
-                        <td><a href="{{ path('qtf_work_year', {'year': 9999}) }}">xx quotes</a></td>
-                    </tr>
-                {% endif %}
+                <div class="timelineElement">
+                    {% if d is not empty %}
+                        <a href="{{ path('qtf_work_year', {'year': d}) }}">
+                            <span class="year">{{ d }}</span>
+                        </a>
+                    {% endif %}
+                </div>
             {% endfor %}
+            {% if dates is empty %}
+                {{ "No dated quote available." }}
+            {% endif %}
         {% endfor %}
-    </table>
 
 
+    </div>
 
 
 

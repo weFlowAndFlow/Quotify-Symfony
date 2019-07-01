@@ -13,9 +13,23 @@
 
 {% block quote_body %}
 
+<p class="undefined">
+	<a href="{{ path('qtf_author_quotes_undefined') }}">
+	{% if undefined == 1 %}
+		{{ undefined }} anonymous quote
+	{% elseif undefined > 1 %}
+		{{ undefined }} anonymous quotes
+	{% endif %}
+	</a>
+</p>
 
 
-	<div class="addFieldData"><a href="{{ path('qtf_author_create') }}">Add new author</a></div>
+	<div class="addNew">
+		<a href="{{ path('qtf_author_create', {'caller' : 'qtf_author_index'}) }}" class="btn btn-outline-success">Add new author</a>
+	</div>
+
+
+
 	<div class="list">
 		{% for author in authors %}
 			<div class="row entry">
@@ -35,7 +49,7 @@
 					</a>
 				</div>
 				<div class="col-sm-4">
-					<a href="{{ path('qtf_author_edit', {'id': author.id}) }}" class="btn btn-outline-warning buttonSize">Edit</a>
+					<a href="{{ path('qtf_author_edit', {'id': author.id, 'caller' : 'qtf_author_index'}) }}" class="btn btn-outline-warning buttonSize">Edit</a>
 					{% if author.quotes|length == 0 %}
 					<a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal" data-target="#deleteModal-{{ author.id }}">Delete</a>
 					{% endif %}
@@ -69,7 +83,6 @@
 				</div>
 			</div>
 
-			<hr />
 		{% endfor %}
 	</div>
 

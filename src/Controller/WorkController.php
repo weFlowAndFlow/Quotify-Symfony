@@ -28,9 +28,10 @@ class WorkController extends AbstractController
     public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
     {
         $worksQuery = $this->getDoctrine()->getRepository(OriginalWork::class)->createQueryFindAll();
-        $works = $paginator->paginate($worksQuery, $request->query->getInt('page', 1),30);
+        $works = $paginator->paginate($worksQuery, $request->query->getInt('page', 1),15);
+        $undefinedCount = $this->getDoctrine()->getRepository(Quote::class)->countQuotesForUndefinedWork();
 
-        return $this->render('Inside/Work/index.html.twig', array('works' => $works));
+        return $this->render('Inside/Work/index.html.twig', array('works' => $works, 'undefined' => $undefinedCount));
     }
 
     /**
@@ -39,9 +40,30 @@ class WorkController extends AbstractController
     public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator)
     {
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->find($id);
-        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindByOriginalWork($work);
-        $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
-        $displayTitle = "All quotes for ". $work->getTitle();
+
+
+        if ($work == null)
+        {
+            $this->addFlash('error', 'Oops! Something went wrong. The original work could not be found.');
+            return $this->redirectToRoute('qtf_work_index');
+        }
+        else {
+            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindByOriginalWork($work);
+            $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
+            $displayTitle = "All quotes for " . $work->getTitle();
+
+            return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
+        }
+    }
+
+    /**
+     * @Route("/undefined/quotes", name="qtf_work_quotes_undefined")
+     */
+    public function listUndefinedQuotes(Request $request, PaginatorInterface $paginator)
+    {
+        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedWork();
+        $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
+        $displayTitle = "All quotes with undefined original work";
 
         return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
@@ -74,6 +96,7 @@ class WorkController extends AbstractController
      */
     public function create(Request $request, PaginatorInterface $paginator)
     {
+        $caller = $request->query->get('caller');
         $work = new OriginalWork();
 
         $form = $this->createForm(OriginalWorkType::class, $work);
@@ -85,13 +108,13 @@ class WorkController extends AbstractController
             $em->persist($work);
             $em->flush();
 
-            $this->addFlash('success', 'The original work has been modified.');
+            $this->addFlash('success', 'The original work has been added.');
 
-            return $this->redirectToRoute('qtf_work_index');
+            return $this->redirectToRoute($caller);
         }
 
 
-        return $this->render('Inside/Work/form.html.twig', ['form' => $form->createView()]);
+        return $this->render('Inside/Work/form.html.twig', ['form' => $form->createView(), 'previousPage' => $caller]);
     }
 
     /**
@@ -99,6 +122,7 @@ class WorkController extends AbstractController
      */
     public function edit($id, Request $request, PaginatorInterface $paginator)
     {
+        $caller = $request->query->get('caller');
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->find($id);
 
         if ($work == null)
@@ -118,11 +142,11 @@ class WorkController extends AbstractController
 
                 $this->addFlash('success', 'The original work has been added.');
 
-                return $this->redirectToRoute('qtf_work_index');
+                return $this->redirectToRoute($caller);
             }
 
 
-            return $this->render('Inside/Work/form.html.twig', ['form' => $form->createView()]);
+            return $this->render('Inside/Work/form.html.twig', ['form' => $form->createView(), 'previousPage' => $caller]);
         }
     }
 

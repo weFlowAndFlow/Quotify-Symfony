@@ -142,4 +142,64 @@ class QuoteRepository extends ServiceEntityRepository
     }
 
 
+    public function countQuotesForUndefinedAuthor()
+    {
+        return $this->createQueryBuilder('q')
+            ->select('COUNT(q)')
+            ->andWhere('q.author is NULL')
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
+
+    public function countQuotesForUndefinedWork()
+    {
+        return $this->createQueryBuilder('q')
+            ->select('count(q)')
+            ->andWhere('q.originalWork is null')
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
+    public function countQuotesForUndefinedCategory()
+    {
+        return $this->createQueryBuilder('q')
+            ->select('count(q)')
+            ->leftJoin('q.categories', 'c')
+            ->andWhere('c is null')
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
+
+    public function createQueryGetQuotesForUndefinedAuthor()
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.author is NULL')
+            ->getQuery()
+            ;
+    }
+
+
+    public function createQueryGetQuotesForUndefinedWork()
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.originalWork is null')
+            ->getQuery()
+            ;
+    }
+
+    public function createQueryGetQuotesForUndefinedCategory()
+    {
+        return $this->createQueryBuilder('q')
+            ->leftJoin('q.categories', 'c')
+            ->andWhere('c is null')
+            ->getQuery()
+            ;
+    }
+
+
 }

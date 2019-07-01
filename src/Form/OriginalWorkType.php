@@ -25,7 +25,9 @@ class OriginalWorkType extends AbstractType
                 'expanded' => false
             ])
             ->add('title', TextType::class)
-            ->add('year', IntegerType::class)
+            ->add('year', IntegerType::class, [
+                'required' => false
+            ])
             ->add('save', SubmitType::class)
         ;
     }

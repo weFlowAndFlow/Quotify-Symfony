@@ -17,13 +17,13 @@
 
     {{ form_start(form) }}
     {{ form_row(form.author, {'label': 'By'}) }}
-    <div class="addFieldData"><a href="{{ path('qtf_author_create') }}">Add new author</a></div>
+    <div class="addFieldData"><a href="{{ path('qtf_author_create', {'caller' : 'qtf_quote_create'}) }}">Add new author</a></div>
     {{ form_row(form.originalWork, {'label': 'In'}) }}
-    <div class="addFieldData"><a href="{{ path('qtf_work_create') }}">Add new original work</a></div>
-    {{ form_row(form.text) }}
-    <br />
+    <div class="addFieldData"><a href="{{ path('qtf_work_create', {'caller' : 'qtf_quote_create'}) }}">Add new original work</a></div>
     {{ form_row(form.categories) }}
-    <div class="addFieldData"><a href="{{ path('qtf_category_create') }}">Add new category</a></div>
+    <div class="addFieldData"><a href="{{ path('qtf_category_create', {'caller' : 'qtf_quote_create'}) }}">Add new category</a></div>
+    <br />
+    {{ form_row(form.text) }}
     {{ form_row(form.notes) }}
     <div class="row">
         <div class="col-2"></div>

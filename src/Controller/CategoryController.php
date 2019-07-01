@@ -26,30 +26,53 @@ class CategoryController extends AbstractController
   public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
   {
     $categoriesQuery = $this->getDoctrine()->getRepository(Category::class)->createQueryFindAll();
-    $categories = $paginator->paginate($categoriesQuery, $request->query->getInt('page', 1),30);
+    $categories = $paginator->paginate($categoriesQuery, $request->query->getInt('page', 1),15);
+    $undefinedCount = $this->getDoctrine()->getRepository(Quote::class)->countQuotesForUndefinedCategory();
 
-    return $this->render('Inside/Category/index.html.twig', array('categories' => $categories));
+    return $this->render('Inside/Category/index.html.twig', array('categories' => $categories, 'undefined' => $undefinedCount));
   }
 
 
-  /**
-   * @Route("/{id}/quotes", name="qtf_category_quotes", requirements={"id" = "\d+"})
-   */
-  public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator)
-  {
-    $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
-    $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByCategory($category);
-    $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
-      $displayTitle = "All quotes for ".$category->getName()." category";
+    /**
+     * @Route("/{id}/quotes", name="qtf_category_quotes", requirements={"id" = "\d+"})
+     */
+    public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator)
+    {
+        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
 
-      return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
-  }
+        if ($category == null)
+        {
+            $this->addFlash('error', 'Oops! Something went wrong. The category could not be found.');
+            return $this->redirectToRoute('qtf_category_index');
+        }
+        else {
+            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByCategory($category);
+            $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
+            $displayTitle = "All quotes for " . $category->getName() . " category";
+
+            return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
+        }
+    }
+
+
+    /**
+     * @Route("/undefined/quotes", name="qtf_category_quotes_undefined")
+     */
+    public function listUndefinedQuotes(Environment $twig, Request $request, PaginatorInterface $paginator)
+    {
+            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedCategory();
+            $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
+            $displayTitle = "All uncategorized quotes";
+
+            return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
+    }
 
     /**
      * @Route("/create", name="qtf_category_create")
      */
     public function create(Request $request, PaginatorInterface $paginator)
     {
+        $caller = $request->query->get('caller');
         $category = new Category();
 
         $form = $this->createForm(CategoryType::class, $category);
@@ -63,11 +86,11 @@ class CategoryController extends AbstractController
 
             $this->addFlash('success', 'The category has been added.');
 
-            return $this->redirectToRoute('qtf_quote_create');
+            return $this->redirectToRoute($caller);
         }
 
 
-        return $this->render('Inside/Category/form.html.twig', ['form' => $form->createView()]);
+        return $this->render('Inside/Category/form.html.twig', ['form' => $form->createView(), 'previousPage' => $caller]);
     }
 
     /**
@@ -75,6 +98,7 @@ class CategoryController extends AbstractController
      */
     public function edit($id, Request $request, PaginatorInterface $paginator)
     {
+        $caller = $request->query->get('caller');
         $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
 
 
@@ -95,11 +119,11 @@ class CategoryController extends AbstractController
 
                 $this->addFlash('success', 'The category has been modified.');
 
-                return $this->redirectToRoute('qtf_category_index');
+                return $this->redirectToRoute($caller);
             }
 
 
-            return $this->render('Inside/Category/form.html.twig', ['form' => $form->createView()]);
+            return $this->render('Inside/Category/form.html.twig', ['form' => $form->createView(), 'previousPage' => $caller]);
         }
     }
 

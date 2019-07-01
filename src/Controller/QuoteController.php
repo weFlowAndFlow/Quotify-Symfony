@@ -38,8 +38,15 @@ class QuoteController extends AbstractController
     public function view($id)
     {
         $quote = $this->getDoctrine()->getRepository(Quote::class)->find($id);
+        if ($quote == null)
+        {
+            $this->addFlash('error', 'Oops! Something went wrong. The quote could not be found.');
+            return $this->redirectToRoute('qtf_quote_index');
+        }
+        else {
 
-        return $this->render('Inside/Quote/singleView.html.twig', array('quote' => $quote));
+            return $this->render('Inside/Quote/singleView.html.twig', array('quote' => $quote));
+        }
     }
 
     /**

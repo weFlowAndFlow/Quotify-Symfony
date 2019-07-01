@@ -26,9 +26,14 @@
 					{{ quote.text }}
 				</p>
 
- 				<p class="quoteAuthor">
+			<p class="quoteAuthor">
+				{% if quote.author is not null %}
 					<a href="{{ path('qtf_author_quotes', {'id': quote.author.id}) }}">{{ quote.author.displayName }} </a>
- 				</p>
+				{% else %}
+					Undefined
+				{% endif %}
+			</p>
+
 
 			{% if quote.originalWork is defined %}
 				<p class="quoteOriginalWork">

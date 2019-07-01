@@ -65,7 +65,9 @@ class OriginalWorkRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('og')
             ->select('og.year')
             ->distinct(true)
-            ->orderBy('og.year', 'ASC')
+            ->join('og.quotes', 'q')
+            ->andWhere('q.originalWork is not null')
+            ->orderBy('og.year', 'DESC')
             ->getQuery()
             ->getResult()
             ;

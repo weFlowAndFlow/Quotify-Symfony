@@ -38,7 +38,9 @@ class QuoteType extends AbstractType
 			        'choice_label' => 'displayName',
 			        'multiple' => false,
 			        'expanded' => false,
-                    'placeholder' => ''))
+                    'placeholder' => '',
+                    'required' => false
+            ))
 	        ->add('categories', EntityType::class, array(
 			        'class' => 'App\Entity\Category',
                     'query_builder' => function(EntityRepository $repository) {
@@ -47,7 +49,8 @@ class QuoteType extends AbstractType
 			        'choice_label' => 'name',
 			        'multiple' => true,
 			        'expanded' => true,
-                    'label_attr' => ['class' => 'checkbox-inline']
+                    'label_attr' => ['class' => 'checkbox-inline'],
+                    'required' => false
             ))
 	        ->add('notes', TextareaType::class, array('required' => false))
 	        ->add('save', SubmitType::class)
@@ -68,6 +71,7 @@ class QuoteType extends AbstractType
                 'expanded' => false,
                 'placeholder' => '',
                 'choices' => $works,
+                'required' => false
             ]);
         };
 

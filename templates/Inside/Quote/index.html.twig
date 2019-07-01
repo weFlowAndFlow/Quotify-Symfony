@@ -14,11 +14,11 @@
 {% block quote_body %}
 
     {% if quotes is empty %}
-        {{ 'No result' }}
+        <p class="quoteListTitle">{{ 'No result' }}</p>
     {% else %}
 
         {% if displayTitle is defined %}
-            {{ displayTitle }}
+            <p class="quoteListTitle">{{ displayTitle }}</p>
         {% endif %}
 
         {% for quote in quotes %}
@@ -42,7 +42,11 @@
                 </p>
 
                 <p class="quoteAuthor">
-                    <a href="{{ path('qtf_author_quotes', {'id': quote.author.id}) }}">{{ quote.author.displayName }} </a>
+                    {% if quote.author is not null %}
+                        <a href="{{ path('qtf_author_quotes', {'id': quote.author.id}) }}">{{ quote.author.displayName }} </a>
+                        {% else %}
+                        Undefined
+                    {% endif %}
                 </p>
 
                 {% if quote.originalWork is defined %}
@@ -59,16 +63,7 @@
                 {% endif %}
 
                 <p class="quoteButtons">
-                    <a href="{{ path('qtf_quote_view', {'id': quote.id}) }}">View</a>
-                    -
-                    {% if quote.notes is defined and quote.notes|length > 0 %}
-                        <a href="{{ path('qtf_quote_view', {'id': quote.id}) }}">Consult notes</a>
-                    {% else %}
-                        <a href="{{ path('qtf_quote_edit', {'id': quote.id}) }}">Add notes</a>
-                    {% endif %}
-                    </a>
-                    -
-                    <a href="{{ path('qtf_quote_edit', {'id': quote.id}) }}">Edit</a>
+                    <a href="{{ path('qtf_quote_view', {'id': quote.id}) }}" class="btn btn-outline-secondary">View</a>
                 </p>
 
             </div>

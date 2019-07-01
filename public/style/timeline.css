@@ -1,0 +1,65 @@
+
+
+.timeline {
+    min-width: 200px;
+    max-width: 300px;
+    margin: auto;
+}
+
+.timelineElement {
+
+    border-top: 2px dashed;
+    border-color: rgb(240, 156, 0) !important;
+    margin:0;
+    padding: 30px;
+}
+
+.year {
+    font-size: 16px;
+    margin-left: 4%;
+    margin-right: 4%;
+    padding: 10px;
+    font-weight: bold;
+    color: rgb(77, 168, 3, 1);
+    border: 1px solid rgb(77, 168, 3, 1);
+    border-radius: 10px;
+}
+
+.year:hover {
+    background-color: rgb(45, 99, 0);
+    color: white;
+    border: none;
+}
+
+
+
+
+
+.timelineElement:nth-child(even) {
+    border-left: 2px dashed;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    margin-right: 30px;
+    padding-right: 0;
+    text-align: left;
+}
+
+.timelineElement:nth-child(odd) {
+    border-right: 2px dashed;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin-left: 30px;
+    padding-left: 0;
+    text-align: right;
+}
+
+.timelineElement:first-child {
+    border-top: 0;
+    border-top-right-radius:0;
+    border-top-left-radius:0;
+}
+
+.timelineElement:last-child {
+    border-bottom-right-radius:0;
+    border-bottom-left-radius:0;
+}
