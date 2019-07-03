@@ -15,7 +15,7 @@ use App\Entity\Author;
 use App\Entity\Quote;
 
 /**
- * @Route("/test_data")
+ * @Route("/in/test_data")
  */
 class TestDataController extends AbstractController
 {
@@ -28,9 +28,9 @@ class TestDataController extends AbstractController
   	// OBJECTS
   	
   	// User
-  	$user1 = new User();
-  	$user1->setLogin('admin');
-  	$user1->setPassword('admin');
+//  	$user1 = new User();
+//  	$user1->setLogin('admin');
+//  	$user1->setPassword('admin');
 
   	// Category
   	$cat1 = new Category();
@@ -95,24 +95,24 @@ It had seemed like the beginning of happiness, and Clarissa is still sometimes s
   	// ASSOCIATIONS
   	$q1->setAuthor($aut2);
   	$q1->setOriginalwork($og3);
-  	$q1->setUser($user1);
+//  	$q1->setUser($user1);
     $q1->addCategory($cat3);
     $q1->addCategory($cat2);
     $q1->addCategory($cat1);
 
   	$q2->setAuthor($aut4);
   	$q2->setOriginalwork($og2);
-  	$q2->setUser($user1);
+//  	$q2->setUser($user1);
   	$q2->addCategory($cat3);
 
   	$q3->setAuthor($aut1);
   	$q3->setOriginalwork($og1);
-  	$q3->setUser($user1);
+//  	$q3->setUser($user1);
     $q3->addCategory($cat2);
     $q3->addCategory($cat3);
 
   	$q4->setAuthor($aut2);
-  	$q4->setUser($user1);
+//  	$q4->setUser($user1);
 
       $aut1->addOriginalWork($og1);
       $aut2->addOriginalWork($og3);
@@ -126,7 +126,7 @@ It had seemed like the beginning of happiness, and Clarissa is still sometimes s
   	$em->persist($q2);
   	$em->persist($q3);
   	$em->persist($q4);
-  	$em->persist($user1);
+//  	$em->persist($user1);
   	$em->flush();
 
   	// Flash Message

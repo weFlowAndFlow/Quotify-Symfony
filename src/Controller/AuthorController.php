@@ -17,7 +17,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use App\Form\AuthorType;
 
 /**
- * @Route("/author")
+ * @Route("/in/author")
  */
 class AuthorController extends AbstractController
 {

@@ -32,13 +32,6 @@ class Quote
     private $notes;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="quotes")
-     * @ORM\JoinColumn(nullable=false)
-     * @Assert\Valid()
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="quotes", cascade={"persist"})
      * @Assert\Valid()
      */
@@ -87,18 +80,6 @@ class Quote
     public function setNotes(?string $notes): self
     {
         $this->notes = $notes;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

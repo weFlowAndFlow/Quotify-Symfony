@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
 /**
- * @Route("/work")
+ * @Route("/in/work")
  */
 class WorkController extends AbstractController
 {

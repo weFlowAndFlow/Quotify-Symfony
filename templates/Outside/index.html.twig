@@ -1,0 +1,25 @@
+{# templates/Inside/Date/index.html.twig #}
+
+{% extends "Outside/layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - Welcome
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{#    <link href="{{ asset('style/timeline.css') }}" rel="stylesheet"/>#}
+{% endblock %}
+
+{% block quote_body %}
+
+
+
+        <a href="{{ path('qtf_login') }}">login</a>
+    <br /><br /><br /><br /><br />
+
+<p>Ceci est la page d'accueil du site quand on n'est pas connecté</p>
+
+
+
+{% endblock %}

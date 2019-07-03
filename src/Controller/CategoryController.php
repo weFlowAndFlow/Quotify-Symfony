@@ -15,7 +15,7 @@ use Twig\Environment;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * @Route("/category")
+ * @Route("/in/category")
  */
 class CategoryController extends AbstractController
 {

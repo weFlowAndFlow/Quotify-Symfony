@@ -15,7 +15,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use App\Form\QuoteType;
 
 /**
- * @Route("/quote")
+ * @Route("/in/quote")
  */
 class QuoteController extends AbstractController
 {
@@ -28,6 +28,12 @@ class QuoteController extends AbstractController
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAll();
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
         $displayTitle = "All quotes";
+
+        if ($this->getDoctrine()->getRepository(Quote::class)->findAll() == null)
+        {
+            $this->addFlash('warning', "It seems you don't have any quote in your account yet. Add one by clicking the '+' button");
+
+        }
 
         return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
@@ -56,12 +62,6 @@ class QuoteController extends AbstractController
     {
 
         $quote = new Quote();
-
-        // *** A SUPPRIMER QUAND LA GESTION UTILISATEUR SERA IMPLEMENTEE ***
-        $user = $this->getDoctrine()->getRepository(User::class)->find(1);
-        $quote->setUser($user);
-        // ***   ***
-
 
         $form = $this->createForm(QuoteType::class, $quote);
         $form->handleRequest($request);
@@ -154,7 +154,6 @@ class QuoteController extends AbstractController
 
             if ($quote == null)
             {
-                $this->addFlash('error', "Oops! It seems you don't have any quote in your account yet. Add one by clicking the '+' button");
                 return $this->redirectToRoute('qtf_quote_index');
             }
 
