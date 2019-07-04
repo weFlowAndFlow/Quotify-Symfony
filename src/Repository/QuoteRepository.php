@@ -49,6 +49,18 @@ class QuoteRepository extends ServiceEntityRepository
     }
     */
 
+        public function getQuoteById($id, $user)
+        {
+            return $this->createQueryBuilder('q')
+                ->andWhere('q.id = :id')
+                ->setParameter('id', $id)
+                ->andWhere('q.user = :user')
+                ->setParameter('user', $user)
+                ->getQuery()
+                ->getSingleResult()
+                ;
+
+        }
 
     /*
      * Retrieves a random quote from the database or null if there is no quote
@@ -56,16 +68,20 @@ class QuoteRepository extends ServiceEntityRepository
      * @throws NonUniqueResultException
      * @return Quote
      */
-    public function findRandom()
+    public function findRandom($user)
     {
         $count = $this->createQueryBuilder('q')
             ->select('COUNT(q)')
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
             ->getQuery()
             ->getSingleScalarResult();
 
         if($count > 0)
         {
             return $this->createQueryBuilder('q')
+                ->andWhere('q.user = :user')
+                ->setParameter('user', $user)
                 ->setFirstResult(rand(0, $count - 1))
                 ->setMaxResults(1)
                 ->getQuery()
@@ -77,40 +93,60 @@ class QuoteRepository extends ServiceEntityRepository
         }
     }
 
+    public function getall($user)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('q.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     /*
      * Find all Quotes query
      *
      * @return Query
      */
-    public function createQueryFindAll()
+    public function createQueryFindAll($user)
     {
         return $this->createQueryBuilder('q')
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
             ->orderBy('q.id', 'DESC')
             ->getQuery();
     }
 
-    public function createQueryFindByOriginalWork($work)
+    public function createQueryFindByOriginalWork($work, $user)
     {
         return $this->createQueryBuilder('q')
             ->andWhere('q.originalWork = :work')
             ->setParameter('work', $work)
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
             ->getQuery();
     }
 
-    public function createQueryFindAllByAuthor($author)
+    public function createQueryFindAllByAuthor($author, $user)
     {
         return $this->createQueryBuilder('q')
+            ->join('q.user', 'u')
+            ->andWhere('u = :user')
+            ->setParameter('user', $user)
             ->andWhere('q.author = :author')
             ->setParameter('author', $author)
             ->getQuery()
             ;
     }
 
-    public function createQueryFindAllByCategory($category)
+    public function createQueryFindAllByCategory($category, $user)
     {
         return $this->createQueryBuilder('q')
             ->join('q.categories', 'c')
+            ->join('q.user', 'u')
+            ->andWhere('u = :user')
+            ->setParameter('user', $user)
             ->andWhere('c = :category')
             ->setParameter('category', $category)
             ->getQuery()
@@ -142,7 +178,7 @@ class QuoteRepository extends ServiceEntityRepository
     }
 
 
-    public function countQuotesForUndefinedAuthor()
+    public function countQuotesForUndefinedAuthor($user)
     {
         return $this->createQueryBuilder('q')
             ->select('COUNT(q)')
@@ -153,49 +189,60 @@ class QuoteRepository extends ServiceEntityRepository
     }
 
 
-    public function countQuotesForUndefinedWork()
+    public function countQuotesForUndefinedWork($user)
     {
         return $this->createQueryBuilder('q')
             ->select('count(q)')
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
             ->andWhere('q.originalWork is null')
             ->getQuery()
             ->getSingleScalarResult()
             ;
     }
 
-    public function countQuotesForUndefinedCategory()
+    public function countQuotesForUndefinedCategory($user)
     {
         return $this->createQueryBuilder('q')
             ->select('count(q)')
             ->leftJoin('q.categories', 'c')
             ->andWhere('c is null')
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
             ->getQuery()
             ->getSingleScalarResult()
             ;
     }
 
 
-    public function createQueryGetQuotesForUndefinedAuthor()
+    public function createQueryGetQuotesForUndefinedAuthor($user)
     {
         return $this->createQueryBuilder('q')
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
             ->andWhere('q.author is NULL')
             ->getQuery()
             ;
     }
 
 
-    public function createQueryGetQuotesForUndefinedWork()
+    public function createQueryGetQuotesForUndefinedWork($user)
     {
         return $this->createQueryBuilder('q')
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
             ->andWhere('q.originalWork is null')
             ->getQuery()
             ;
     }
 
-    public function createQueryGetQuotesForUndefinedCategory()
+    public function createQueryGetQuotesForUndefinedCategory($user)
     {
         return $this->createQueryBuilder('q')
             ->leftJoin('q.categories', 'c')
+            ->join('q.user', 'u')
+            ->andWhere('u = :user')
+            ->setParameter('user', $user)
             ->andWhere('c is null')
             ->getQuery()
             ;

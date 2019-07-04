@@ -27,9 +27,10 @@ class WorkController extends AbstractController
    */
     public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
     {
-        $worksQuery = $this->getDoctrine()->getRepository(OriginalWork::class)->createQueryFindAll();
+        $user = $this->getUser();
+        $worksQuery = $this->getDoctrine()->getRepository(OriginalWork::class)->createQueryFindAll($user);
         $works = $paginator->paginate($worksQuery, $request->query->getInt('page', 1),15);
-        $undefinedCount = $this->getDoctrine()->getRepository(Quote::class)->countQuotesForUndefinedWork();
+        $undefinedCount = $this->getDoctrine()->getRepository(Quote::class)->countQuotesForUndefinedWork($user);
 
         return $this->render('Inside/Work/index.html.twig', array('works' => $works, 'undefined' => $undefinedCount));
     }
@@ -39,7 +40,8 @@ class WorkController extends AbstractController
      */
     public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator)
     {
-        $work = $this->getDoctrine()->getRepository(OriginalWork::class)->find($id);
+        $user = $this->getUser();
+        $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
 
         if ($work == null)
@@ -48,7 +50,7 @@ class WorkController extends AbstractController
             return $this->redirectToRoute('qtf_work_index');
         }
         else {
-            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindByOriginalWork($work);
+            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindByOriginalWork($work, $user);
             $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
             $displayTitle = "All quotes for " . $work->getTitle();
 
@@ -61,7 +63,8 @@ class WorkController extends AbstractController
      */
     public function listUndefinedQuotes(Request $request, PaginatorInterface $paginator)
     {
-        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedWork();
+        $user = $this->getUser();
+        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedWork($user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
         $displayTitle = "All quotes with undefined original work";
 
@@ -73,7 +76,8 @@ class WorkController extends AbstractController
      */
     public function indexDates(Environment $twig)
     {
-        $dates = $this->getDoctrine()->getRepository(OriginalWork::class)->findDates();
+        $user = $this->getUser();
+        $dates = $this->getDoctrine()->getRepository(OriginalWork::class)->findDates($user);
 
         return $this->render('Inside/Date/index.html.twig', array('dates' => $dates));
     }
@@ -83,7 +87,8 @@ class WorkController extends AbstractController
      */
     public function viewQuotesByYear($year, Environment $twig, Request $request, PaginatorInterface $paginator)
     {
-        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByYear($year);
+        $user = $this->getUser();
+        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByYear($year, $user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
         $year = $year == 9999 ? 'undefined date' : $year;
         $displayTitle = "All quotes for ".$year;
@@ -92,12 +97,13 @@ class WorkController extends AbstractController
     }
 
     /**
-     * @Route("/create", name="qtf_work_create")
+     * @Route("/create_{caller}", name="qtf_work_create")
      */
-    public function create(Request $request, PaginatorInterface $paginator)
+    public function create($caller, Request $request, PaginatorInterface $paginator)
     {
-        $caller = $request->query->get('caller');
+        $user = $this->getUser();
         $work = new OriginalWork();
+        $work->setUser($user);
 
         $form = $this->createForm(OriginalWorkType::class, $work);
         $form->handleRequest($request);
@@ -118,12 +124,12 @@ class WorkController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="qtf_work_edit", requirements={"id" = "\d+"})
+     * @Route("/{id}/edit_{caller}", name="qtf_work_edit", requirements={"id" = "\d+"})
      */
-    public function edit($id, Request $request, PaginatorInterface $paginator)
+    public function edit($id, $caller, Request $request, PaginatorInterface $paginator)
     {
-        $caller = $request->query->get('caller');
-        $work = $this->getDoctrine()->getRepository(OriginalWork::class)->find($id);
+        $user = $this->getUser();
+        $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
         if ($work == null)
         {
@@ -155,7 +161,8 @@ class WorkController extends AbstractController
      */
     public function delete($id, Request $request, PaginatorInterface $paginator)
     {
-        $work = $this->getDoctrine()->getRepository(OriginalWork::class)->find($id);
+        $user = $this->getUser();
+        $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
         if ($work == null)
         {

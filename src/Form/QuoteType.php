@@ -23,8 +23,19 @@ use Symfony\Component\Security\Core\Security;
 
 class QuoteType extends AbstractType
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        // Avoid calling getUser() in the constructor: auth may not
+        // be complete yet. Instead, store the entire Security object.
+        $this->security = $security;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $user = $this->security->getUser();
 
         $builder
             ->add('text', TextareaType::class, [
@@ -32,8 +43,11 @@ class QuoteType extends AbstractType
             ])
 	        ->add('author', EntityType::class, array(
 			        'class' => 'App\Entity\Author',
-                    'query_builder' => function(EntityRepository $repository) {
-                    return $repository->createQueryBuilder('a')->orderBy('a.name', 'ASC');
+                    'query_builder' => function(EntityRepository $repository) use ($user) {
+                    return $repository->createQueryBuilder('a')
+                        ->andWhere('a.user = :user')
+                        ->setParameter('user', $user)
+                        ->orderBy('a.name', 'ASC');
                 },
 			        'choice_label' => 'displayName',
 			        'multiple' => false,
@@ -43,8 +57,11 @@ class QuoteType extends AbstractType
             ))
 	        ->add('categories', EntityType::class, array(
 			        'class' => 'App\Entity\Category',
-                    'query_builder' => function(EntityRepository $repository) {
-                    return $repository->createQueryBuilder('c')->orderBy('c.name', 'ASC');
+                    'query_builder' => function(EntityRepository $repository) use ($user) {
+                    return $repository->createQueryBuilder('c')
+                        ->andWhere('c.user = :user')
+                        ->setParameter('user', $user)
+                        ->orderBy('c.name', 'ASC');
                 },
 			        'choice_label' => 'name',
 			        'multiple' => true,
@@ -57,14 +74,17 @@ class QuoteType extends AbstractType
         ;
 
         // Display original works from the selected author
-        $formModifier = function (FormInterface $form, Author $author = null)
+        $formModifier = function (FormInterface $form, Author $author = null) use ($user)
         {
             $works = null === $author ? [] : $author->getOriginalWorks();
 
             $form->add('originalWork', EntityType::class, [
                 'class' => 'App\Entity\OriginalWork',
-                'query_builder' => function(EntityRepository $repository) {
-                    return $repository->createQueryBuilder('w')->orderBy('w.title', 'ASC');
+                'query_builder' => function(EntityRepository $repository) use ($user)  {
+                    return $repository->createQueryBuilder('w')
+                        ->andWhere('w.user = :user')
+                        ->setParameter('user', $user)
+                        ->orderBy('w.title', 'ASC');
                 },
 		        'choice_label' => 'title',
                 'multiple' => false,

@@ -25,11 +25,12 @@ class QuoteController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator)
     {
-        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAll();
+        $user = $this->getUser();
+        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAll($user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
         $displayTitle = "All quotes";
 
-        if ($this->getDoctrine()->getRepository(Quote::class)->findAll() == null)
+        if ($this->getDoctrine()->getRepository(Quote::class)->getAll($user) == null)
         {
             $this->addFlash('warning', "It seems you don't have any quote in your account yet. Add one by clicking the '+' button");
 
@@ -43,7 +44,8 @@ class QuoteController extends AbstractController
      */
     public function view($id)
     {
-        $quote = $this->getDoctrine()->getRepository(Quote::class)->find($id);
+        $user = $this->getUser();
+        $quote = $this->getDoctrine()->getRepository(Quote::class)->getQuoteById($id, $user);
         if ($quote == null)
         {
             $this->addFlash('error', 'Oops! Something went wrong. The quote could not be found.');
@@ -61,7 +63,9 @@ class QuoteController extends AbstractController
     public function create(Request $request)
     {
 
+        $user = $this->getUser();
         $quote = new Quote();
+        $quote->setUser($user);
 
         $form = $this->createForm(QuoteType::class, $quote);
         $form->handleRequest($request);
@@ -82,11 +86,12 @@ class QuoteController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="qtf_quote_edit", requirements={"id" = "\d+"})
+     * @Route("/edit/{id}_{caller}", name="qtf_quote_edit", requirements={"id" = "\d+"})
      */
-    public function edit($id, Request $request)
+    public function edit($id, $caller, Request $request)
     {
-        $currentQuote = $this->getDoctrine()->getRepository(Quote::class)->find($id);
+        $user = $this->getUser();
+        $currentQuote = $this->getDoctrine()->getRepository(Quote::class)->getQuoteById($id, $user);
 
         if ($currentQuote == null)
         {
@@ -109,12 +114,12 @@ class QuoteController extends AbstractController
 
                     $this->addFlash('success', 'The quote has been modified and saved.');
 
-                    return $this->redirectToRoute('qtf_quote_view', array('id' => $currentQuote->getId()));
+                    return $this->redirectToRoute($caller, array('id' => $id));
                 }
             }
 
 
-            return $this->render('Inside/Quote/form.html.twig', array('form' => $form->createView()));
+            return $this->render('Inside/Quote/form.html.twig', array('form' => $form->createView(), 'previousPage' => $caller, 'id' => $id));
         }
 
 
@@ -125,7 +130,8 @@ class QuoteController extends AbstractController
      */
     public function delete($id)
     {
-        $quote = $this->getDoctrine()->getRepository(Quote::class)->find($id);
+        $user = $this->getUser();
+        $quote = $this->getDoctrine()->getRepository(Quote::class)->getQuoteById($id, $user);
 
         if ($quote == null)
         {
@@ -148,9 +154,10 @@ class QuoteController extends AbstractController
      */
     public function viewRandom()
     {
+        $user = $this->getUser();
         try
         {
-            $quote = $this->getDoctrine()->getRepository(Quote::class)->findRandom();
+            $quote = $this->getDoctrine()->getRepository(Quote::class)->findRandom($user);
 
             if ($quote == null)
             {

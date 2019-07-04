@@ -48,9 +48,23 @@ class AuthorRepository extends ServiceEntityRepository
     }
     */
 
-    public function createQueryFindAll()
+    public function getAuthorById($id, $user)
     {
         return $this->createQueryBuilder('a')
+            ->andWhere('a.user = :user')
+            ->setParameter('user', $user)
+            ->andWhere('a.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
+
+    public function createQueryFindAll($user)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.user = :user')
+            ->setParameter('user', $user)
             ->orderBy('a.name', 'ASC')
             ->getQuery();
     }

@@ -51,7 +51,7 @@
 				</div>
 				<div class="col-sm-2"></div>
 				<div class="col-sm-4">
-					<a href="{{ path('qtf_category_edit', {'id' : category.id, 'caller' : 'qtf_author_index'}) }}" class="btn btn-outline-warning buttonSize">Edit</a>
+					<a href="{{ path('qtf_category_edit', {'id' : category.id, 'caller' : 'qtf_category_index'}) }}" class="btn btn-outline-warning buttonSize">Edit</a>
 					{% if category.quotes|length == 0 %}
 					<a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal" data-target="#deleteModal-{{ category.id }}">Delete</a>
 					{% endif %}

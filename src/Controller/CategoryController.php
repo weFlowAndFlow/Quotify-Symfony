@@ -25,9 +25,11 @@ class CategoryController extends AbstractController
    */
   public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
   {
-    $categoriesQuery = $this->getDoctrine()->getRepository(Category::class)->createQueryFindAll();
+
+      $user = $this->getUser();
+    $categoriesQuery = $this->getDoctrine()->getRepository(Category::class)->createQueryFindAll($user);
     $categories = $paginator->paginate($categoriesQuery, $request->query->getInt('page', 1),15);
-    $undefinedCount = $this->getDoctrine()->getRepository(Quote::class)->countQuotesForUndefinedCategory();
+    $undefinedCount = $this->getDoctrine()->getRepository(Quote::class)->countQuotesForUndefinedCategory($user);
 
     return $this->render('Inside/Category/index.html.twig', array('categories' => $categories, 'undefined' => $undefinedCount));
   }
@@ -38,7 +40,8 @@ class CategoryController extends AbstractController
      */
     public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator)
     {
-        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
+        $user = $this->getUser();
+        $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
         if ($category == null)
         {
@@ -46,7 +49,9 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('qtf_category_index');
         }
         else {
-            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByCategory($category);
+
+            $user = $this->getUser();
+            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByCategory($category, $user);
             $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
             $displayTitle = "All quotes for " . $category->getName() . " category";
 
@@ -60,7 +65,8 @@ class CategoryController extends AbstractController
      */
     public function listUndefinedQuotes(Environment $twig, Request $request, PaginatorInterface $paginator)
     {
-            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedCategory();
+        $user = $this->getUser();
+            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedCategory($user);
             $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
             $displayTitle = "All uncategorized quotes";
 
@@ -68,12 +74,13 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/create", name="qtf_category_create")
+     * @Route("/create_{caller}", name="qtf_category_create")
      */
-    public function create(Request $request, PaginatorInterface $paginator)
+    public function create($caller, Request $request, PaginatorInterface $paginator)
     {
-        $caller = $request->query->get('caller');
         $category = new Category();
+        $user = $this->getUser();
+        $category->setUser($user);
 
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
@@ -94,13 +101,12 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="qtf_category_edit", requirements={"id" = "\d+"})
+     * @Route("/{id}/edit_{caller}", name="qtf_category_edit", requirements={"id" = "\d+"})
      */
-    public function edit($id, Request $request, PaginatorInterface $paginator)
+    public function edit($id, $caller, Request $request, PaginatorInterface $paginator)
     {
-        $caller = $request->query->get('caller');
-        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
-
+        $user = $this->getUser();
+        $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
         if ($category == null)
         {
@@ -132,7 +138,8 @@ class CategoryController extends AbstractController
      */
     public function delete($id, Request $request, PaginatorInterface $paginator)
     {
-        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
+        $user = $this->getUser();
+        $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
         if ($category == null)
         {

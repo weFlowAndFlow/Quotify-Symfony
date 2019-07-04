@@ -49,6 +49,18 @@ class OriginalWorkRepository extends ServiceEntityRepository
     }
     */
 
+    public function getWorkById($id, $user)
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.user = :user')
+            ->setParameter('user', $user)
+            ->andWhere('o.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function findByAuthor($id)
     {
         return $this->createQueryBuilder('o')
@@ -60,22 +72,26 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ;
     }
 
-    public function findDates()
+    public function findDates($user)
     {
         return $this->createQueryBuilder('og')
             ->select('og.year')
             ->distinct(true)
             ->join('og.quotes', 'q')
             ->andWhere('q.originalWork is not null')
+            ->andWhere('og.user = :user')
+            ->setParameter('user', $user)
             ->orderBy('og.year', 'DESC')
             ->getQuery()
             ->getResult()
             ;
     }
 
-    public function createQueryFindAll()
+    public function createQueryFindAll($user)
     {
         return $this->createQueryBuilder('o')
+            ->andWhere('o.user = :user')
+            ->setParameter('user', $user)
             ->orderBy('o.title')
             ->getQuery();
     }

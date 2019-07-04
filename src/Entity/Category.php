@@ -33,13 +33,18 @@ class Category
      */
     private $quotes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="categories")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
 
 
 
     public function __construct()
     {
         $this->quotes = new ArrayCollection();
-        $this->fff = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -82,6 +87,18 @@ class Category
         if ($this->quotes->contains($quote)) {
             $this->quotes->removeElement($quote);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

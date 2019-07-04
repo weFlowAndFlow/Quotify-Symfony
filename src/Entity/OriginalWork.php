@@ -42,6 +42,12 @@ class OriginalWork
      */
     private $authors;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="originalWorks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->quotes = new ArrayCollection();
@@ -130,6 +136,18 @@ class OriginalWork
         if ($this->authors->contains($author)) {
             $this->authors->removeElement($author);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

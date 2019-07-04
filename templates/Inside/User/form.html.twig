@@ -1,0 +1,28 @@
+{# templates/Inside/User/form.html.twig #}
+
+{% extends "Inside/layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - Edit profile
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('style/form.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block quote_body %}
+
+
+{{ form(form) }}
+
+
+
+
+
+{% endblock %}
+
+	{% block javascripts %}
+        {{ parent() }}
+
+    {% endblock %}

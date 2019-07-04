@@ -27,10 +27,11 @@ class AuthorController extends AbstractController
      */
     public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
     {
-        $authorsQuery = $this->getDoctrine()->getRepository(Author::class)->createQueryFindAll();
+        $user = $this->getUser();
+        $authorsQuery = $this->getDoctrine()->getRepository(Author::class)->createQueryFindAll($user);
         $authors = $paginator->paginate($authorsQuery, $request->query->getInt('page', 1), 15);
 
-        $undefinedCount = $this->getDoctrine()->getRepository(Quote::class)->countQuotesForUndefinedAuthor();
+        $undefinedCount = $this->getDoctrine()->getRepository(Quote::class)->countQuotesForUndefinedAuthor($user);
 
         return $this->render('Inside/Author/index.html.twig', array('authors' => $authors, 'undefined' => $undefinedCount));
     }
@@ -40,13 +41,15 @@ class AuthorController extends AbstractController
      */
     public function listQuotes($id, Request $request, PaginatorInterface $paginator)
     {
-        $author = $this->getDoctrine()->getRepository(Author::class)->find($id);
+        $user = $this->getUser();
+        $author = $this->getDoctrine()->getRepository(Author::class)->getAuthorById($id, $user);
 
         if ($author == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The author could not be found.');
             return $this->redirectToRoute('qtf_author_index');
         } else {
-            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByAuthor($author);
+            $user = $this->getUser();
+            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByAuthor($author, $user);
             $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
             $displayTitle = "All quotes for " . $author->getDisplayName();
 
@@ -59,7 +62,8 @@ class AuthorController extends AbstractController
      */
     public function listUndefinedQuotes(Request $request, PaginatorInterface $paginator)
     {
-        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedAuthor();
+        $user = $this->getUser();
+        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedAuthor($user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
         $displayTitle = "All anonymous quotes";
 
@@ -67,13 +71,13 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/create", name="qtf_author_create")
+     * @Route("/create_{caller}", name="qtf_author_create")
      */
-    public function create(Request $request, PaginatorInterface $paginator)
+    public function create($caller, Request $request, PaginatorInterface $paginator)
     {
-        $caller = $request->query->get('caller');
-
+        $user = $this->getUser();
         $author = new Author();
+        $author->setUser($user);
 
         $form = $this->createForm(AuthorType::class, $author);
         $form->handleRequest($request);
@@ -93,12 +97,12 @@ class AuthorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="qtf_author_edit", requirements={"id" = "\d+"})
+     * @Route("/{id}/edit_{caller}", name="qtf_author_edit", requirements={"id" = "\d+"})
      */
-    public function edit($id, Request $request, PaginatorInterface $paginator)
+    public function edit($id, $caller, Request $request, PaginatorInterface $paginator)
     {
-        $caller = $request->query->get('caller');
-        $author = $this->getDoctrine()->getRepository(Author::class)->find($id);
+        $user = $this->getUser();
+        $author = $this->getDoctrine()->getRepository(Author::class)->getAuthorById($id, $user);
 
         if ($author == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The author could not be found.');
@@ -127,7 +131,8 @@ class AuthorController extends AbstractController
      */
     public function delete($id, Request $request, PaginatorInterface $paginator)
     {
-        $author = $this->getDoctrine()->getRepository(Author::class)->find($id);
+        $user = $this->getUser();
+        $author = $this->getDoctrine()->getRepository(Author::class)->getAuthorById($id, $user);
 
         if ($author == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The author could not be found.');

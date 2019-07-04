@@ -14,6 +14,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class CategoryRepository extends ServiceEntityRepository
 {
+
+
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Category::class);
@@ -48,9 +50,26 @@ class CategoryRepository extends ServiceEntityRepository
     }
     */
 
-    public function createQueryFindAll()
+
+
+    public function getCategoryById($id, $user)
     {
         return $this->createQueryBuilder('c')
+            ->andWhere('c.user = :user')
+            ->setParameter('user', $user)
+            ->andWhere('c.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
+
+    public function createQueryFindAll($user)
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.user', 'u')
+            ->andWhere('u = :user')
+            ->setParameter('user', $user)
         ->orderBy('c.name')
         ->getQuery();
     }
