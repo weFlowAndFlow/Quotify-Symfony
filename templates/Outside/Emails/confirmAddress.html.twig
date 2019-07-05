@@ -1,0 +1,12 @@
+<html>
+<body>
+Hello {{ user.firstname }} {{ user.lastname }}
+<br><br>
+Please confirm your address by clicking the link below :
+<br><br>
+<a href="{{ absolute_url(path('qtf_welcome_verify', {'id' : user.id, 'email' : user.email} )) }}">CONFIRM ADDRESS</a>
+<br><br>
+
+
+</body>
+</html>

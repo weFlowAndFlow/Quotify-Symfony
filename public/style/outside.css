@@ -1,0 +1,17 @@
+
+
+#mainDisplay {
+	max-width: 1024px;
+	margin: auto;
+}
+
+.mainContent {
+	margin: 3%;
+	min-width: 280px;
+}
+
+.flashMessage {
+	max-width: 900px;
+	margin: auto;
+	margin-top: 3%;
+}

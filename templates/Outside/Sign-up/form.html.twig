@@ -1,0 +1,28 @@
+{# templates/Outside/createForm.html.twig #}
+
+{% extends "Outside/layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - Sign-up
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('style/form.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block quote_body %}
+
+
+{{ form(form) }}
+
+
+
+
+
+{% endblock %}
+
+	{% block javascripts %}
+        {{ parent() }}
+
+    {% endblock %}

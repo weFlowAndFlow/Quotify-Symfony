@@ -1,0 +1,26 @@
+{# templates/Outside/accountConfirmed.html.twig #}
+
+{% extends "Outside/layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - Account created
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{#    <link href="{{ asset('style/timeline.css') }}" rel="stylesheet"/>#}
+{% endblock %}
+
+{% block quote_body %}
+
+
+
+    <br /><br /><br /><br /><br />
+
+<p>Your account has been created.
+    You should receive very shortly a message to confirm your email address.
+    Please make sure to check your spam folder.</p>
+
+
+
+{% endblock %}

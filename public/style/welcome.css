@@ -1,0 +1,22 @@
+.headList {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 2%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    display: inline;
+    margin: 1%;
+}
+
+
+
+
+
+
+
+

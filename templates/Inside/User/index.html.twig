@@ -25,6 +25,7 @@
 		<p>Last name : <span>{{ app.user.lastname }}</span></p>
 
 		<a href="{{ path('qtf_user_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">Edit</a>
+		<a href="{{ path('qtf_password_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">Change password</a>
 	</div>
 
 

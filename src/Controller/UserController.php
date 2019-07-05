@@ -7,6 +7,8 @@ use App\Entity\Author;
 use App\Entity\Quote;
 use App\Entity\User;
 use App\Form\AuthorType;
+use App\Form\ChangePasswordType;
+use App\Form\CreateUserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,13 +49,13 @@ class UserController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($user);
-                    $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
 
-                    $this->addFlash('success', 'The user has been modified.');
+                $this->addFlash('success', 'The user has been modified.');
 
-                    return $this->redirectToRoute('qtf_user_index');
+                return $this->redirectToRoute('qtf_user_index');
 
             }
             return $this->render('Inside/User/form.html.twig', ['form' => $form->createView()]);
@@ -64,6 +66,8 @@ class UserController extends AbstractController
 
 
     }
+
+
 
 
 }

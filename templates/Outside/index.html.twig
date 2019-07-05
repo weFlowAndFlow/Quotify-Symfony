@@ -1,4 +1,4 @@
-{# templates/Inside/Date/index.html.twig #}
+{# templates/Outside/index.html.twig #}
 
 {% extends "Outside/layout.html.twig" %}
 
@@ -8,17 +8,27 @@
 
 {% block stylesheets %}
     {{ parent() }}
-{#    <link href="{{ asset('style/timeline.css') }}" rel="stylesheet"/>#}
+    <link href="{{ asset('style/welcome.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block quote_body %}
 
 
 
-        <a href="{{ path('qtf_login') }}">login</a>
-    <br /><br /><br /><br /><br />
+<div class="headList">
+     <ul>
+         <li><a href="{{ path('qtf_welcome_create') }}">Sign-up</a></li>
+         <li><a href="{{ path('qtf_login') }}">Sign-in</a></li>
+     </ul>
+</div>
 
-<p>Ceci est la page d'accueil du site quand on n'est pas connecté</p>
+
+
+
+
+
+
+
 
 
 
