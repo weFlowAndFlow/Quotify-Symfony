@@ -58,11 +58,11 @@ class QuoteController extends AbstractController
     }
 
     /**
-     * @Route("/create", name="qtf_quote_create")
+     * @Route("/create_{caller}", name="qtf_quote_create")
      */
-    public function create(Request $request)
+    public function create(Request $request, $caller)
     {
-
+        $id = 0; //fake id for the cancel button
         $user = $this->getUser();
         $quote = new Quote();
         $quote->setUser($user);
@@ -82,7 +82,7 @@ class QuoteController extends AbstractController
         }
 
 
-        return $this->render('Inside/Quote/form.html.twig', ['form' => $form->createView()]);
+        return $this->render('Inside/Quote/form.html.twig', ['form' => $form->createView(), 'previousPage' => $caller, 'id' => $id]);
     }
 
     /**

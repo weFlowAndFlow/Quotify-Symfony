@@ -6,12 +6,12 @@
 }
 
 .mainContent {
-	margin: 3%;
+	margin: 0%;
 	min-width: 280px;
 }
 
 .flashMessage {
 	max-width: 900px;
 	margin: auto;
-	margin-top: 3%;
+	margin-top: 0%;
 }

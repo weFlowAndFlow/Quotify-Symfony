@@ -1,22 +1,86 @@
 .headList {
     position: sticky;
     position: -webkit-sticky;
-    top: 2%;
+    top: 10px;
+    width: 220px;
+    margin-right: 10px;
+    margin-left: auto;
+    z-index: 3;
 }
 
-ul {
-    list-style-type: none;
+.headListContent {
+    background-color: rgb(247, 247, 247, 0.5);
+    height: 50px;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 30px;
 }
 
-li {
+
+.item {
     display: inline;
-    margin: 1%;
+    margin-right: 8%;
+    font-size: 16px;
 }
 
 
 
 
 
+.parallaxContainer {
+    margin-top: 20px;
+
+}
+
+.parallaxContainer section {
+    height: 100vh;
+    border: 1px solid transparent;
+}
+
+.sectionContent {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40vh;
+    font-size: 19px;
+}
+
+
+section:nth-child(1) {
+    background: rgb(45, 99, 0);
+    color: white;
+}
+
+section:nth-child(2) {
+    background: #F5871F;
+}
+
+section:nth-child(3) {
+    background: #5eb5e0;
+}
+
+section:nth-child(4) {
+    background: #8959A8;
+}
+
+section:nth-child(5) {
+    background: #ffcc00;
+}
+
+section:nth-child(6) {
+    background: rgb(77, 168, 3);
+}
 
 
 
+
+@media all and (max-width: 768px)
+{
+
+
+    .sectionContent {
+        margin-top: 25vh;
+    }
+
+
+}
