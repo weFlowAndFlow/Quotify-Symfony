@@ -8,16 +8,32 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('style/form.css') }}" rel="stylesheet" />
+    <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block quote_body %}
 
 
-{{ form(form) }}
 
 
 
+    <div class="formInside">
+    {{ form_start(form) }}
+
+        {{ form_errors(form.email) }}
+        {{ form_label(form.email) }}
+    {{ form_widget(form.email, { 'attr': {} }) }}
+
+        {{ form_errors(form.firstname) }}
+        {{ form_label(form.firstname) }}
+    {{ form_widget(form.firstname, { 'attr': {} }) }}
+
+        {{ form_errors(form.lastname) }}
+        {{ form_label(form.lastname) }}
+    {{ form_widget(form.lastname, { 'attr': {} }) }}
+
+    {{ form_end(form) }}
+    </div>
 
 
 {% endblock %}

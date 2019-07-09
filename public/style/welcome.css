@@ -1,8 +1,31 @@
+body {
+    font-family: Verdana, Arial, sans-serif;
+    background-color: rgb(247, 247, 247);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    width: 100%;
+    background-color: rgb(51, 51, 51);
+    color: rgb(229, 229, 229);
+
+    flex-shrink: 0;
+}
+
+.footerContent {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+
 .headList {
     position: sticky;
     position: -webkit-sticky;
     top: 10px;
-    width: 220px;
+    width: 240px;
     margin-right: 10px;
     margin-left: auto;
     z-index: 3;
@@ -12,7 +35,7 @@
     background-color: rgb(247, 247, 247, 0.5);
     height: 50px;
     text-align: center;
-    padding-top: 10px;
+    padding: 12px;
     border-radius: 30px;
 }
 
@@ -22,9 +45,6 @@
     margin-right: 8%;
     font-size: 16px;
 }
-
-
-
 
 
 .parallaxContainer {
@@ -61,6 +81,7 @@ section:nth-child(3) {
 
 section:nth-child(4) {
     background: #8959A8;
+    color: white;
 }
 
 section:nth-child(5) {
@@ -69,13 +90,16 @@ section:nth-child(5) {
 
 section:nth-child(6) {
     background: rgb(77, 168, 3);
+    color: white;
 }
 
 
 
 
-@media all and (max-width: 768px)
-{
+
+
+
+@media all and (max-width: 768px) {
 
 
     .sectionContent {
@@ -84,3 +108,7 @@ section:nth-child(6) {
 
 
 }
+
+
+
+

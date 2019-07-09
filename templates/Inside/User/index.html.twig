@@ -3,49 +3,48 @@
 {% extends "Inside/layout.html.twig" %}
 
 {% block title %}
-	{{ parent() }} - Profile
+    {{ parent() }} - Profile
 {% endblock %}
 
 
 {% block stylesheets %}
-	{{ parent() }}
-	<link href="{{ asset('style/user.css') }}" rel="stylesheet" />
+    {{ parent() }}
+    <link href="{{ asset('style/user.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 
 {% block quote_body %}
 
 
-<div class="row user">
+    <div class="row user">
 
-	<div class="col-sm-6 userInfo">
-		<h4>My Profile</h4>
-		<p><span>{{ app.user.email }}</span></p>
-		<p>First name : <span>{{ app.user.firstname }}</span></p>
-		<p>Last name : <span>{{ app.user.lastname }}</span></p>
+        <div class="col-sm-6 userInfo">
+            <h4>My Profile</h4>
+            <p><span>{{ app.user.email }}</span></p>
+            <p>First name : <span>{{ app.user.firstname }}</span></p>
+            <p>Last name : <span>{{ app.user.lastname }}</span></p>
 
-		<a href="{{ path('qtf_user_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">Edit</a>
-		<a href="{{ path('qtf_password_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">Change password</a>
-	</div>
+            <a href="{{ path('qtf_user_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">Edit</a>
+            <a href="{{ path('qtf_password_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">Change
+                password</a>
+        </div>
 
 
+        <div class="col-sm-6 userStats">
+            <div class="stats">
+                <h4>My Stats</h4>
+                <p>{{ app.user.quotes|length }} quotes</p>
+                <p>by {{ app.user.authors|length }} authors</p>
+                <p>from {{ app.user.originalWorks|length }} original works</p>
+                <p>in {{ app.user.categories|length }} categories</p>
+            </div>
+        </div>
 
-
-	<div class="col-sm-6 userStats">
-		<div class="stats">
-			<h4>My Stats</h4>
-			<p>{{ app.user.quotes|length }} quotes</p>
-			<p>by {{ app.user.authors|length }} authors</p>
-			<p>from {{ app.user.originalWorks|length }} original works</p>
-			<p>in {{ app.user.categories|length }} categories</p>
-		</div>
-	</div>
-
-</div>
-
+    </div>
 
 
 
 
-	
+
+
 {% endblock %}

@@ -5,8 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
@@ -38,8 +38,6 @@ class Category
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
-
-
 
 
     public function __construct()
@@ -104,5 +102,4 @@ class Category
     }
 
 
-   
 }

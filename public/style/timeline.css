@@ -1,5 +1,4 @@
 
-
 .timeline {
     min-width: 200px;
     max-width: 300px;
@@ -10,7 +9,7 @@
 
     border-top: 2px dashed;
     border-color: rgb(240, 156, 0) !important;
-    margin:0;
+    margin: 0;
     padding: 30px;
 }
 
@@ -30,9 +29,6 @@
     color: white;
     border: none;
 }
-
-
-
 
 
 .timelineElement:nth-child(even) {
@@ -55,11 +51,11 @@
 
 .timelineElement:first-child {
     border-top: 0;
-    border-top-right-radius:0;
-    border-top-left-radius:0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
 }
 
 .timelineElement:last-child {
-    border-bottom-right-radius:0;
-    border-bottom-left-radius:0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }

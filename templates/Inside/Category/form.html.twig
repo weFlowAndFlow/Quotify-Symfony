@@ -8,12 +8,12 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('style/form.css') }}" rel="stylesheet" />
+    <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block quote_body %}
 
-
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
     {{ form_start(form) }}
     {{ form_row(form.name) }}
     <div class="row">
@@ -36,15 +36,15 @@
 
         <script>
             var $author = $('#quote_author');
-            $author.change(function() {
+            $author.change(function () {
                 var $form = $(this).closest('form');
                 var data = {};
                 data[$author.attr('name')] = $author.val();
                 $.ajax({
-                    url : $form.attr('action'),
+                    url: $form.attr('action'),
                     type: $form.attr('method'),
-                    data : data,
-                    success: function(html) {
+                    data: data,
+                    success: function (html) {
                         $('#quote_originalWork').replaceWith(
                             $(html).find('#quote_originalWork')
                         );

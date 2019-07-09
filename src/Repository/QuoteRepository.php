@@ -49,18 +49,17 @@ class QuoteRepository extends ServiceEntityRepository
     }
     */
 
-        public function getQuoteById($id, $user)
-        {
-            return $this->createQueryBuilder('q')
-                ->andWhere('q.id = :id')
-                ->setParameter('id', $id)
-                ->andWhere('q.user = :user')
-                ->setParameter('user', $user)
-                ->getQuery()
-                ->getSingleResult()
-                ;
+    public function getQuoteById($id, $user)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.id = :id')
+            ->setParameter('id', $id)
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getSingleResult();
 
-        }
+    }
 
     /*
      * Retrieves a random quote from the database or null if there is no quote
@@ -77,8 +76,7 @@ class QuoteRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
 
-        if($count > 0)
-        {
+        if ($count > 0) {
             return $this->createQueryBuilder('q')
                 ->andWhere('q.user = :user')
                 ->setParameter('user', $user)
@@ -86,10 +84,8 @@ class QuoteRepository extends ServiceEntityRepository
                 ->setMaxResults(1)
                 ->getQuery()
                 ->getSingleResult();
-        }
-        else
-        {
-          return null;
+        } else {
+            return null;
         }
     }
 
@@ -100,8 +96,7 @@ class QuoteRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->orderBy('q.id', 'DESC')
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     /*
@@ -136,8 +131,7 @@ class QuoteRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->andWhere('q.author = :author')
             ->setParameter('author', $author)
-            ->getQuery()
-            ;
+            ->getQuery();
     }
 
     public function createQueryFindAllByCategory($category, $user)
@@ -149,8 +143,7 @@ class QuoteRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->andWhere('c = :category')
             ->setParameter('category', $category)
-            ->getQuery()
-            ;
+            ->getQuery();
     }
 
     /*
@@ -160,15 +153,12 @@ class QuoteRepository extends ServiceEntityRepository
      */
     public function createQueryFindAllByYear($year)
     {
-        if ($year == 9999)
-        {
+        if ($year == 9999) {
             return $this->createQueryBuilder('q')
                 ->join('q.originalWork', 'og')
                 ->andWhere('og.year is NULL')
                 ->getQuery();
-        }
-        else
-        {
+        } else {
             return $this->createQueryBuilder('q')
                 ->join('q.originalWork', 'og')
                 ->andWhere('og.year = :val')
@@ -184,8 +174,7 @@ class QuoteRepository extends ServiceEntityRepository
             ->select('COUNT(q)')
             ->andWhere('q.author is NULL')
             ->getQuery()
-            ->getSingleScalarResult()
-            ;
+            ->getSingleScalarResult();
     }
 
 
@@ -197,8 +186,7 @@ class QuoteRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->andWhere('q.originalWork is null')
             ->getQuery()
-            ->getSingleScalarResult()
-            ;
+            ->getSingleScalarResult();
     }
 
     public function countQuotesForUndefinedCategory($user)
@@ -210,8 +198,7 @@ class QuoteRepository extends ServiceEntityRepository
             ->andWhere('q.user = :user')
             ->setParameter('user', $user)
             ->getQuery()
-            ->getSingleScalarResult()
-            ;
+            ->getSingleScalarResult();
     }
 
 
@@ -221,8 +208,7 @@ class QuoteRepository extends ServiceEntityRepository
             ->andWhere('q.user = :user')
             ->setParameter('user', $user)
             ->andWhere('q.author is NULL')
-            ->getQuery()
-            ;
+            ->getQuery();
     }
 
 
@@ -232,8 +218,7 @@ class QuoteRepository extends ServiceEntityRepository
             ->andWhere('q.user = :user')
             ->setParameter('user', $user)
             ->andWhere('q.originalWork is null')
-            ->getQuery()
-            ;
+            ->getQuery();
     }
 
     public function createQueryGetQuotesForUndefinedCategory($user)
@@ -244,9 +229,18 @@ class QuoteRepository extends ServiceEntityRepository
             ->andWhere('u = :user')
             ->setParameter('user', $user)
             ->andWhere('c is null')
-            ->getQuery()
-            ;
+            ->getQuery();
     }
 
+    public function search($keywords)
+    {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.text like :val')
+            ->setParameter('val', '%'.$keywords.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
 
 }

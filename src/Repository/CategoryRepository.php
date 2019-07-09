@@ -51,7 +51,6 @@ class CategoryRepository extends ServiceEntityRepository
     */
 
 
-
     public function getCategoryById($id, $user)
     {
         return $this->createQueryBuilder('c')
@@ -60,8 +59,7 @@ class CategoryRepository extends ServiceEntityRepository
             ->andWhere('c.id = :val')
             ->setParameter('val', $id)
             ->getQuery()
-            ->getSingleResult()
-            ;
+            ->getSingleResult();
     }
 
     public function createQueryFindAll($user)
@@ -70,7 +68,18 @@ class CategoryRepository extends ServiceEntityRepository
             ->join('c.user', 'u')
             ->andWhere('u = :user')
             ->setParameter('user', $user)
-        ->orderBy('c.name')
-        ->getQuery();
+            ->orderBy('c.name')
+            ->getQuery();
+    }
+
+    public function search($keywords)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.name like :val')
+            ->setParameter('val', '%'.$keywords.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+
     }
 }

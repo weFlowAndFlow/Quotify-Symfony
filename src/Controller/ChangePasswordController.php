@@ -4,12 +4,11 @@
 namespace App\Controller;
 
 use App\Entity\ChangePassword;
-use App\Entity\User;
 use App\Form\ChangePasswordType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
 
@@ -39,8 +38,7 @@ class ChangePasswordController extends AbstractController
                 $oldPasswordEntered = $form->getData()->getOldPassword();
                 $newPasswordEntered = $form->getData()->getNewPassword();
 
-                if ($encoder->isPasswordValid($user, $oldPasswordEntered))
-                {
+                if ($encoder->isPasswordValid($user, $oldPasswordEntered)) {
                     $encodedNewPassword = $encoder->encodePassword($user, $newPasswordEntered);
                     $user->setPassword($encodedNewPassword);
 
@@ -51,9 +49,7 @@ class ChangePasswordController extends AbstractController
                     $this->addFlash('success', 'The password has been modified.');
 
                     return $this->redirectToRoute('qtf_user_index');
-                }
-                else
-                {
+                } else {
                     $this->addFlash('error', 'Oops! The old password is wrong.');
                 }
 

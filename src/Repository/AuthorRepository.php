@@ -56,8 +56,7 @@ class AuthorRepository extends ServiceEntityRepository
             ->andWhere('a.id = :val')
             ->setParameter('val', $id)
             ->getQuery()
-            ->getSingleResult()
-            ;
+            ->getSingleResult();
     }
 
     public function createQueryFindAll($user)
@@ -67,6 +66,18 @@ class AuthorRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->orderBy('a.name', 'ASC')
             ->getQuery();
+    }
+
+    public function search($keywords)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.forename like :val')
+            ->orWhere('a.name like :val')
+            ->setParameter('val', '%'.$keywords.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+
     }
 
 }

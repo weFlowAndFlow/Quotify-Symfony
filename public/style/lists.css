@@ -3,7 +3,7 @@
 }
 
 .list {
-    width:100%;
+    width: 100%;
     margin: auto;
 }
 
@@ -49,7 +49,6 @@
 @media all and (max-width: 768px) {
 
 
-
     .entry {
         min-width: auto;
         text-align: center;
@@ -62,8 +61,7 @@
     }
 }
 
-@media all and (max-width: 590px)
-{
+@media all and (max-width: 590px) {
     .buttons {
         text-align: center;
     }

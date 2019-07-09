@@ -3,16 +3,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Author;
 use App\Entity\Quote;
-use App\Entity\User;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Config\Definition\Exception\Exception;
-use Knp\Component\Pager\PaginatorInterface;
 use App\Form\QuoteType;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/in/quote")
@@ -27,11 +24,10 @@ class QuoteController extends AbstractController
     {
         $user = $this->getUser();
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAll($user);
-        $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
+        $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
         $displayTitle = "All quotes";
 
-        if ($this->getDoctrine()->getRepository(Quote::class)->getAll($user) == null)
-        {
+        if ($this->getDoctrine()->getRepository(Quote::class)->getAll($user) == null) {
             $this->addFlash('warning', "It seems you don't have any quote in your account yet. Add one by clicking the '+' button");
 
         }
@@ -46,12 +42,10 @@ class QuoteController extends AbstractController
     {
         $user = $this->getUser();
         $quote = $this->getDoctrine()->getRepository(Quote::class)->getQuoteById($id, $user);
-        if ($quote == null)
-        {
+        if ($quote == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The quote could not be found.');
             return $this->redirectToRoute('qtf_quote_index');
-        }
-        else {
+        } else {
 
             return $this->render('Inside/Quote/singleView.html.twig', array('quote' => $quote));
         }
@@ -70,8 +64,7 @@ class QuoteController extends AbstractController
         $form = $this->createForm(QuoteType::class, $quote);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($quote);
             $em->flush();
@@ -93,21 +86,16 @@ class QuoteController extends AbstractController
         $user = $this->getUser();
         $currentQuote = $this->getDoctrine()->getRepository(Quote::class)->getQuoteById($id, $user);
 
-        if ($currentQuote == null)
-        {
+        if ($currentQuote == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The quote could not be found.');
             return $this->redirectToRoute('qtf_quote_index');
-        }
-        else
-        {
+        } else {
             $form = $this->createForm(QuoteType::class, $currentQuote);
 
-            if ($request->isMethod('POST'))
-            {
+            if ($request->isMethod('POST')) {
                 $form->handleRequest($request);
 
-                if ($form->isValid())
-                {
+                if ($form->isValid()) {
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($currentQuote);
                     $em->flush();
@@ -133,12 +121,9 @@ class QuoteController extends AbstractController
         $user = $this->getUser();
         $quote = $this->getDoctrine()->getRepository(Quote::class)->getQuoteById($id, $user);
 
-        if ($quote == null)
-        {
+        if ($quote == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The quote could not be found.');
-        }
-        else
-        {
+        } else {
             $em = $this->getDoctrine()->getManager();
             $em->remove($quote);
             $em->flush();
@@ -155,24 +140,19 @@ class QuoteController extends AbstractController
     public function viewRandom()
     {
         $user = $this->getUser();
-        try
-        {
+        try {
             $quote = $this->getDoctrine()->getRepository(Quote::class)->findRandom($user);
 
-            if ($quote == null)
-            {
+            if ($quote == null) {
                 return $this->redirectToRoute('qtf_quote_index');
             }
 
             return $this->render('Inside/Quote/singleView.html.twig', array('quote' => $quote));
-        }
-        catch (Exception $ex)
-        {
+        } catch (Exception $ex) {
             $this->addFlash('error', 'Oops! Something went wrong : could not generate a random quote.');
             return $this->redirectToRoute('qtf_quote_index');
         }
     }
-
 
 
 }

@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\OriginalWork;
-use App\Entity\Quote;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -57,8 +56,7 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ->andWhere('o.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     public function findByAuthor($id)
@@ -68,8 +66,7 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ->setParameter('val', $id)
             ->orderBy('o.title', 'ASC')
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     public function findDates($user)
@@ -83,8 +80,7 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->orderBy('og.year', 'DESC')
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 
     public function createQueryFindAll($user)
@@ -94,6 +90,17 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->orderBy('o.title')
             ->getQuery();
+    }
+
+    public function search($keywords)
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.title like :val')
+            ->setParameter('val', '%'.$keywords.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+
     }
 
 

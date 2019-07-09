@@ -5,8 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
@@ -141,14 +141,12 @@ class Author
 
     public function getDisplayName()
     {
-        if (isset($this->name))
-        {
+        if (isset($this->name)) {
             return $this->forename . " " . $this->name;
-        } else 
-        {
+        } else {
             return "Unknown";
         }
-        
+
     }
 
     public function getUser(): ?User
@@ -162,7 +160,6 @@ class Author
 
         return $this;
     }
-
 
 
 }

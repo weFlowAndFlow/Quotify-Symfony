@@ -1,161 +1,160 @@
 /* quotes as list */
 
 .quoteListTitle {
-	text-align: center;
-	margin-top: 3%;
-	font-weight: bold;
-	color: rgb(79, 79, 79);
+    text-align: center;
+    margin-top: 3%;
+    font-weight: bold;
+    color: rgb(79, 79, 79);
 }
 
 .quoteBlock {
-	margin: 5%;
-	margin-bottom: 0;
-	padding: 2%;
-	padding-bottom: 0;
-	box-shadow: 17px 12px 24px -27px rgba(173,173,173,0.87);
-	border-radius: 3px;
-	background-color:  rgb(250, 250, 250) ;
-	background-image: url('../img/quotationMarks.png');
-	background-size: 150px;
-	background-position: left top;
-	background-repeat: no-repeat;
+    margin: 5%;
+    margin-bottom: 0;
+    padding: 2%;
+    padding-bottom: 0;
+    box-shadow: 17px 12px 24px -27px rgba(173, 173, 173, 0.87);
+    border-radius: 3px;
+    background-color: rgb(250, 250, 250);
+    background-image: url('../img/quotationMarks.png');
+    background-size: 150px;
+    background-position: left top;
+    background-repeat: no-repeat;
 }
 
 .quoteCategories {
-	font-size: 14px;
-	font-weight: lighter;
-	font-variant: small-caps;
-	text-transform: capitalize;
-	color: rgb(45, 99, 0);
+    font-size: 14px;
+    font-weight: lighter;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    color: rgb(45, 99, 0);
 }
 
 .quoteCategories a {
-	color: rgb(45, 99, 0);
+    color: rgb(45, 99, 0);
 }
 
 .quoteCategories a:hover {
-	color: rgb(77, 168, 3, 1);
-	text-decoration: none;
+    color: rgb(77, 168, 3, 1);
+    text-decoration: none;
 }
 
 .quoteText {
-	font-family: Georgia;
-	font-style: italic;
-	font-size: 18px;
-	margin-top: 20px;
-	margin-left: 3%;
-	margin-right: 3%;
+    font-family: Georgia;
+    font-style: italic;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
 .centered {
-	white-space: pre-line;
-	text-align: center;
-	text-align-last: center;
+    white-space: pre-line;
+    text-align: center;
+    text-align-last: center;
 }
 
 .justified {
-	white-space: pre-line;
-	text-align: justify;
-	text-align-last: left;
-	-webkit-text-align-last: left;
+    white-space: pre-line;
+    text-align: justify;
+    text-align-last: left;
+    -webkit-text-align-last: left;
 }
 
 .seeMore {
-	font-size: 14px;
-	text-align: center;
+    font-size: 14px;
+    text-align: center;
 }
 
 .quoteAuthor {
-	font-family: Arial;
-	text-align: right;
-	font-weight: bold;
-	margin-bottom: -3px;
-	margin-top: 1%;
-	text-transform: capitalize;
+    font-family: Arial;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: -3px;
+    margin-top: 1%;
+    text-transform: capitalize;
 }
 
 .quoteAuthor a {
-	color: rgb(45, 99, 0);
+    color: rgb(45, 99, 0);
 }
 
 .quoteAuthor a:hover {
-	color: rgb(77, 168, 3, 1);
-	text-decoration: none;
+    color: rgb(77, 168, 3, 1);
+    text-decoration: none;
 }
 
 .quoteOriginalWork {
-	font-family: Arial;
-	text-align: right;
-	text-transform: capitalize;
+    font-family: Arial;
+    text-align: right;
+    text-transform: capitalize;
 }
 
 .quoteOriginalWork a {
-	color: rgb(45, 99, 0);
+    color: rgb(45, 99, 0);
 }
 
 .quoteOriginalWork a:hover {
-	color: rgb(77, 168, 3, 1);
-	text-decoration: none;
+    color: rgb(77, 168, 3, 1);
+    text-decoration: none;
 }
 
 .quoteButtons {
-	text-align: left;
-	font-size: 14px;
-	margin-top: -20px;
+    text-align: left;
+    font-size: 14px;
+    margin-top: -20px;
 }
 
 
 .paginator {
-	width: 100%;
-	margin: auto;
-	padding-top: 30px;
+    width: 100%;
+    margin: auto;
+    padding-top: 30px;
 }
 
 /* single view */
 
 .quoteNotes {
-	margin: 7%;
-	padding: 2%;
-	border-radius: 3px;	
-	border: 1px solid lightgray;
-	font-family: Courier New;
+    margin: 7%;
+    padding: 2%;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    font-family: Courier New;
 }
 
 .singleQuoteButtons {
-	text-align: center;
-	margin-top: 7%;
-	margin-bottom: 5%;
+    text-align: center;
+    margin-top: 7%;
+    margin-bottom: 5%;
 }
 
 
-@media all and (max-width: 768px)
-{
-	.quoteBlock {
-		margin: 1%;
-	}
+@media all and (max-width: 768px) {
+    .quoteBlock {
+        margin: 1%;
+    }
 
-	.quoteText {
-		font-size: 16px;
-	}
+    .quoteText {
+        font-size: 16px;
+    }
 
-	.quoteAuthor {
-		font-size: 14px;
-	}
+    .quoteAuthor {
+        font-size: 14px;
+    }
 
-	.quoteOriginalWork {
-		font-size: 14px;
-	}
+    .quoteOriginalWork {
+        font-size: 14px;
+    }
 
-	.quoteButtons {
-		text-align: center;
-		margin-top: 10%;
-		margin-bottom: 30px;
-	}
+    .quoteButtons {
+        text-align: center;
+        margin-top: 10%;
+        margin-bottom: 30px;
+    }
 
-	.singleQuoteButtons {
-		margin-top: 15%;
-		margin-bottom: 10%;
-	}
+    .singleQuoteButtons {
+        margin-top: 15%;
+        margin-bottom: 10%;
+    }
 
 
 }

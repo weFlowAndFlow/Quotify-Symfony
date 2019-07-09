@@ -5,13 +5,11 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\CreateUserType;
-use App\Repository\UserRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
@@ -31,7 +29,7 @@ class WelcomeController extends AbstractController
     /**
      * @Route("/sign-up", name="qtf_welcome_create")
      */
-    public function create(Request $request, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer)
+    public function create(Request $request, UserPasswordEncoderInterface $encoder, Swift_Mailer $mailer)
     {
         $user = new User();
 
@@ -50,14 +48,12 @@ class WelcomeController extends AbstractController
             $em->flush();
 
             // Send email to confirm address
-            $message = (new \Swift_Message('Quotify - Confirm email address'))
+            $message = (new Swift_Message('Quotify - Confirm email address'))
                 ->setFrom('no-reply@quotify-example.com')
                 ->setTo($user->getEmail())
-                ->setBody($this->renderView('Outside/Emails/confirmAddress.html.twig', ['user' => $user]), 'text/html')
-                ;
+                ->setBody($this->renderView('Outside/Emails/confirmAddress.html.twig', ['user' => $user]), 'text/html');
 
             $mailer->send($message);
-
 
 
             // Redirect to confirm account creation page
@@ -78,13 +74,10 @@ class WelcomeController extends AbstractController
         $id = $request->get('id');
         $user = $this->getDoctrine()->getRepository(User::class)->getOne($id, $email);
 
-        if ($user == null)
-        {
+        if ($user == null) {
             $this->addFlash('error', 'Oops! Something went wrong. Please try to confirm your address again.');
             return $this->redirectToRoute('qtf_welcome_index');
-        }
-        else if ($user->isVerified())
-        {
+        } else if ($user->isVerified()) {
             $this->addFlash('success', 'Your email was already confirmed. You can log-in.');
             return $this->redirectToRoute('qtf_login');
         }

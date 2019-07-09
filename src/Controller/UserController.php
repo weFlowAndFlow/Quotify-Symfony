@@ -3,22 +3,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Author;
-use App\Entity\Quote;
-use App\Entity\User;
-use App\Form\AuthorType;
-use App\Form\ChangePasswordType;
-use App\Form\CreateUserType;
+use App\Form\UserType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Config\Definition\Exception\Exception;
-use Knp\Component\Pager\PaginatorInterface;
-use App\Form\UserType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Form\FormError;
 
 /**
  * @Route("/in/user")
@@ -66,8 +57,6 @@ class UserController extends AbstractController
 
 
     }
-
-
 
 
 }

@@ -1,95 +1,95 @@
 
 #mainDisplay {
-	max-width: 1024px;
-	margin: auto;
+    max-width: 1024px;
+    margin: auto;
 }
 
 .mainContent {
-	display:flex;
-	margin: 3%;
-	min-width: 280px;
+    display: flex;
+    margin: 3%;
+    min-width: 280px;
 }
 
 .flashMessage {
-	max-width: 900px;
-	margin: auto;
-	margin-top: 3%;
+    max-width: 900px;
+    margin: auto;
+    margin-top: 3%;
 }
 
 .contentHeart {
-	border: 1px solid rgb(226, 226, 226);
-	background-color: white;
-	padding: 10px;
+    border: 1px solid rgb(226, 226, 226);
+    background-color: white;
+    padding: 10px;
 }
 
 .contentDisplay {
-	width: 100%;
+    width: 100%;
 }
 
 .contentHead {
-	display: flex;
+    display: flex;
 }
 
 .searchBar {
-	border: 1px solid rgb(226, 226, 226);
-	background-color: white;
-	margin-bottom: 2%;
-	padding-left: 10px;
-	width: 100%;
+    border: 1px solid rgb(226, 226, 226);
+    background-color: white;
+    margin-bottom: 2%;
+    padding-left: 10px;
+    width: 100%;
 }
 
 #searchInput {
-	height: 50px;
-	min-width: 89%;
-	border: none;
-	outline: none;
-	color: rgb(45, 99, 0);
-	font-style: italic;
+    height: 50px;
+    min-width: 89%;
+    border: none;
+    outline: none;
+    color: rgb(45, 99, 0);
+    font-style: italic;
 }
 
 #searchButton {
-	height: 51px;
-	max-width: 40px;
-	border: none;
-	font-weight: bold;
-	border-left: 1px solid rgb(226, 226, 226);
-	padding-left: 10px;
-	outline: none;
-	color: gray;
-	text-align: center;
-	background-color: transparent;
+    height: 51px;
+    max-width: 40px;
+    border: none;
+    font-weight: bold;
+    border-left: 1px solid rgb(226, 226, 226);
+    padding-left: 10px;
+    outline: none;
+    color: gray;
+    text-align: center;
+    background-color: transparent;
 }
 
 #searchButton:hover {
-	color: rgb(45, 99, 0);
+    color: rgb(45, 99, 0);
 }
 
 #searchButton:focus {
-	color: black;
+    color: black;
 }
 
 .addButtonDiv {
-	font-size: 40px;
-	font-weight: bold;
-	background-color: rgb(77, 168, 3, 1);
-	width: 55px;
-	height: 48px;
-	border-radius: 60px;
-	margin-left: 2%;
-	margin-right: 2%;
-	margin-top: 2px;
+    font-size: 40px;
+    font-weight: bold;
+    background-color: rgb(77, 168, 3, 1);
+    width: 55px;
+    height: 48px;
+    border-radius: 60px;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2px;
 }
 
 .addButtonDiv a {
-	text-decoration: none;
-	color: white;
-	position: relative;
-	left: 15%;
-	bottom: 17%;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    left: 15%;
+    bottom: 17%;
 }
 
 .addButtonDiv:hover {
-	background-color: rgb(45, 99, 0);
+    background-color: rgb(45, 99, 0);
 }
 
 #addButton {
@@ -97,34 +97,32 @@
 }
 
 
+@media all and (max-width: 768px) {
 
-@media all and (max-width: 768px)
-{
+    #searchInput {
+        height: 50px;
+        border: none;
+        outline: none;
+        color: rgb(45, 99, 0);
+        font-style: italic;
+        min-width: 80%;
+    }
 
-	#searchInput {
-		height: 50px;
-		border: none;
-		outline: none;
-		color: rgb(45, 99, 0);
-		font-style: italic;
-		min-width: 80%;
-	}
-
-	#searchButton {
-		display:normal;
-		height: 48px;
-		padding-left: 15px;
-		width: 40px;
-	}
+    #searchButton {
+        display: normal;
+        height: 48px;
+        padding-left: 15px;
+        width: 40px;
+    }
 
 
-	.addButtonDiv {
-		position: fixed;
-		z-index: 2;
-		right: 5px;
-		bottom: 10px;
-		width: 48px;
-		height: 48px;
-	}
+    .addButtonDiv {
+        position: fixed;
+        z-index: 2;
+        right: 5px;
+        bottom: 10px;
+        width: 48px;
+        height: 48px;
+    }
 
 }

@@ -3,59 +3,62 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-	{{ parent() }}
+    {{ parent() }}
 {% endblock %}
 
 {% block stylesheets %}
-	{{ parent() }}
-	<link href="{{ asset('style/outside.css') }}" rel="stylesheet" />
+    {{ parent() }}
+    <link href="{{ asset('style/outside.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/header.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block body %}
 
+    <!-- HEADER -->
+    {{ include("Outside/_header.html.twig") }}
 
-	<!-- MAIN DISPLAY -->
-	<div id="mainDisplay">
+    <!-- MAIN DISPLAY -->
+    <div id="mainDisplay">
 
-		{# FLASH MESSAGES #}
-		<div class="flashMessage">
+        {# FLASH MESSAGES #}
+        <div class="flashMessage">
 
-			{% for message in app.flashes('success') %}
-				<div class="alert alert-success alert-dismissible fade show">
-					{{ message }}
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-				</div>
-			{% endfor %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            {% endfor %}
 
-			{% for message in app.flashes('warning') %}
-				<div class="alert alert-warning alert-dismissible fade show">
-					{{ message }}
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-				</div>
-			{% endfor %}
+            {% for message in app.flashes('warning') %}
+                <div class="alert alert-warning alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            {% endfor %}
 
-			{% for message in app.flashes('error') %}
-				<div class="alert alert-danger alert-dismissible fade show">
-					{{ message }}
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-				</div>
-			{% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            {% endfor %}
 
-		</div>
+        </div>
 
-		<div class="mainContent">
+        <div class="mainContent">
 
-			{% block quote_body %}{% endblock %}
+            {% block quote_body %}{% endblock %}
 
-		</div>
-	</div>
-	{% endblock %}
+        </div>
+    </div>
+{% endblock %}
 
 
 
 	{% block javascripts %}
-		{{ parent() }}
+        {{ parent() }}
 
 
-	{% endblock %}
+    {% endblock %}
 

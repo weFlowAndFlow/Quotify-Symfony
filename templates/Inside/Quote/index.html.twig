@@ -44,7 +44,7 @@
                 <p class="quoteAuthor">
                     {% if quote.author is not null %}
                         <a href="{{ path('qtf_author_quotes', {'id': quote.author.id}) }}">{{ quote.author.displayName }} </a>
-                        {% else %}
+                    {% else %}
                         Undefined
                     {% endif %}
                 </p>

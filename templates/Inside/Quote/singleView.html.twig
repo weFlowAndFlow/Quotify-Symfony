@@ -3,96 +3,101 @@
 {% extends "Inside/layout.html.twig" %}
 
 {% block title %}
-	{{ parent() }} - Home
+    {{ parent() }} - Home
 {% endblock %}
 
 {% block stylesheets %}
-	{{ parent() }}
-	<link href="{{ asset('style/quote.css') }}" rel="stylesheet" /> 
+    {{ parent() }}
+    <link href="{{ asset('style/quote.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block quote_body %}
 
-	
-		<div class="quoteBlock">
 
-				<p class="quoteCategories">
-					{% for category in quote.categories %}
-						<a href="{{ path('qtf_category_quotes', {'id': category.id}) }}"> #{{ category.name }} </a>
-					{% endfor %}
-				</p>
+    <div class="quoteBlock">
 
-				<p class="quoteText justified">
-					{{ quote.text }}
-				</p>
+        <p class="quoteCategories">
+            {% for category in quote.categories %}
+                <a href="{{ path('qtf_category_quotes', {'id': category.id}) }}"> #{{ category.name }} </a>
+            {% endfor %}
+        </p>
 
-			<p class="quoteAuthor">
-				{% if quote.author is not null %}
-					<a href="{{ path('qtf_author_quotes', {'id': quote.author.id}) }}">{{ quote.author.displayName }} </a>
-				{% else %}
-					Undefined
-				{% endif %}
-			</p>
+        <p class="quoteText justified">
+            {{ quote.text }}
+        </p>
 
-
-			{% if quote.originalWork is defined %}
-				<p class="quoteOriginalWork">
-					{% if quote.originalWork.title is defined and quote.originalWork.title is not null %}
-						in '<a href="{{ path('qtf_work_quotes', {'id': quote.originalWork.id}) }}">{{ quote.originalWork.title }}</a>'
-					{% endif %}
-					{% if quote.originalWork.year is defined and quote.originalWork.year is not null %}
-						({{ quote.originalWork.year }})
-					{% endif %}
-				</p>
-			{% endif %}
+        <p class="quoteAuthor">
+            {% if quote.author is not null %}
+                <a href="{{ path('qtf_author_quotes', {'id': quote.author.id}) }}">{{ quote.author.displayName }} </a>
+            {% else %}
+                Undefined
+            {% endif %}
+        </p>
 
 
-			</div>
+        {% if quote.originalWork is defined %}
+            <p class="quoteOriginalWork">
+                {% if quote.originalWork.title is defined and quote.originalWork.title is not null %}
+                    in '<a
+                        href="{{ path('qtf_work_quotes', {'id': quote.originalWork.id}) }}">{{ quote.originalWork.title }}</a>'
+                {% endif %}
+                {% if quote.originalWork.year is defined and quote.originalWork.year is not null %}
+                    ({{ quote.originalWork.year }})
+                {% endif %}
+            </p>
+        {% endif %}
 
 
-				{% if quote.notes is defined and quote.notes|length > 0 %}
-	 				<p class="quoteNotes">
-	 					{{ quote.notes }}
-	 				</p>
- 				{% endif %}
-
-	
-
-				<div class="singleQuoteButtons">
-					<a href="{{ path('qtf_quote_edit', {'id': quote.id, 'caller' : 'qtf_quote_view'}) }}" class="btn btn-outline-warning buttonSize">Edit</a>
-
-					{% if quote.notes is not defined or quote.notes|length == 0 %}
-						<a href="{{ path('qtf_quote_edit', {'id': quote.id, 'caller' : 'qtf_quote_view'}) }}" class="btn btn-outline-success buttonSize">Add notes</a>
- 					{% endif %}
-
-					<a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal" data-target="#deleteModal">Delete</a>
-				</div>
+    </div>
 
 
-	<!-- Delete Modal -->
-	<div class="modal fade" id="deleteModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
+    {% if quote.notes is defined and quote.notes|length > 0 %}
+        <p class="quoteNotes">
+            {{ quote.notes }}
+        </p>
+    {% endif %}
 
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">Warning</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
 
-				<!-- Modal body -->
-				<div class="modal-body">
-					You are about to permanently delete this quote. You won't be able to retrieve it. Do you wish to proceed ?
-				</div>
 
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">No, go back</button>
-					<a href="{{ path('qtf_quote_delete', {'id' : quote.id}) }} " class="btn btn-outline-danger">Yes, Delete</a>
-				</div>
+    <div class="singleQuoteButtons">
+        <a href="{{ path('qtf_quote_edit', {'id': quote.id, 'caller' : 'qtf_quote_view'}) }}"
+           class="btn btn-outline-warning buttonSize">Edit</a>
 
-			</div>
-		</div>
-	</div>
-	
+        {% if quote.notes is not defined or quote.notes|length == 0 %}
+            <a href="{{ path('qtf_quote_edit', {'id': quote.id, 'caller' : 'qtf_quote_view'}) }}"
+               class="btn btn-outline-success buttonSize">Add notes</a>
+        {% endif %}
+
+        <a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal" data-target="#deleteModal">Delete</a>
+    </div>
+
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Warning</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    You are about to permanently delete this quote. You won't be able to retrieve it. Do you wish to
+                    proceed ?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No, go back</button>
+                    <a href="{{ path('qtf_quote_delete', {'id' : quote.id}) }} " class="btn btn-outline-danger">Yes,
+                        Delete</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

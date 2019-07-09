@@ -3,16 +3,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Author;
 use App\Entity\OriginalWork;
 use App\Entity\Quote;
-use App\Form\AuthorType;
 use App\Form\OriginalWorkType;
-use App\Repository\OriginalWorkRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
@@ -22,14 +18,14 @@ use Twig\Environment;
 class WorkController extends AbstractController
 {
 
-  /**
-   * @Route("/", name="qtf_work_index")
-   */
+    /**
+     * @Route("/", name="qtf_work_index")
+     */
     public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
     {
         $user = $this->getUser();
         $worksQuery = $this->getDoctrine()->getRepository(OriginalWork::class)->createQueryFindAll($user);
-        $works = $paginator->paginate($worksQuery, $request->query->getInt('page', 1),15);
+        $works = $paginator->paginate($worksQuery, $request->query->getInt('page', 1), 15);
         $undefinedCount = $this->getDoctrine()->getRepository(Quote::class)->countQuotesForUndefinedWork($user);
 
         return $this->render('Inside/Work/index.html.twig', array('works' => $works, 'undefined' => $undefinedCount));
@@ -44,12 +40,10 @@ class WorkController extends AbstractController
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
 
-        if ($work == null)
-        {
+        if ($work == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The original work could not be found.');
             return $this->redirectToRoute('qtf_work_index');
-        }
-        else {
+        } else {
             $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindByOriginalWork($work, $user);
             $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
             $displayTitle = "All quotes for " . $work->getTitle();
@@ -89,9 +83,9 @@ class WorkController extends AbstractController
     {
         $user = $this->getUser();
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByYear($year, $user);
-        $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1),10);
+        $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
         $year = $year == 9999 ? 'undefined date' : $year;
-        $displayTitle = "All quotes for ".$year;
+        $displayTitle = "All quotes for " . $year;
 
         return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
@@ -108,8 +102,7 @@ class WorkController extends AbstractController
         $form = $this->createForm(OriginalWorkType::class, $work);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($work);
             $em->flush();
@@ -131,12 +124,10 @@ class WorkController extends AbstractController
         $user = $this->getUser();
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
-        if ($work == null)
-        {
+        if ($work == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The original work could not be found.');
             return $this->redirectToRoute('qtf_work_index');
-        }
-        else {
+        } else {
 
             $form = $this->createForm(OriginalWorkType::class, $work);
             $form->handleRequest($request);
@@ -164,16 +155,11 @@ class WorkController extends AbstractController
         $user = $this->getUser();
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
-        if ($work == null)
-        {
+        if ($work == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The original work could not be found.');
-        }
-        elseif (count($work->getQuotes()) > 0)
-        {
+        } elseif (count($work->getQuotes()) > 0) {
             $this->addFlash('warning', 'This original work can not be deleted : it references quotes in the database.');
-        }
-        else
-        {
+        } else {
             $em = $this->getDoctrine()->getManager();
             $em->remove($work);
             $em->flush();
@@ -183,10 +169,6 @@ class WorkController extends AbstractController
 
         return $this->redirectToRoute('qtf_work_index');
     }
-  
-
-
-
 
 
 }

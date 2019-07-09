@@ -1,46 +1,46 @@
 .profileForm {
-  max-width: 95%;
-	margin-top: 10%;
-  margin-left: auto;
-  margin-right: auto;
-	padding: 30px;
-	border: 1px solid rgb(226, 226, 226);
-  background-color: white;
-  border-radius: 15px;
+    max-width: 95%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    border: 1px solid rgb(226, 226, 226);
+    background-color: white;
+    border-radius: 15px;
 }
 
 
 .profileSubmitButton {
-  border-radius: 15px;
-  height: 30px;
-  font-size: 14px;
-  outline: none;
-  border: 1px solid rgb(189, 191, 189);
-  background-color: rgb(77, 168, 3, 0.8);
-  color: #f5ffef;
-  font-weight: bold;
+    border-radius: 15px;
+    height: 30px;
+    font-size: 14px;
+    outline: none;
+    border: 1px solid rgb(189, 191, 189);
+    background-color: rgb(77, 168, 3, 0.8);
+    color: #f5ffef;
+    font-weight: bold;
 }
 
 .profileSubmitButton:focus {
-  background-color: rgb(77, 168, 3, 1);
-  border: 1px solid rgb(226, 219, 2);
+    background-color: rgb(77, 168, 3, 1);
+    border: 1px solid rgb(226, 219, 2);
 }
 
 .profileTextField {
-  border-radius: 15px;
-  height: 30px;
-  font-size: 16px;
-  padding-left: 20px;
-  border: 1px solid rgb(77, 168, 3, 0.5);
+    border-radius: 15px;
+    height: 30px;
+    font-size: 16px;
+    padding-left: 20px;
+    border: 1px solid rgb(77, 168, 3, 0.5);
 }
 
 .profileTextField:focus {
-  border: 2px solid rgb(226, 219, 2);
-  outline: none;
+    border: 2px solid rgb(226, 219, 2);
+    outline: none;
 }
 
 .mandatoryAnnotation {
-	font-size : 10px;
-	color : red;
-	font-weight: italic;
+    font-size: 10px;
+    color: red;
+    font-weight: italic;
 }

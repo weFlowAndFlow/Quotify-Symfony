@@ -1,160 +1,158 @@
 @font-face {
-  font-family: "charlotte";
-  src: url('charlotte.otf');
+    font-family: "charlotte";
+    src: url('charlotte.otf');
 }
 
 header {
-	background-image: linear-gradient(to bottom right, rgb(45, 99, 0), rgb(77, 168, 3, 1));
-	max-width: 100%;
-  height: 45px;
+    background-image: linear-gradient(to bottom right, rgb(45, 99, 0), rgb(77, 168, 3, 1));
+    max-width: 100%;
+    height: 45px;
 }
 
 #ul-head {
-  list-style-type: none;
-  margin: auto;
-  padding: 5px;
-  font-size: 12px;
-  max-width: 1000px;
+    list-style-type: none;
+    margin: auto;
+    padding: 5px;
+    font-size: 12px;
+    max-width: 1000px;
 }
 
 .menuIcon {
-  display: none;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border: 1px solid transparent;
-  border-radius: 10px;
+    display: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border: 1px solid transparent;
+    border-radius: 10px;
 }
 
 .menuIcon:hover {
-  border: 1px solid white;
-  border-radius: 10px;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 
 #li-head-left {
-  float: left;
-  margin-left: 10px;
+    float: left;
+    margin-left: 10px;
 }
 
 #li-head-title {
-  float: left;
-  margin-left: 1%;
+    float: left;
+    margin-left: 1%;
 }
 
 #li-head-right {
-  float: right;
-  margin-right: 5px;
-  position: relative;
+    float: right;
+    margin-right: 5px;
+    position: relative;
 }
 
 .headerTitle {
-  font-family: "charlotte";
-  font-size: 16px;
-  color: white;
-  padding-right: 35px;
-  padding-left: 20px;
-  padding-top: 5px;
-  align-content: middle;
-  text-decoration: none;
+    font-family: "charlotte";
+    font-size: 16px;
+    color: white;
+    padding-right: 35px;
+    padding-left: 20px;
+    padding-top: 5px;
+    align-content: middle;
+    text-decoration: none;
 }
 
-.headerTitle a {
-  background-color: transparent;
-  text-decoration: none;
-  color: white;
+.headerTitleOut {
+    font-family: "charlotte";
+    font-size: 16px;
+    color: white;
+    padding-right: 35px;
+    padding-left: 20px;
+    padding-top: 10px;
+    text-align: center;
+    text-decoration: none;
 }
 
-.headerTitle a:hover {
-  background-color: transparent;
-  text-decoration: none;
-  color: rgb(77, 168, 3);
+.headerTitle a, .headerTitleOut a  {
+    background-color: transparent;
+    text-decoration: none;
+    color: white;
+}
+
+.headerTitle a:hover, headerTitleOut a:hover {
+    background-color: transparent;
+    text-decoration: none;
+    color: rgb(77, 168, 3);
 }
 
 #profileSubMenu {
-  display: none;
-  background-color: rgb(77, 168, 3, 0.95);
-  border: 1px solid rgb(77, 168, 3, 1);
-  border-radius: 5px;
+    display: none;
+    background-color: rgb(77, 168, 3, 0.95);
+    border: 1px solid rgb(77, 168, 3, 1);
+    border-radius: 5px;
 
-  position: absolute;
-  width: 140px;
-  right: 15px;
-  top: 30px;
-  z-index: 1;
+    position: absolute;
+    width: 140px;
+    right: 15px;
+    top: 30px;
+    z-index: 1;
 
-  height: 0;
-  transition: height 0.2s;
+    height: 0;
+    transition: height 0.2s;
 
 }
 
 #profileSubMenu a {
-  color: white;
-  text-align: center;
+    color: white;
+    text-align: center;
 
 }
 
 .subLink {
-  text-align: center;
-  margin-top: 10px;
+    text-align: center;
+    margin-top: 10px;
 }
-
-
-
 
 
 .li-item {
-  display: block;
-  margin-top: 1%;
+    display: block;
+    margin-top: 1%;
 }
 
 .li-item a {
-  color: white;
-  text-align: center;
-  padding: 8px 16px;
-  text-decoration: none;
-  border: 1px solid transparent;
-  border-radius: 10px;
+    color: white;
+    text-align: center;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 10px;
 }
 
 .li-item a:hover {
-  border: 1px solid white;
-  border-radius: 10px;
-  text-decoration: none;
+    border: 1px solid white;
+    border-radius: 10px;
+    text-decoration: none;
 }
 
 .li-item-right {
-  float: right;
+    float: right;
 }
-
-
-
-
-
-
-
-
 
 
 /* MOBILE */
 
-@media all and (max-width: 768px)
-{
+@media all and (max-width: 768px) {
 
 
-  .menuIcon {
-    display: block;
-  }
+    .menuIcon {
+        display: block;
+    }
 
-  .li-item {
-    display: none;
-  }
+    .li-item {
+        display: none;
+    }
 
-  #li-head-title {
-    float: right;
-    margin-right: 0;
-  }
-
+    #li-head-title {
+        float: right;
+        margin-right: 0;
+    }
 
 
 }

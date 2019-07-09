@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // src/Form/ChangePasswordType.php
 namespace App\Form;
@@ -9,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use App\Entity\ChangePassword;
 
 class ChangePasswordType extends AbstractType
 {
@@ -21,11 +20,10 @@ class ChangePasswordType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => 'The new password fields must match.',
                 'required' => true,
-                'first_options'  => ['label' => 'New password'],
+                'first_options' => ['label' => 'New password'],
                 'second_options' => ['label' => 'Repeat Password'],
             ])
-            ->add('save', SubmitType::class)
-        ;
+            ->add('save', SubmitType::class);
     }
 
 

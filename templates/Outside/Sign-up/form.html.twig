@@ -8,13 +8,34 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('style/form.css') }}" rel="stylesheet" />
+    <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block quote_body %}
 
 
-{{ form(form) }}
+
+<div class="login-page">
+    <div class="form">
+        {{ form_start(form)}}
+
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.email, { 'attr': {'placeholder': 'Email'} }) }}
+
+        {{ form_errors(form.firstname) }}
+        {{ form_widget(form.firstname, { 'attr': {'placeholder': 'Firstname'} }) }}
+
+        {{ form_errors(form.lastname) }}
+        {{ form_widget(form.lastname, { 'attr': {'placeholder': 'Lastname'} }) }}
+
+        {{ form_errors(form.password) }}
+        {{ form_widget(form.password.first, { 'attr': {'placeholder': 'Password'} }) }}
+        {{ form_widget(form.password.second, { 'attr': {'placeholder': 'Re-enter password'} }) }}
+        {{ form_end(form)}}
+    </div>
+</div>
+
+
 
 
 

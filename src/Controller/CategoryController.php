@@ -3,16 +3,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Quote;
 use App\Entity\Category;
+use App\Entity\Quote;
 use App\Form\CategoryType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Tests\Compiler\C;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
-use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/in/category")
@@ -20,19 +18,19 @@ use Knp\Component\Pager\PaginatorInterface;
 class CategoryController extends AbstractController
 {
 
-  /**
-   * @Route("/", name="qtf_category_index")
-   */
-  public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
-  {
+    /**
+     * @Route("/", name="qtf_category_index")
+     */
+    public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
+    {
 
-      $user = $this->getUser();
-    $categoriesQuery = $this->getDoctrine()->getRepository(Category::class)->createQueryFindAll($user);
-    $categories = $paginator->paginate($categoriesQuery, $request->query->getInt('page', 1),15);
-    $undefinedCount = $this->getDoctrine()->getRepository(Quote::class)->countQuotesForUndefinedCategory($user);
+        $user = $this->getUser();
+        $categoriesQuery = $this->getDoctrine()->getRepository(Category::class)->createQueryFindAll($user);
+        $categories = $paginator->paginate($categoriesQuery, $request->query->getInt('page', 1), 15);
+        $undefinedCount = $this->getDoctrine()->getRepository(Quote::class)->countQuotesForUndefinedCategory($user);
 
-    return $this->render('Inside/Category/index.html.twig', array('categories' => $categories, 'undefined' => $undefinedCount));
-  }
+        return $this->render('Inside/Category/index.html.twig', array('categories' => $categories, 'undefined' => $undefinedCount));
+    }
 
 
     /**
@@ -43,12 +41,10 @@ class CategoryController extends AbstractController
         $user = $this->getUser();
         $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
-        if ($category == null)
-        {
+        if ($category == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The category could not be found.');
             return $this->redirectToRoute('qtf_category_index');
-        }
-        else {
+        } else {
 
             $user = $this->getUser();
             $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByCategory($category, $user);
@@ -66,11 +62,11 @@ class CategoryController extends AbstractController
     public function listUndefinedQuotes(Environment $twig, Request $request, PaginatorInterface $paginator)
     {
         $user = $this->getUser();
-            $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedCategory($user);
-            $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
-            $displayTitle = "All uncategorized quotes";
+        $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedCategory($user);
+        $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
+        $displayTitle = "All uncategorized quotes";
 
-            return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
+        return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
 
     /**
@@ -85,8 +81,7 @@ class CategoryController extends AbstractController
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
@@ -108,12 +103,10 @@ class CategoryController extends AbstractController
         $user = $this->getUser();
         $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
-        if ($category == null)
-        {
+        if ($category == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The category could not be found.');
             return $this->redirectToRoute('qtf_category_index');
-        }
-        else {
+        } else {
 
             $form = $this->createForm(CategoryType::class, $category);
             $form->handleRequest($request);
@@ -141,16 +134,11 @@ class CategoryController extends AbstractController
         $user = $this->getUser();
         $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
-        if ($category == null)
-        {
+        if ($category == null) {
             $this->addFlash('error', 'Oops! Something went wrong. The category could not be found.');
-        }
-        elseif (count($category->getQuotes()) > 0)
-        {
+        } elseif (count($category->getQuotes()) > 0) {
             $this->addFlash('warning', 'This category can not be deleted : it references quotes in the database.');
-        }
-        else
-        {
+        } else {
             $em = $this->getDoctrine()->getManager();
             $em->remove($category);
             $em->flush();
@@ -160,10 +148,6 @@ class CategoryController extends AbstractController
 
         return $this->redirectToRoute('qtf_category_index');
     }
-  
-
-
-
 
 
 }

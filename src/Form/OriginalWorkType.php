@@ -1,18 +1,15 @@
-<?php 
+<?php
 
 // src/Form/OriginalWorkType.php
 namespace App\Form;
 
 use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Security\Core\Security;
 
 class OriginalWorkType extends AbstractType
@@ -34,7 +31,7 @@ class OriginalWorkType extends AbstractType
         $builder
             ->add('authors', EntityType::class, [
                 'class' => 'App\Entity\Author',
-                'query_builder' => function(EntityRepository $repository) use ($user)  {
+                'query_builder' => function (EntityRepository $repository) use ($user) {
                     return $repository->createQueryBuilder('a')
                         ->andWhere('a.user = :user')
                         ->setParameter('user', $user)
@@ -48,11 +45,8 @@ class OriginalWorkType extends AbstractType
             ->add('year', IntegerType::class, [
                 'required' => false
             ])
-            ->add('save', SubmitType::class)
-        ;
+            ->add('save', SubmitType::class);
     }
-
-
 
 
 }

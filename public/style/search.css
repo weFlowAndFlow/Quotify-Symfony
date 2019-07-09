@@ -1,0 +1,23 @@
+
+
+.searchHeader {
+    margin-top: 5%;
+}
+
+.searchTitle {
+    text-align: center;
+}
+
+
+.resultBlock {
+    margin-top: 6%;
+}
+
+.resultContent {
+    margin-left: 5%;
+}
+
+.resultQuote {
+    font-size: 12px;
+    font-style: italic;
+}

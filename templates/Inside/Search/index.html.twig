@@ -1,0 +1,113 @@
+{# templates/Inside/Search/index.html.twig #}
+
+{% extends "Inside/layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - Search results
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('style/quote.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/search.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block quote_body %}
+
+    <p class="quoteListTitle">Search results for "{{ keywords }}"</p>
+
+<div class="row searchHeader">
+    <div class="searchTitle col-sm-3">
+        {{ results.quotes|length }}
+        {% if results.quotes|length > 1 %}
+            quotes
+        {% else %}
+            quote
+        {% endif %}
+    </div>
+    <div class="searchTitle col-sm-3">
+        {{ results.categories|length }}
+        {% if results.categories|length > 1 %}
+            categories
+        {% else %}
+            category
+        {% endif %}
+    </div>
+    <div class="searchTitle col-sm-3">
+        {{ results.authors|length }}
+        {% if results.authors|length > 1 %}
+            authors
+        {% else %}
+            author
+        {% endif %}
+    </div>
+    <div class="searchTitle col-sm-3">
+        {{ results.works|length }}
+        {% if results.works|length > 1 %}
+            sources
+        {% else %}
+            source
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+    <div class="resultBlock">
+        <h5>Quotes</h5>
+        <div class="resultContent">
+        {% for quote in results.quotes %}
+            <div class="resultQuote">
+            {{ quote.text|slice(0, 150) ~"(...)" }} <br>
+            </div>
+            {% else %}
+            No result
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="resultBlock">
+        <h5>Categories</h5>
+        <div class="resultContent">
+        {% for category in results.categories %}
+            {{ category.name }} <br>
+        {% else %}
+            No result
+        {% endfor %}
+    </div>
+    </div>
+
+    <div class="resultBlock">
+        <h5>Authors</h5>
+        <div class="resultContent">
+        {% for author in results.authors %}
+            {{ author.displayName }} <br>
+        {% else %}
+            No result
+        {% endfor %}
+    </div>
+    </div>
+
+    <div class="resultBlock">
+        <h5>Sources</h5>
+        <div class="resultContent">
+        {% for work in results.works %}
+            {{ work.title }} <br>
+        {% else %}
+            No result
+        {% endfor %}
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

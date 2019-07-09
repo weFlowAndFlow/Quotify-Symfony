@@ -1,88 +1,87 @@
 
 .leftBar {
-	max-width: 250px;
-	margin-right: 2%;
+    max-width: 250px;
+    margin-right: 2%;
 }
 
 .menu {
-	border: 1px solid rgb(226, 226, 226);
-	background-color: white;
-	min-width: 200px;
+    border: 1px solid rgb(226, 226, 226);
+    background-color: white;
+    min-width: 200px;
 }
 
 .menu ul {
-	list-style-type: none;
-	padding-left: 30px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+    list-style-type: none;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .menu li {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 .menu a {
-	text-decoration: none;
-	color: rgb(45, 99, 0);
+    text-decoration: none;
+    color: rgb(45, 99, 0);
 }
 
 .menu a:hover {
-	text-decoration: none;
-	color: rgb(77, 168, 3);
+    text-decoration: none;
+    color: rgb(77, 168, 3);
 }
 
 /* SIDE NAV */
 
 /* The side navigation menu */
 .sidenav {
-	height: 100%; /* 100% Full-height */
-	width: 0; /* 0 width - change this with JavaScript */
-	position: fixed; /* Stay in place */
-	z-index: 1; /* Stay on top */
-	top: 0; /* Stay at the top */
-	left: 0;
-	background-color: rgb(219, 219, 219);
-	overflow-x: hidden; /* Disable horizontal scroll */
-	padding-top: 60px; /* Place content 60px from the top */
-	transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: rgb(219, 219, 219);
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
 /* The navigation menu links */
 .sidenav a {
-	padding: 8px 8px 8px 32px;
-	text-decoration: none;
-	font-size: 20px;
-	color: rgb(1, 119, 24);
-	display: block;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: rgb(1, 119, 24);
+    display: block;
 }
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
-	color: #f1f1f1;
+    color: #f1f1f1;
 }
 
 /* Position and style the close button (top right corner) */
 .sidenav .closebtn {
-	position: absolute;
-	top: 0;
-	right: 25px;
-	font-size: 36px;
-	margin-left: 50px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
 .sideNavUser {
-	margin-top: 15%;
+    margin-top: 15%;
 }
 
 .sideNavUsername {
-	text-align: center;
-	margin-bottom: -1%;
+    text-align: center;
+    margin-bottom: -1%;
 }
 
-@media all and (max-width: 768px)
-{
-	.leftBar {
-		display: none;
-	}
+@media all and (max-width: 768px) {
+    .leftBar {
+        display: none;
+    }
 
 }

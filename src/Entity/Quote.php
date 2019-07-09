@@ -101,7 +101,7 @@ class Quote
 
         return $this;
     }
-  
+
     public function getOriginalWork(): ?OriginalWork
     {
         return $this->originalWork;
