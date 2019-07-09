@@ -72,11 +72,13 @@ class CategoryRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function search($keywords)
+    public function search($keywords, $user)
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.name like :val')
             ->setParameter('val', '%'.$keywords.'%')
+            ->andWhere('c.user = :user')
+            ->setParameter('user', $user)
             ->getQuery()
             ->getResult()
             ;

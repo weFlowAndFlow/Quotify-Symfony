@@ -16,89 +16,171 @@
 
     <p class="quoteListTitle">Search results for "{{ keywords }}"</p>
 
-<div class="row searchHeader">
-    <div class="searchTitle col-sm-3">
-        {{ results.quotes|length }}
-        {% if results.quotes|length > 1 %}
-            quotes
-        {% else %}
-            quote
-        {% endif %}
-    </div>
-    <div class="searchTitle col-sm-3">
-        {{ results.categories|length }}
-        {% if results.categories|length > 1 %}
-            categories
-        {% else %}
-            category
-        {% endif %}
-    </div>
-    <div class="searchTitle col-sm-3">
-        {{ results.authors|length }}
-        {% if results.authors|length > 1 %}
-            authors
-        {% else %}
-            author
-        {% endif %}
-    </div>
-    <div class="searchTitle col-sm-3">
-        {{ results.works|length }}
-        {% if results.works|length > 1 %}
-            sources
-        {% else %}
-            source
-        {% endif %}
-    </div>
-</div>
+    <div class="row searchHeader">
+        <div class="searchTitle col-sm-3">
 
-
-
-
-    <div class="resultBlock">
-        <h5>Quotes</h5>
-        <div class="resultContent">
-        {% for quote in results.quotes %}
-            <div class="resultQuote">
-            {{ quote.text|slice(0, 150) ~"(...)" }} <br>
-            </div>
+            {% if results.quotes|length > 1 %}
+                <a href="#quotes">
+                    {{ results.quotes|length }} quotes
+                </a>
+            {% elseif results.quotes|length == 1 %}
+                <a href="#quotes">
+                    {{ results.quotes|length }} quote
+                </a>
             {% else %}
-            No result
-        {% endfor %}
+                {{ results.quotes|length }} quote
+            {% endif %}
+        </div>
+        <div class="searchTitle col-sm-3">
+
+            {% if results.categories|length > 1 %}
+                <a href="#categories">
+                    {{ results.categories|length }} categories
+                </a>
+            {% elseif results.categories|length == 1 %}
+                <a href="#categories">
+                    {{ results.categories|length }} category
+                </a>
+            {% else %}
+                {{ results.categories|length }} category
+            {% endif %}
+        </div>
+        <div class="searchTitle col-sm-3">
+
+            {% if results.authors|length > 1 %}
+                <a href="#authors">
+                    {{ results.authors|length }} authors
+                </a>
+            {% elseif results.authors|length == 1 %}
+                <a href="#authors">
+                    {{ results.authors|length }} author
+                </a>
+            {% else %}
+                {{ results.authors|length }} author
+            {% endif %}
+        </div>
+        <div class="searchTitle col-sm-3">
+
+            {% if results.works|length > 1 %}
+                <a href="#sources">
+                    {{ results.works|length }} sources
+                </a>
+            {% elseif results.works|length == 1 %}
+                <a href="#sources">
+                    {{ results.works|length }} source
+                </a>
+            {% else %}
+                {{ results.works|length }} source
+            {% endif %}
         </div>
     </div>
 
-    <div class="resultBlock">
-        <h5>Categories</h5>
-        <div class="resultContent">
-        {% for category in results.categories %}
-            {{ category.name }} <br>
-        {% else %}
-            No result
-        {% endfor %}
-    </div>
-    </div>
 
-    <div class="resultBlock">
-        <h5>Authors</h5>
-        <div class="resultContent">
-        {% for author in results.authors %}
-            {{ author.displayName }} <br>
-        {% else %}
-            No result
-        {% endfor %}
-    </div>
-    </div>
 
-    <div class="resultBlock">
-        <h5>Sources</h5>
-        <div class="resultContent">
-        {% for work in results.works %}
-            {{ work.title }} <br>
-        {% else %}
-            No result
-        {% endfor %}
-    </div>
-    </div>
+
+    {% if results.quotes|length > 0 %}
+        <div class="resultBlock" id="quotes">
+            <h5>Quotes</h5>
+            <div class="resultContent">
+                {% for quote in results.quotes %}
+                    <a href="{{ path('qtf_quote_view', {'id': quote.id }) }}">
+                        <div class="resultQuote">
+                            <div class="resultQuoteText">
+                                {{ quote.text|length > 150 ? quote.text|slice(0, 150) ~"(...)" : quote.text }}
+                            </div>
+                            <div class="resultQuoteInfo">
+                                {% if quote.author.displayName is defined %}
+                                    By <span>{{ quote.author.displayName }}</span>
+                                {% endif %}
+                                {% if quote.originalWork.title is defined %}
+                                    in <span>{{ quote.originalWork.title }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                {% else %}
+                    No result
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if results.categories|length > 0 %}
+        <div class="resultBlock" id="categories">
+            <h5>Categories</h5>
+            <div class="resultContent">
+                {% for category in results.categories %}
+                    {% if category.name is defined %}
+                        <div class="row resultCategory">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-6 categoryName"> {{ category.name }}</div>
+                            <div class="col-sm-5 categoryButtons"> <a href="{{ path('qtf_category_quotes', {'id': category.id}) }}" class="btn btn-outline-success">View quotes</a>
+                                <a href="{{ path('qtf_category_edit', {'id': category.id, 'caller': 'qtf_category_index'}) }}" class="btn btn-outline-warning">Edit</a></div>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    No result
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if results.authors|length > 0 %}
+        <div class="resultBlock" id="authors">
+            <h5>Authors</h5>
+            <div class="resultContent">
+                {% for author in results.authors %}
+                    {% if author.name is defined %}
+                        <div class="row resultCategory">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-6 categoryName"> {{ author.displayName }}</div>
+                            <div class="col-sm-5 categoryButtons"> <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}" class="btn btn-outline-success">View quotes</a>
+                                <a href="{{ path('qtf_author_edit', {'id': author.id, 'caller': 'qtf_author_index'}) }}" class="btn btn-outline-warning">Edit</a></div>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    No result
+                {% endfor %}
+
+            </div>
+        </div>
+    {% endif %}
+
+    {% if results.works|length > 0 %}
+        <div class="resultBlock" id="sources">
+            <h5>Sources</h5>
+            <div class="resultContent">
+                {% for work in results.works %}
+                    {% if work.title is defined %}
+                        <div class="row resultCategory">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-6">
+                                <span class="categoryName">{{ work.title }}</span>
+                                {% if work.authors is defined %}
+                                    {% for author in work.authors %}
+                                        {% if loop.first %}
+                                            By
+                                        {% endif %}
+                                        {{ author.displayName }}
+                                        {% if not loop.last %}
+                                            &
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class="col-sm-5 categoryButtons">
+                                <a href="{{ path('qtf_work_quotes', {'id': work.id}) }}" class="btn btn-outline-success">View quotes</a>
+                                <a href="{{ path('qtf_work_edit', {'id': work.id, 'caller': 'qtf_work_index'}) }}" class="btn btn-outline-warning">Edit</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    No result
+                {% endfor %}
+
+            </div>
+        </div>
+    {% endif %}
 
 
 

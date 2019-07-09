@@ -25,13 +25,14 @@ class SearchController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator)
     {
+        $user = $this->getUser();
         $keywords = $request->get('searchInput');
         $results = [];
 
-        $quotes = $this->getDoctrine()->getRepository(Quote::class)->search($keywords);
-        $categories = $this->getDoctrine()->getRepository(Category::class)->search($keywords);
-        $authors = $this->getDoctrine()->getRepository(Author::class)->search($keywords);
-        $originalWorks = $this->getDoctrine()->getRepository(OriginalWork::class)->search($keywords);
+        $quotes = $this->getDoctrine()->getRepository(Quote::class)->search($keywords, $user);
+        $categories = $this->getDoctrine()->getRepository(Category::class)->search($keywords, $user);
+        $authors = $this->getDoctrine()->getRepository(Author::class)->search($keywords, $user);
+        $originalWorks = $this->getDoctrine()->getRepository(OriginalWork::class)->search($keywords, $user);
 
         $results['quotes'] = $quotes;
         $results['categories'] = $categories;

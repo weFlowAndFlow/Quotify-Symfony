@@ -56,7 +56,7 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ->andWhere('o.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getResult();
+            ->getSingleResult();
     }
 
     public function findByAuthor($id)
@@ -92,11 +92,13 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function search($keywords)
+    public function search($keywords, $user)
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.title like :val')
             ->setParameter('val', '%'.$keywords.'%')
+            ->andWhere('o.user = :user')
+            ->setParameter('user', $user)
             ->getQuery()
             ->getResult()
             ;

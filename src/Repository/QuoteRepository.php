@@ -232,11 +232,13 @@ class QuoteRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function search($keywords)
+    public function search($keywords, $user)
     {
         return $this->createQueryBuilder('q')
             ->andWhere('q.text like :val')
             ->setParameter('val', '%'.$keywords.'%')
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
             ->getQuery()
             ->getResult()
             ;
