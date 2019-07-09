@@ -14,3 +14,13 @@
     margin: auto;
     margin-top: 0%;
 }
+
+.confirmMessage {
+    max-width: 70%;
+    margin-top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border: 1px solid rgb(226, 226, 226);
+    padding: 5%;
+}

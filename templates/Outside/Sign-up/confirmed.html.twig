@@ -8,18 +8,18 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {#    <link href="{{ asset('style/timeline.css') }}" rel="stylesheet"/>#}
+        <link href="{{ asset('style/outside.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block quote_body %}
 
 
 
-    <br/><br/><br/><br/><br/>
 
-    <p>Your account has been created.
+
+    <div class="confirmMessage">Your account has been created.
         You should receive very shortly a message to confirm your email address.
-        Please make sure to check your spam folder.</p>
+        Please make sure to check your spam folder.</div>
 
 
 

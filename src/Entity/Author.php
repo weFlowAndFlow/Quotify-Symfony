@@ -39,7 +39,7 @@ class Author
     private $quotes;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\OriginalWork", mappedBy="authors", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\OriginalWork", mappedBy="authors", cascade={"persist", "remove"})
      */
     private $originalWorks;
 

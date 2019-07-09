@@ -35,3 +35,12 @@ h4 {
     margin-bottom: 10%;
 }
 
+.deleteAccount {
+    padding-top: 6%;
+    text-align: center;
+}
+
+.deleteAccount a {
+    color: red;
+}
+
