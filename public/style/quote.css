@@ -50,14 +50,12 @@
 .centered {
     white-space: pre-line;
     text-align: center;
-    text-align-last: center;
 }
 
 .justified {
     white-space: pre-line;
     text-align: justify;
-    text-align-last: left;
-    -webkit-text-align-last: left;
+    -webkit-text-align: left;
 }
 
 .seeMore {

@@ -62,8 +62,8 @@ class ChangePasswordController extends AbstractController
             return $this->redirectToRoute('qtf_user_index');
         }
 
-
     }
+
 
 
 }

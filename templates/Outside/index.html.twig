@@ -22,79 +22,94 @@
 
 
 
-    <div class="headList">
-        <div class="headListContent">
-            <div class="item"><a href="{{ path('qtf_welcome_create') }}">Sign-up</a></div>
-            <div class="item"><a href="{{ path('qtf_login') }}">Sign-in</a></div>
-        </div>
+<div class="headList">
+    <div class="headListContent">
+        <div class="item"><a href="{{ path('qtf_welcome_create') }}">Sign-up</a></div>
+        <div class="item"><a href="{{ path('qtf_login') }}">Sign-in</a></div>
     </div>
+</div>
 
 
-    <div class="parallaxContainer">
+<div class="parallaxContainer">
 
-        <section>
-            <div class="sectionContent">
-                <h1>Quotify</h1>
-                Your personal notebook for quotes
-            </div>
-        </section>
-
-        <section>
-            <div class="sectionContent">
-                <h1>A diary of quotes</h1>
-                Wheter you're reading a book, listening to a song or watching a movie, keep track of all the quotes you
-                encounter in your daily life.
-            </div>
-        </section>
-
-        <section>
-            <div class="sectionContent">
-                <h1>Simple and easy to use</h1>
-                Sort your quotes by author, by source or by categories.
-            </div>
-        </section>
-
-        <section>
-            <div class="sectionContent">
-                <h1>Available everywhere, everytime</h1>
-                Consult your quotes or store new ones on your desktop or your mobile
-            </div>
-        </section>
-
-        <section>
-            <div class="sectionContent">
-                <h1>100% free</h1>
-                No fee. No add. No credit-card required.
-            </div>
-        </section>
-
-        <section>
-            <div class="sectionContent">
-                <h1>Sign-up now</h1>
-                Sign-up
-            </div>
-        </section>
-
-
-    </div>
-
-
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footerContent">
-            <p>Created by {{ webmaster }} </p>
-            <p>© {{ website_name }} {{ 'now'|date('Y') }}</p>
-            <p>Disclaimer</p>
+    <section>
+        <div class="sectionContent">
+            <h1>Quotify</h1>
+            Your personal notebook for quotes
         </div>
-    </footer>
+        <div class="img">
+            <img src="{{ asset('img/pen.png') }}" />
+        </div>
+    </section>
+
+    <section>
+        <div class="sectionContent">
+            <h1>A diary of quotes</h1>
+            Wheter you're reading a book, listening to a song or watching a movie, keep track of all the quotes you
+            encounter in your daily life.
+        </div>
+        <div class="img">
+            <img src="{{ asset('img/diary.png') }}" />
+        </div>
+    </section>
+
+    <section>
+        <div class="sectionContent">
+            <h1>Simple and easy to use</h1>
+            Sort your quotes by author, by source or by categories.
+        </div>
+        <div class="img">
+            <img src="{{ asset('img/books.png') }}" />
+        </div>
+    </section>
+
+    <section>
+        <div class="sectionContent">
+            <h1>Available everywhere, everytime</h1>
+            Consult your quotes or store new ones on your desktop or your mobile
+        </div>
+        <div class="img">
+            <img src="{{ asset('img/devices.png') }}" />
+        </div>
+    </section>
+
+    <section>
+        <div class="sectionContent">
+            <h1>100% free</h1>
+            No fee. No add. No credit-card required.
+        </div>
+        <div class="img">
+            <img src="{{ asset('img/money.png') }}" />
+        </div>
+    </section>
+
+    <section>
+        <div class="sectionContent">
+            <h1>Sign-up now</h1>
+            Sign-up
+        </div>
+    </section>
 
 
-    {% block javascripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    {% endblock %}
+</div>
+
+
+
+<!-- FOOTER -->
+<footer>
+    <div class="footerContent">
+        <p>Created by {{ webmaster }} </p>
+        <p>© {{ website_name }} {{ 'now'|date('Y') }}</p>
+        <p>Disclaimer</p>
+    </div>
+</footer>
+
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% endblock %}
 </body>
 
 

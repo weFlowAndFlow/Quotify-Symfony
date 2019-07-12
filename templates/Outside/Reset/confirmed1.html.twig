@@ -1,0 +1,25 @@
+{# templates/Outside/accountConfirmed.html.twig #}
+
+{% extends "Outside/layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - Reset password
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+        <link href="{{ asset('style/outside.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block quote_body %}
+
+
+
+
+
+    <div class="confirmMessage">A message has been sent to your email address ; it contains a link to reset your password.
+        Please make sure to check your spam folder.</div>
+
+
+
+{% endblock %}

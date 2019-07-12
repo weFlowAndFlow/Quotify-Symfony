@@ -94,7 +94,15 @@ section:nth-child(6) {
 }
 
 
+section img {
+    max-width: 250px;
+}
 
+.img {
+    margin-top: 3%;
+    margin-right: 10%;
+    text-align: right;
+}
 
 
 
@@ -103,7 +111,11 @@ section:nth-child(6) {
 
 
     .sectionContent {
-        margin-top: 25vh;
+        margin-top: 15vh;
+    }
+
+    section img {
+        max-width: 150px;
     }
 
 

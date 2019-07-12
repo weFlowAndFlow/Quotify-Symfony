@@ -4,6 +4,13 @@
     text-align: right;
 }
 
+.formTitle {
+    margin-bottom: 10%;
+    font-variant: all-small-caps;
+    font-size: large;
+    font-weight: bold;
+    color: #565656;
+}
 
 
 .login-page {

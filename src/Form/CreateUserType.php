@@ -27,7 +27,9 @@ class CreateUserType extends AbstractType
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Repeat Password'],
             ])
-            ->add('save', SubmitType::class);
+            ->add('save', SubmitType::class, [
+                'label' => 'Create account'
+            ]);
     }
 
 
