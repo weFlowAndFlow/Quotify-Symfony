@@ -3,7 +3,7 @@
 {% extends "Inside/layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - Authors
+    {{ parent() }} - {{ 'Authors'|trans }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -16,17 +16,18 @@
     <p class="undefined">
         <a href="{{ path('qtf_author_quotes_undefined') }}">
             {% if undefined == 1 %}
-                {{ undefined }} anonymous quote
+                {{ undefined }} {{ 'anonymous quote'|trans }}
             {% elseif undefined > 1 %}
-                {{ undefined }} anonymous quotes
+                {{ undefined }} {{ 'anonymous quotes'|trans }}
             {% endif %}
         </a>
     </p>
 
 
     <div class="addNew">
-        <a href="{{ path('qtf_author_create', {'caller' : 'qtf_author_index'}) }}" class="btn btn-outline-success">Add
-            new author</a>
+        <a href="{{ path('qtf_author_create', {'caller' : 'qtf_author_index'}) }}" class="btn btn-outline-success">
+            {{ 'Add new author'|trans }}
+        </a>
     </div>
 
 
@@ -38,23 +39,23 @@
                 <div class="col-sm-3">{{ author.name }}</div>
                 <div class="col-sm-2">
                     {% if author.quotes|length == 0 %}
-                        {{ author.quotes|length }} quote
+                        {{ author.quotes|length }} {{ 'quote'|trans }}
                     {% endif %}
 
                     <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}">
                         {% if author.quotes|length == 1 %}
-                            {{ author.quotes|length }} quote
+                            {{ author.quotes|length }} {{ 'quote'|trans }}
                         {% elseif author.quotes|length > 1 %}
-                            {{ author.quotes|length }} quotes
+                            {{ author.quotes|length }} {{ 'quotes'|trans }}
                         {% endif %}
                     </a>
                 </div>
                 <div class="col-sm-4">
                     <a href="{{ path('qtf_author_edit', {'id': author.id, 'caller' : 'qtf_author_index'}) }}"
-                       class="btn btn-outline-warning buttonSize">Edit</a>
+                       class="btn btn-outline-warning buttonSize">{{ 'Edit'|trans }}</a>
                     {% if author.quotes|length == 0 %}
                         <a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal"
-                           data-target="#deleteModal-{{ author.id }}">Delete</a>
+                           data-target="#deleteModal-{{ author.id }}">{{ 'Delete'|trans }}</a>
                     {% endif %}
                 </div>
             </div>
@@ -67,21 +68,19 @@
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Warning</h4>
+                            <h4 class="modal-title">{{ 'Warning'|trans }}</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            You are about to permanently delete {{ author.displayName }} from the database. You won't be
-                            able to retrieve it. Do you wish to proceed ?
+                            {% trans %}You are about to permanently delete{% endtrans %} {{ author.displayName }} {% trans %}from the database. You won't be able to retrieve it. Do you wish to proceed ?{% endtrans %}
                         </div>
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No, go back</button>
-                            <a href="{{ path('qtf_author_delete', {'id': author.id}) }}" class="btn btn-outline-danger">Yes,
-                                Delete</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'No, cancel'|trans }}</button>
+                            <a href="{{ path('qtf_author_delete', {'id': author.id}) }}" class="btn btn-outline-danger">{{ 'Yes, delete'|trans }}</a>
                         </div>
 
                     </div>

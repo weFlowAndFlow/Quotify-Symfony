@@ -3,7 +3,7 @@
 {% extends "Inside/layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - Home
+    {{ parent() }} - {{ 'Quotes'|trans }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -30,7 +30,7 @@
             {% if quote.author is not null %}
                 <a href="{{ path('qtf_author_quotes', {'id': quote.author.id}) }}">{{ quote.author.displayName }} </a>
             {% else %}
-                Undefined
+                {{ 'Undefined'|trans }}
             {% endif %}
         </p>
 
@@ -61,14 +61,14 @@
 
     <div class="singleQuoteButtons">
         <a href="{{ path('qtf_quote_edit', {'id': quote.id, 'caller' : 'qtf_quote_view'}) }}"
-           class="btn btn-outline-warning buttonSize">Edit</a>
+           class="btn btn-outline-warning buttonSize">{{ 'Edit'|trans }}</a>
 
         {% if quote.notes is not defined or quote.notes|length == 0 %}
             <a href="{{ path('qtf_quote_edit', {'id': quote.id, 'caller' : 'qtf_quote_view'}) }}"
-               class="btn btn-outline-success buttonSize">Add notes</a>
+               class="btn btn-outline-success buttonSize">{{ 'Add notes'|trans }}</a>
         {% endif %}
 
-        <a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal" data-target="#deleteModal">Delete</a>
+        <a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal" data-target="#deleteModal">{{ 'Delete'|trans }}</a>
     </div>
 
 
@@ -79,21 +79,20 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Warning</h4>
+                    <h4 class="modal-title">{{ 'Warning'|trans }}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    You are about to permanently delete this quote. You won't be able to retrieve it. Do you wish to
-                    proceed ?
+                    {% trans %}You are about to permanently delete this quote. You won't be able to retrieve it. Do you wish to
+                    proceed ?{% endtrans %}
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No, go back</button>
-                    <a href="{{ path('qtf_quote_delete', {'id' : quote.id}) }} " class="btn btn-outline-danger">Yes,
-                        Delete</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'No, cancel'|trans }}</button>
+                    <a href="{{ path('qtf_quote_delete', {'id' : quote.id}) }} " class="btn btn-outline-danger">{{ 'Yes, delete'|trans }}</a>
                 </div>
 
             </div>

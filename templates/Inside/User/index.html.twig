@@ -3,7 +3,7 @@
 {% extends "Inside/layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - Profile
+    {{ parent() }} - {{ 'Profile'|trans }}
 {% endblock %}
 
 
@@ -19,24 +19,24 @@
     <div class="row user">
 
         <div class="col-sm-6 userInfo">
-            <h4>My Profile</h4>
+            <h4>{{ 'My Profile'|trans }}</h4>
             <p><span>{{ app.user.email }}</span></p>
-            <p>First name : <span>{{ app.user.firstname }}</span></p>
-            <p>Last name : <span>{{ app.user.lastname }}</span></p>
+            <p>{{ 'First name'|trans }} : <span>{{ app.user.firstname }}</span></p>
+            <p>{{ 'Last name'|trans }} : <span>{{ app.user.lastname }}</span></p>
 
-            <a href="{{ path('qtf_user_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">Edit</a>
-            <a href="{{ path('qtf_password_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">Change password</a>
-            <p class="deleteAccount"><a href="#" data-toggle="modal" data-target="#deleteModal">Delete my account</a></p>
+            <a href="{{ path('qtf_user_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">{{ 'Edit'|trans }}</a>
+            <a href="{{ path('qtf_password_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">{{ 'Change password'|trans }}</a>
+            <p class="deleteAccount"><a href="#" data-toggle="modal" data-target="#deleteModal">{{ 'Delete my account'|trans }}</a></p>
         </div>
 
 
         <div class="col-sm-6 userStats">
             <div class="stats">
-                <h4>My Stats</h4>
-                <p>{{ app.user.quotes|length }} quotes</p>
-                <p>by {{ app.user.authors|length }} authors</p>
-                <p>from {{ app.user.originalWorks|length }} original works</p>
-                <p>in {{ app.user.categories|length }} categories</p>
+                <h4>{{ 'My Stats'|trans }}</h4>
+                <p>{{ app.user.quotes|length }} {{ 'quotes'|trans }}</p>
+                <p>{{ 'by'|trans }} {{ app.user.authors|length }} {{ 'authors'|trans }}</p>
+                <p>{{ 'from'|trans }} {{ app.user.originalWorks|length }} {{ 'original works'|trans }}</p>
+                <p>{{ 'in'|trans }} {{ app.user.categories|length }} {{ 'categories'|trans }}</p>
             </div>
         </div>
 
@@ -51,20 +51,20 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Warning</h4>
+                    <h4 class="modal-title">{{ 'Warning'|trans }}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    You are about to permanently delete your account and all its data. You won't be able to
-                    retrieve it. Do you wish to proceed ?
+                    {% trans %}You are about to permanently delete your account and all its data. You won't be able to
+                    retrieve it. Do you wish to proceed ?{% endtrans %}
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No, go back</button>
-                    <a href="{{ path('qtf_user_delete', {'id': app.user.id}) }}" class="btn btn-outline-danger">Yes, Delete</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'No, cancel'|trans }}</button>
+                    <a href="{{ path('qtf_user_delete', {'id': app.user.id}) }}" class="btn btn-outline-danger">{{ 'Yes, delete'|trans }}</a>
                 </div>
 
             </div>

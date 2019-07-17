@@ -3,7 +3,7 @@
 {% extends "Outside/layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - Account created
+    {{ parent() }} - {{ 'Account created'|trans }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -17,9 +17,9 @@
 
 
 
-    <div class="confirmMessage">Your account has been created.
+    <div class="confirmMessage">{% trans %}Your account has been created.
         You should receive very shortly a message to confirm your email address.
-        Please make sure to check your spam folder.</div>
+        Please make sure to check your spam folder.{% endtrans %}</div>
 
 
 

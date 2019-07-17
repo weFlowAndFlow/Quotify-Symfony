@@ -1,12 +1,12 @@
 <html>
 <body>
-Hello {{ user.firstname }} {{ user.lastname }}
+{{ 'Hello'|trans }} {{ user.firstname }} {{ user.lastname }},
 <br><br>
-You're almost done. Please confirm your address by clicking the link below :
+{% trans %}You're almost done. Please confirm your address by clicking the link below{% endtrans %} :
 <br><br>
-<a href="{{ absolute_url(path('qtf_welcome_verify', {'id' : user.id, 'email' : user.email} )) }}">CONFIRM ADDRESS</a>
+<a href="{{ absolute_url(path('qtf_welcome_verify', {'id' : user.id, 'email' : user.email} )) }}">{{ 'CONFIRM ADDRESS'|trans }}</a>
 <br><br>
-The Quotify team
+{{ 'The Quotify Team'|trans }}
 
 </body>
 </html>

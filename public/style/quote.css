@@ -121,7 +121,9 @@
     text-align: center;
     margin-top: 7%;
     margin-bottom: 5%;
+    line-height: 3;
 }
+
 
 
 @media all and (max-width: 768px) {

@@ -3,7 +3,7 @@
 {% extends "Outside/layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - Sign-up
+    {{ parent() }} - {{ 'Sign-up'|trans }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -17,22 +17,22 @@
 
 <div class="login-page">
     <div class="form">
-        <div class="formTitle">Create account</div>
+        <div class="formTitle">{{ 'Create account'|trans }}</div>
 
         {{ form_start(form)}}
 
         {{ form_errors(form.email) }}
-        {{ form_widget(form.email, { 'attr': {'placeholder': 'Email'} }) }}
+        {{ form_widget(form.email, { 'attr': {'placeholder': 'Email'|trans} }) }}
 
         {{ form_errors(form.firstname) }}
-        {{ form_widget(form.firstname, { 'attr': {'placeholder': 'Firstname'} }) }}
+        {{ form_widget(form.firstname, { 'attr': {'placeholder': 'Firstname'|trans} }) }}
 
         {{ form_errors(form.lastname) }}
-        {{ form_widget(form.lastname, { 'attr': {'placeholder': 'Lastname'} }) }}
+        {{ form_widget(form.lastname, { 'attr': {'placeholder': 'Lastname'|trans} }) }}
 
         {{ form_errors(form.password) }}
-        {{ form_widget(form.password.first, { 'attr': {'placeholder': 'Password'} }) }}
-        {{ form_widget(form.password.second, { 'attr': {'placeholder': 'Re-enter password'} }) }}
+        {{ form_widget(form.password.first, { 'attr': {'placeholder': 'Password'|trans} }) }}
+        {{ form_widget(form.password.second, { 'attr': {'placeholder': 'Re-enter password'|trans} }) }}
         {{ form_end(form)}}
     </div>
 </div>

@@ -3,7 +3,7 @@
 {% extends "Outside/layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - Reset password
+    {{ parent() }} - {{ 'Reset password'|trans }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -17,8 +17,8 @@
 
 
 
-    <div class="confirmMessage">A message has been sent to your email address ; it contains a link to reset your password.
-        Please make sure to check your spam folder.</div>
+    <div class="confirmMessage">{% trans %}A message has been sent to your email address ; it contains a link to reset your password.
+        Please make sure to check your spam folder.{% endtrans %}</div>
 
 
 

@@ -3,7 +3,7 @@
 {% extends "Inside/layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - Search results
+    {{ parent() }} - {{ 'Search results'|trans }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -14,63 +14,63 @@
 
 {% block quote_body %}
 
-    <p class="quoteListTitle">Search results for "{{ keywords }}"</p>
+    <p class="quoteListTitle">{{ 'Search results for'|trans }} "{{ keywords }}"</p>
 
     <div class="row searchHeader">
         <div class="searchTitle col-sm-3">
 
             {% if results.quotes|length > 1 %}
                 <a href="#quotes">
-                    {{ results.quotes|length }} quotes
+                    {{ results.quotes|length }} {{ 'quotes'|trans }}
                 </a>
             {% elseif results.quotes|length == 1 %}
                 <a href="#quotes">
-                    {{ results.quotes|length }} quote
+                    {{ results.quotes|length }} {{ 'quote'|trans }}
                 </a>
             {% else %}
-                {{ results.quotes|length }} quote
+                {{ results.quotes|length }} {{ 'quote'|trans }}
             {% endif %}
         </div>
         <div class="searchTitle col-sm-3">
 
             {% if results.categories|length > 1 %}
                 <a href="#categories">
-                    {{ results.categories|length }} categories
+                    {{ results.categories|length }} {{ 'categories'|trans }}
                 </a>
             {% elseif results.categories|length == 1 %}
                 <a href="#categories">
-                    {{ results.categories|length }} category
+                    {{ results.categories|length }} {{ 'category'|trans }}
                 </a>
             {% else %}
-                {{ results.categories|length }} category
+                {{ results.categories|length }} {{ 'category'|trans }}
             {% endif %}
         </div>
         <div class="searchTitle col-sm-3">
 
             {% if results.authors|length > 1 %}
                 <a href="#authors">
-                    {{ results.authors|length }} authors
+                    {{ results.authors|length }} {{ 'authors'|trans }}
                 </a>
             {% elseif results.authors|length == 1 %}
                 <a href="#authors">
-                    {{ results.authors|length }} author
+                    {{ results.authors|length }} {{ 'author'|trans }}
                 </a>
             {% else %}
-                {{ results.authors|length }} author
+                {{ results.authors|length }} {{ 'author'|trans }}
             {% endif %}
         </div>
         <div class="searchTitle col-sm-3">
 
             {% if results.works|length > 1 %}
                 <a href="#sources">
-                    {{ results.works|length }} sources
+                    {{ results.works|length }} {{ 'sources'|trans }}
                 </a>
             {% elseif results.works|length == 1 %}
                 <a href="#sources">
-                    {{ results.works|length }} source
+                    {{ results.works|length }} {{ 'source'|trans }}
                 </a>
             {% else %}
-                {{ results.works|length }} source
+                {{ results.works|length }} {{ 'source'|trans }}
             {% endif %}
         </div>
     </div>
@@ -80,7 +80,7 @@
 
     {% if results.quotes|length > 0 %}
         <div class="resultBlock" id="quotes">
-            <h5>Quotes</h5>
+            <h5>{{ 'Quotes'|trans }}</h5>
             <div class="resultContent">
                 {% for quote in results.quotes %}
                     <a href="{{ path('qtf_quote_view', {'id': quote.id }) }}">
@@ -90,7 +90,7 @@
                             </div>
                             <div class="resultQuoteInfo">
                                 {% if quote.author.displayName is defined %}
-                                    By <span>{{ quote.author.displayName }}</span>
+                                    {{ 'By'|trans }} <span>{{ quote.author.displayName }}</span>
                                 {% endif %}
                                 {% if quote.originalWork.title is defined %}
                                     in <span>{{ quote.originalWork.title }}</span>
@@ -99,7 +99,7 @@
                         </div>
                     </a>
                 {% else %}
-                    No result
+                    {{ 'No result'|trans }}
                 {% endfor %}
             </div>
         </div>
@@ -107,19 +107,19 @@
 
     {% if results.categories|length > 0 %}
         <div class="resultBlock" id="categories">
-            <h5>Categories</h5>
+            <h5>{{ 'Categories'|trans }}</h5>
             <div class="resultContent">
                 {% for category in results.categories %}
                     {% if category.name is defined %}
                         <div class="row resultCategory">
                             <div class="col-sm-1"></div>
                             <div class="col-sm-6 categoryName"> {{ category.name }}</div>
-                            <div class="col-sm-5 categoryButtons"> <a href="{{ path('qtf_category_quotes', {'id': category.id}) }}" class="btn btn-outline-success">View quotes</a>
-                                <a href="{{ path('qtf_category_edit', {'id': category.id, 'caller': 'qtf_category_index'}) }}" class="btn btn-outline-warning">Edit</a></div>
+                            <div class="col-sm-5 categoryButtons"> <a href="{{ path('qtf_category_quotes', {'id': category.id}) }}" class="btn btn-outline-success">{{ 'View quotes'|trans }}</a>
+                                <a href="{{ path('qtf_category_edit', {'id': category.id, 'caller': 'qtf_category_index'}) }}" class="btn btn-outline-warning">{{ 'Edit'|trans }}</a></div>
                         </div>
                     {% endif %}
                 {% else %}
-                    No result
+                    {{ 'No result'|trans }}
                 {% endfor %}
             </div>
         </div>
@@ -127,19 +127,19 @@
 
     {% if results.authors|length > 0 %}
         <div class="resultBlock" id="authors">
-            <h5>Authors</h5>
+            <h5>{{ 'Authors'|trans }}</h5>
             <div class="resultContent">
                 {% for author in results.authors %}
                     {% if author.name is defined %}
                         <div class="row resultCategory">
                             <div class="col-sm-1"></div>
                             <div class="col-sm-6 categoryName"> {{ author.displayName }}</div>
-                            <div class="col-sm-5 categoryButtons"> <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}" class="btn btn-outline-success">View quotes</a>
-                                <a href="{{ path('qtf_author_edit', {'id': author.id, 'caller': 'qtf_author_index'}) }}" class="btn btn-outline-warning">Edit</a></div>
+                            <div class="col-sm-5 categoryButtons"> <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}" class="btn btn-outline-success">{{ 'View quotes'|trans }}</a>
+                                <a href="{{ path('qtf_author_edit', {'id': author.id, 'caller': 'qtf_author_index'}) }}" class="btn btn-outline-warning">{{ 'Edit'|trans }}</a></div>
                         </div>
                     {% endif %}
                 {% else %}
-                    No result
+                    {{ 'No result'|trans }}
                 {% endfor %}
 
             </div>
@@ -148,7 +148,7 @@
 
     {% if results.works|length > 0 %}
         <div class="resultBlock" id="sources">
-            <h5>Sources</h5>
+            <h5>{{ 'Sources'|trans }}</h5>
             <div class="resultContent">
                 {% for work in results.works %}
                     {% if work.title is defined %}
@@ -159,7 +159,7 @@
                                 {% if work.authors is defined %}
                                     {% for author in work.authors %}
                                         {% if loop.first %}
-                                            By
+                                            {{ 'By'|trans }}
                                         {% endif %}
                                         {{ author.displayName }}
                                         {% if not loop.last %}
@@ -169,13 +169,13 @@
                                 {% endif %}
                             </div>
                             <div class="col-sm-5 categoryButtons">
-                                <a href="{{ path('qtf_work_quotes', {'id': work.id}) }}" class="btn btn-outline-success">View quotes</a>
-                                <a href="{{ path('qtf_work_edit', {'id': work.id, 'caller': 'qtf_work_index'}) }}" class="btn btn-outline-warning">Edit</a>
+                                <a href="{{ path('qtf_work_quotes', {'id': work.id}) }}" class="btn btn-outline-success">{{ 'View quotes'|trans }}</a>
+                                <a href="{{ path('qtf_work_edit', {'id': work.id, 'caller': 'qtf_work_index'}) }}" class="btn btn-outline-warning">{{ 'Edit'|trans }}</a>
                             </div>
                         </div>
                     {% endif %}
                 {% else %}
-                    No result
+                    {{ 'No result'|trans }}
                 {% endfor %}
 
             </div>

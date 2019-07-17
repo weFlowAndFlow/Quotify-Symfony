@@ -3,7 +3,7 @@
 {% extends "Inside/layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - Date
+    {{ parent() }} - {{ 'Dates'|trans }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -26,7 +26,7 @@
                 </div>
             {% endfor %}
             {% if dates is empty %}
-                {{ "No dated quote available." }}
+                {{ "No dated quote available."|trans }}
             {% endif %}
         {% endfor %}
 

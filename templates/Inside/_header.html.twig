@@ -5,15 +5,15 @@
         <div class="col headerMenu">
             <div class="dropdown">
                 <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Menu
+                    {{ 'Menu'|trans }}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a href="{{ path('qtf_quote_index') }}" class="dropdown-item">📖 All quotes</a>
-                    <a href="{{ path('qtf_author_index') }}" class="dropdown-item">🖋 Authors</a>
-                    <a href="{{ path('qtf_category_index') }}" class="dropdown-item">📂 Categories</a>
-                    <a href="{{ path('qtf_work_index') }}" class="dropdown-item">📚 Original works</a>
-                    <a href="{{ path('qtf_work_dates') }}" class="dropdown-item">🗓 Date</a>
-                    <a href="{{ path('qtf_quote_random') }}" class="dropdown-item">❓ Random quote</a>
+                    <a href="{{ path('qtf_quote_index') }}" class="dropdown-item">📖 {{ 'All quotes'|trans }}</a>
+                    <a href="{{ path('qtf_author_index') }}" class="dropdown-item">🖋 {{ 'Authors'|trans }}</a>
+                    <a href="{{ path('qtf_category_index') }}" class="dropdown-item">📂 {{ 'Categories'|trans }}</a>
+                    <a href="{{ path('qtf_work_index') }}" class="dropdown-item">📚 {{ 'Original works'|trans }}</a>
+                    <a href="{{ path('qtf_work_dates') }}" class="dropdown-item">🗓 {{ 'Date'|trans }}</a>
+                    <a href="{{ path('qtf_quote_random') }}" class="dropdown-item">❓ {{ 'Random quote'|trans }}</a>
                 </div>
             </div>
         </div>
@@ -37,11 +37,12 @@
         <div class="col headerUser">
             <div class="dropdown">
                 <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    User
+                    <img src="{{ asset('img/user.png')}}" height="20px" />
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a href="{{ path('qtf_user_index') }}" class="dropdown-item">Profile</a>
-                    <a href="{{ path('qtf_logout') }}" class="dropdown-item">Logout</a>
+                    <p class="dropdown-item userEmail">{{ app.user.email }}</p>
+                    <a href="{{ path('qtf_user_index') }}" class="dropdown-item">{{ 'Profile'|trans }}</a>
+                    <a href="{{ path('qtf_logout') }}" class="dropdown-item">{{ 'Logout'|trans }}</a>
                 </div>
             </div>
 

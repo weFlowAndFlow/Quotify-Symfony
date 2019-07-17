@@ -55,20 +55,20 @@
                 <!-- Search bar (mobile view only)-->
                 <div class="contentHead">
                     <div class="searchBar">
-                    <form action="{{ path('qtf_search_index') }}" method="POST">
-                        <input id="searchInput" name="searchInput" type="search" placeholder="Search"/>
-                    </form>
+                        <form action="{{ path('qtf_search_index') }}" method="POST">
+                            <input id="searchInput" name="searchInput" type="search" placeholder="Search"/>
+                        </form>
+                    </div>
                 </div>
-            </div>
 
-            <!-- central content -->
-            <div class="contentHeart">
-                {% block quote_body %}{% endblock %}
+                <!-- central content -->
+                <div class="contentHeart">
+                    {% block quote_body %}{% endblock %}
+                </div>
+
             </div>
 
         </div>
-
-    </div>
     </div>
 {% endblock %}
 
@@ -77,28 +77,5 @@
 	{% block javascripts %}
         {{ parent() }}
 
-        <script>
-            // Drop down menu (profile)
-            function openSubMenu() {
-                var x = document.getElementById("profileSubMenu");
-                if (x.style.display === "block") {
-                    x.style.display = "none";
-                    x.style.height = "0px";
-                } else {
-                    x.style.display = "block";
-                    x.style.height = "74px";
-                }
-            }
-
-            /* Set the width of the side navigation to 250px */
-            function openNav() {
-                document.getElementById("mySidenav").style.width = "250px";
-            }
-
-            /* Set the width of the side navigation to 0 */
-            function closeNav() {
-                document.getElementById("mySidenav").style.width = "0";
-            }
-        </script>
     {% endblock %}
 

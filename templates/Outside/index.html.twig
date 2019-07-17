@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width"/>
 
-    <title>{{ website_name }} - Welcome</title>
+    <title>{{ website_name }} - {{ 'Welcome'|trans }}</title>
 
     {% block stylesheets %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -22,10 +22,10 @@
 <body>
 
 <div class="headList">
-    <div class="headListContent">
-        <div class="item"><a href="{{ path('qtf_welcome_create') }}">Sign-up</a></div>
-        <div class="item"><a href="{{ path('qtf_login') }}">Sign-in</a></div>
-    </div>
+    <p class="headListContent">
+        <a href="{{ path('qtf_welcome_create') }}" class="item">{{ 'Sign-up'|trans }}</a>
+        <a href="{{ path('qtf_login') }}" class="item">{{ 'Sign-in'|trans }}</a>
+    </p>
 </div>
 
 
@@ -34,17 +34,17 @@
 
     <div class="section">
         <div class="content">
-            <h1>Quotify</h1>
-            Your personal notebook for quotes
+            <h1>{{ 'Quotify'|trans }}</h1>
+            {% trans %}Your personal notebook for quotes.{% endtrans %}
         </div>
         <div class="icon"><img src="{{ asset('img/pen.png') }}" /></div>
     </div>
 
     <div class="section">
         <div class="content">
-            <h1>A diary of quotes</h1>
-            Wheter you're reading a book, listening to a song or watching a movie, keep track of all the quotes you
-            encounter in your daily life.
+            <h1>{{ 'A diary of quotes'|trans }}</h1>
+            {% trans %}Whether you're reading a book, listening to a song or watching a movie, keep track of all the quotes you
+            encounter in your daily life.{% endtrans %}
         </div>
         <div class="icon"><img src="{{ asset('img/diary.png') }}" /></div>
     </div>
@@ -52,32 +52,32 @@
 
     <div class="section">
         <div class="content">
-            <h1>Simple and easy to use</h1>
-            Sort your quotes by author, by source or by categories.
+            <h1>{{ 'Simple and easy to use'|trans }}</h1>
+            {% trans %}Sort your quotes by author, by source or by categories.{% endtrans %}
         </div>
         <div class="icon"><img src="{{ asset('img/books.png') }}" /></div>
     </div>
 
     <div class="section">
         <div class="content">
-            <h1>Available everywhere, everytime</h1>
-            Consult your quotes or store new ones on your desktop or your mobile
+            <h1>{{ 'Available everywhere, everytime'|trans }}</h1>
+            {% trans %}Consult your quotes or store new ones on your desktop or your mobile.{% endtrans %}
         </div>
         <div class="icon"><img src="{{ asset('img/devices.png') }}" /></div>
     </div>
 
     <div class="section">
         <div class="content">
-            <h1>100% free</h1>
-            No fee. No add. No credit-card required.
+            <h1>{{ '100% free'|trans }}</h1>
+            {% trans %}No fee. No add. No credit-card required.{% endtrans %}
         </div>
         <div class="icon"><img src="{{ asset('img/money.png') }}" /></div>
     </div>
 
     <div class="section">
         <div class="content">
-            <h1>Sign-up now</h1>
-            Sign-up
+            <h1>{{ 'Sign-up now'|trans }}</h1>
+            {{ 'Sign-up'|trans }}
         </div>
     </div>
 

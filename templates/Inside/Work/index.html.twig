@@ -3,7 +3,7 @@
 {% extends "Inside/layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - Original works
+    {{ parent() }} - {{ 'Original works'|trans }}
 {% endblock %}
 
 
@@ -18,16 +18,15 @@
     <p class="undefined">
         <a href="{{ path('qtf_work_quotes_undefined') }}">
             {% if undefined == 1 %}
-                {{ undefined }} undefined quote
+                {{ undefined }} {{ 'undefined quote'|trans }}
             {% elseif undefined > 1 %}
-                {{ undefined }} undefined quotes
+                {{ undefined }} {{ 'undefined quotes'|trans }}
             {% endif %}
     </p>
 
 
     <div class="addNew">
-        <a href="{{ path('qtf_work_create', {'caller' : 'qtf_work_index'}) }}" class="btn btn-outline-success">Add new
-            original work</a>
+        <a href="{{ path('qtf_work_create', {'caller' : 'qtf_work_index'}) }}" class="btn btn-outline-success">{{ 'Add new original work'|trans }}</a>
     </div>
 
     <div class="list">
@@ -41,7 +40,7 @@
                         {% if work.authors is defined %}
                             {% for author in work.authors %}
                                 {% if loop.first %}
-                                    By
+                                    {{ 'By'|trans }}
                                 {% endif %}
                                 {{ author.displayName }}
                                 {% if not loop.last %}
@@ -54,24 +53,24 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2 quoteNumber">
                     {% if work.quotes|length == 0 %}
-                        {{ work.quotes|length }} quote
+                        {{ work.quotes|length }} {{ 'quote'|trans }}
                     {% endif %}
 
                     <a href="{{ path('qtf_work_quotes', {'id': work.id}) }}">
                         {% if work.quotes|length == 1 %}
-                            {{ work.quotes|length }} quote
+                            {{ work.quotes|length }} {{ 'quote'|trans }}
                         {% elseif work.quotes|length > 1 %}
-                            {{ work.quotes|length }} quotes
+                            {{ work.quotes|length }} {{ 'quotes'|trans }}
                         {% endif %}
                     </a>
                 </div>
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4 buttons">
                     <a href="{{ path('qtf_work_edit', {'id': work.id, 'caller' : 'qtf_author_index'}) }}"
-                       class="btn btn-outline-warning buttonSize">Edit</a>
+                       class="btn btn-outline-warning buttonSize">{{ 'Edit'|trans }}</a>
                     {% if work.quotes|length == 0 %}
                         <a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal"
-                           data-target="#deleteModal-{{ work.id }}">Delete</a>
+                           data-target="#deleteModal-{{ work.id }}">{{ 'Delete'|trans }}</a>
                     {% endif %}
                 </div>
             </div>
@@ -83,21 +82,20 @@
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Warning</h4>
+                            <h4 class="modal-title">{{ 'Warning'|trans }}</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            You are about to permanently delete {{ work.title }} from the database. You won't be able to
-                            retrieve it. Do you wish to proceed ?
+                            {% trans %}You are about to permanently delete{% endtrans %} {{ work.title }} {% trans %}from the database. You won't be able to
+                            retrieve it. Do you wish to proceed ?{% endtrans %}
                         </div>
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No, go back</button>
-                            <a href="{{ path('qtf_work_delete', {'id': work.id}) }}" class="btn btn-outline-danger">Yes,
-                                Delete</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'No, cancel'|trans }}</button>
+                            <a href="{{ path('qtf_work_delete', {'id': work.id}) }}" class="btn btn-outline-danger">{{ 'Yes, delete'|trans }}</a>
                         </div>
 
                     </div>
