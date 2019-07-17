@@ -17,8 +17,8 @@
     {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
     {{ form_start(form) }}
     {{ form_row(form.authors) }}
-    {{ form_row(form.title) }}
-    {{ form_row(form.year) }}
+    {{ form_row(form.title, {'label': 'Title'}) }}
+    {{ form_row(form.year, {'label': 'Year'}) }}
     <div class="row">
         <div class="col-2"></div>
         <div class="col-2"><a href="{{ path(previousPage) }}" class="btn btn-outline-secondary">{{ 'Cancel'|trans }}</a></div>
