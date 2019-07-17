@@ -18,9 +18,10 @@ body {
     position: fixed;
     top: 10px;
     right: 10px;
-    margin-right: 10px;
+    margin-right: 1%;
     margin-left: auto;
     z-index:2;
+    width: 300px;
 }
 
 .headListContent {
@@ -30,7 +31,6 @@ body {
     padding: 12px;
     border-radius: 30px;
     border: 1px solid white;
-    width: 300px;
 }
 
 
@@ -51,6 +51,52 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
+
+    /* FADE IN */
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+
+
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.content {
+    font-size: 24px;
+}
+
+.content p {
+    font-size: 40px;
 }
 
 .icon {
@@ -60,7 +106,7 @@ body {
 }
 
 img {
-    max-width: 250px;
+    max-width: 160px;
 }
 
 
@@ -70,7 +116,13 @@ img {
 
 @media all and (max-width: 768px) {
 
+    .content p {
+        font-size: 28px;
+    }
 
+    .content {
+        font-size: 14px;
+    }
 
 
     img {
