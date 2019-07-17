@@ -14,13 +14,12 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
               crossorigin="anonymous"/>
         <link href="{{ asset('style/welcome.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('style/fullpage.css') }}" rel="stylesheet"/>
     {% endblock %}
 
 </head>
 
 <body>
-
-
 
 <div class="headList">
     <div class="headListContent">
@@ -30,86 +29,98 @@
 </div>
 
 
-<div class="parallaxContainer">
 
-    <section>
-        <div class="sectionContent">
+<div id="fullpage">
+
+    <div class="section">
+        <div class="content">
             <h1>Quotify</h1>
             Your personal notebook for quotes
         </div>
-        <div class="img">
-            <img src="{{ asset('img/pen.png') }}" />
-        </div>
-    </section>
+        <div class="icon"><img src="{{ asset('img/pen.png') }}" /></div>
+    </div>
 
-    <section>
-        <div class="sectionContent">
+    <div class="section">
+        <div class="content">
             <h1>A diary of quotes</h1>
             Wheter you're reading a book, listening to a song or watching a movie, keep track of all the quotes you
             encounter in your daily life.
         </div>
-        <div class="img">
-            <img src="{{ asset('img/diary.png') }}" />
-        </div>
-    </section>
+        <div class="icon"><img src="{{ asset('img/diary.png') }}" /></div>
+    </div>
 
-    <section>
-        <div class="sectionContent">
+
+    <div class="section">
+        <div class="content">
             <h1>Simple and easy to use</h1>
             Sort your quotes by author, by source or by categories.
         </div>
-        <div class="img">
-            <img src="{{ asset('img/books.png') }}" />
-        </div>
-    </section>
+        <div class="icon"><img src="{{ asset('img/books.png') }}" /></div>
+    </div>
 
-    <section>
-        <div class="sectionContent">
+    <div class="section">
+        <div class="content">
             <h1>Available everywhere, everytime</h1>
             Consult your quotes or store new ones on your desktop or your mobile
         </div>
-        <div class="img">
-            <img src="{{ asset('img/devices.png') }}" />
-        </div>
-    </section>
+        <div class="icon"><img src="{{ asset('img/devices.png') }}" /></div>
+    </div>
 
-    <section>
-        <div class="sectionContent">
+    <div class="section">
+        <div class="content">
             <h1>100% free</h1>
             No fee. No add. No credit-card required.
         </div>
-        <div class="img">
-            <img src="{{ asset('img/money.png') }}" />
-        </div>
-    </section>
+        <div class="icon"><img src="{{ asset('img/money.png') }}" /></div>
+    </div>
 
-    <section>
-        <div class="sectionContent">
+    <div class="section">
+        <div class="content">
             <h1>Sign-up now</h1>
             Sign-up
         </div>
-    </section>
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="section fp-auto-height">
+        <div class="content">
+            <div class="footer">
+
+                {{ include("_footer.html.twig") }}
+
+            </div>
+        </div>
+    </div>
+
 
 
 </div>
 
 
 
-<!-- FOOTER -->
-<footer>
-    <div class="footerContent">
-        <p>Created by {{ webmaster }} </p>
-        <p>© {{ website_name }} {{ 'now'|date('Y') }}</p>
-        <p>Disclaimer</p>
-    </div>
-</footer>
+
 
 
 {% block javascripts %}
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/fullpage.js') }}"></script>
+
+    <script type="text/javascript">
+        var myFullpage = new fullpage('#fullpage', {
+            sectionsColor: ['darkgreen', '#b51d05', '#25a0f7', '#e89f20',
+                '#ba0ec9', '#4dd11d', 'rgb(51, 51, 51)']
+        });
+    </script>
+
+
 {% endblock %}
+
 </body>
 
 

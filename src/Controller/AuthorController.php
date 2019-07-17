@@ -69,7 +69,7 @@ class AuthorController extends AbstractController
     /**
      * @Route("/create_{caller}", name="qtf_author_create")
      */
-    public function create($caller, Request $request, PaginatorInterface $paginator)
+    public function create($caller = 'qtf_quote_index', Request $request, PaginatorInterface $paginator)
     {
         $user = $this->getUser();
         $author = new Author();

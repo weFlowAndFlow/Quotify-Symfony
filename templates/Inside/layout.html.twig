@@ -49,34 +49,26 @@
 
         <div class="mainContent">
 
-            <!-- menu -->
-            {{ include("Inside/_menu.html.twig") }}
-
             <!-- content-->
             <div class="contentDisplay">
 
-                <!-- search bar + add button-->
+                <!-- Search bar (mobile view only)-->
                 <div class="contentHead">
                     <div class="searchBar">
-                        <form action="{{ path('qtf_search_index') }}" method="POST">
-                            <input id="searchInput" name="searchInput" type="text" placeholder="Search"/>
-                            <input id="searchButton" type="submit" value="Go"/>
-                        </form>
-                    </div>
-                    <div class="addButtonDiv">
-                        <a href="{{ path('qtf_quote_create', {'caller': 'qtf_quote_index'}) }}"
-                           alt="Add new quote">+</a>
-                    </div>
+                    <form action="{{ path('qtf_search_index') }}" method="POST">
+                        <input id="searchInput" name="searchInput" type="search" placeholder="Search"/>
+                    </form>
                 </div>
+            </div>
 
-                <!-- central content -->
-                <div class="contentHeart">
-                    {% block quote_body %}{% endblock %}
-                </div>
-
+            <!-- central content -->
+            <div class="contentHeart">
+                {% block quote_body %}{% endblock %}
             </div>
 
         </div>
+
+    </div>
     </div>
 {% endblock %}
 

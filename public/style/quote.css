@@ -48,7 +48,6 @@
 }
 
 .centered {
-    white-space: pre-line;
     text-align: center;
 }
 
@@ -68,7 +67,7 @@
     text-align: right;
     font-weight: bold;
     margin-bottom: -3px;
-    margin-top: 1%;
+    margin-top: 10%;
     text-transform: capitalize;
 }
 
@@ -85,6 +84,7 @@
     font-family: Arial;
     text-align: right;
     text-transform: capitalize;
+    margin-bottom: 0px;
 }
 
 .quoteOriginalWork a {
@@ -97,9 +97,7 @@
 }
 
 .quoteButtons {
-    text-align: left;
-    font-size: 14px;
-    margin-top: -20px;
+    text-align: center;
 }
 
 
@@ -143,11 +141,6 @@
         font-size: 14px;
     }
 
-    .quoteButtons {
-        text-align: center;
-        margin-top: 10%;
-        margin-bottom: 30px;
-    }
 
     .singleQuoteButtons {
         margin-top: 15%;

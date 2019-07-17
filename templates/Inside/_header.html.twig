@@ -1,25 +1,53 @@
 <header>
-    <ul id="ul-head">
 
-        <li id="li-head-left" class="menuIcon">
-			<span onclick="openNav()">
-				<img src="{{ asset('img/menuIcon.png') }}" width="30px" id="addButton"/>
-			</span>
-        </li>
+    <div class="row headerContent">
 
-
-        <li id="li-head-title" class="headerTitle"><a href="{{ path('qtf_quote_index') }}">{{ website_name }}</a></li>
-
-
-        <li id="li-head-right" class="li-item">
-            <a href="javascript:void(0);" class="icon" onclick="openSubMenu()">{{ app.user.username }} &nbsp;
-                &nabla;</a>
-            <div id="profileSubMenu">
-                <p class="subLink"><a href="{{ path('qtf_user_index') }}">Profile</a></p>
-                <p class="subLink"><a href="{{ path('qtf_logout') }}">Logout</a></p>
+        <div class="col headerMenu">
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a href="{{ path('qtf_quote_index') }}" class="dropdown-item">📖 All quotes</a>
+                    <a href="{{ path('qtf_author_index') }}" class="dropdown-item">🖋 Authors</a>
+                    <a href="{{ path('qtf_category_index') }}" class="dropdown-item">📂 Categories</a>
+                    <a href="{{ path('qtf_work_index') }}" class="dropdown-item">📚 Original works</a>
+                    <a href="{{ path('qtf_work_dates') }}" class="dropdown-item">🗓 Date</a>
+                    <a href="{{ path('qtf_quote_random') }}" class="dropdown-item">❓ Random quote</a>
+                </div>
             </div>
-        </li>
+        </div>
+
+        <div class="col headerTitle">
+            <a href="{{ path('qtf_quote_index') }}">{{ website_name }}</a>
+        </div>
+
+        <div class="col headerAddButton">
+            <div class="addButtonDiv">
+                <a href="{{ path('qtf_quote_create') }}" alt="Add new quote">+</a>
+            </div>
+        </div>
+
+        <div class="col headerSearch">
+            <form action="{{ path('qtf_search_index') }}" method="POST">
+                <input id="searchInput" name="searchInput" type="search" placeholder="Search"/>
+            </form>
+        </div>
+
+        <div class="col headerUser">
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    User
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <a href="{{ path('qtf_user_index') }}" class="dropdown-item">Profile</a>
+                    <a href="{{ path('qtf_logout') }}" class="dropdown-item">Logout</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
 
-    </ul>
 </header>
