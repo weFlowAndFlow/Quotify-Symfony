@@ -13,25 +13,28 @@
 
 {% block quote_body %}
 
-    {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+    <div class="formSize">
+        {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
 
-    {{ form_start(form) }}
-    {{ form_row(form.author, {'label': 'By'}) }}
-    <div class="addFieldData"><a href="{{ path('qtf_author_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new author'|trans }}</a></div>
-    {{ form_row(form.originalWork, {'label': 'In'}) }}
-    <div class="addFieldData"><a href="{{ path('qtf_work_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new original work'|trans }}</a></div>
-    {{ form_row(form.categories) }}
-    <div class="addFieldData"><a href="{{ path('qtf_category_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new category'|trans }}</a></div>
-    <br/>
-    {{ form_row(form.text, {'label': 'Text'}) }}
-    {{ form_row(form.notes, {'label': 'Notes'}) }}
-    <div class="row">
-        <div class="col-5"></div>
-        <div class="col-2">{{ form_row(form.save) }}</div>
-        <div class="col-5"></div>
+        <p class="formTitle">{{ 'Add new quote'|trans }}</p>
+
+        {{ form_start(form) }}
+        {{ form_row(form.author, {'label': 'By'}) }}
+        <div class="addFieldData"><a href="{{ path('qtf_author_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new author'|trans }}</a></div>
+        {{ form_row(form.originalWork, {'label': 'In'}) }}
+        <div class="addFieldData"><a href="{{ path('qtf_work_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new original work'|trans }}</a></div>
+        {{ form_row(form.categories) }}
+        <div class="addFieldData"><a href="{{ path('qtf_category_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new category'|trans }}</a></div>
+        <br/>
+        {{ form_row(form.text, {'label': 'Text'}) }}
+        {{ form_row(form.notes, {'label': 'Notes'}) }}
+        <div class="row">
+            <div class="col-5"></div>
+            <div class="col-2">{{ form_row(form.save) }}</div>
+            <div class="col-5"></div>
+        </div>
+        {{ form_end(form) }}
     </div>
-    {{ form_end(form) }}
-
 
 
 {% endblock %}

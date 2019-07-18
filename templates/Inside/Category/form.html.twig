@@ -13,7 +13,11 @@
 
 {% block quote_body %}
 
+    <div class="formSize">
     {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+
+        <p class="formTitle">{{ 'Add new category'|trans }}</p>
+
     {{ form_start(form) }}
     {{ form_row(form.name) }}
     <div class="row">
@@ -24,7 +28,7 @@
         <div class="col-5"></div>
     </div>
     {{ form_end(form) }}
-
+    </div>
 
 
 

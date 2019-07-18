@@ -77,7 +77,7 @@
     <div class="section">
         <div class="content">
             <p>{{ 'Sign-up now'|trans }}</p>
-            {{ 'Sign-up'|trans }}
+            <a href="{{ path('qtf_welcome_create') }}" class="btn btn-lg btn-light">{{ 'Sign-up'|trans }}</a>
         </div>
     </div>
 
@@ -105,11 +105,11 @@
 
 {% block javascripts %}
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/fullpage.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/attrchange.js') }}"></script>
 
     <script type="text/javascript">
         var myFullpage = new fullpage('#fullpage', {
@@ -118,7 +118,24 @@
         });
     </script>
 
+    <script>
+        $(document).ready(function(){
 
+            $(".section").eq(0).animate({"opacity":"1"},1500);  //fade the first div.section in on page load
+
+            $(".section").attrchange({
+                trackValues: true, // set to true so that the event object is updated with old & new values
+                callback: function(evnt) {
+                    if(evnt.attributeName == "class") { // which attribute you want to watch for changes
+                        if(evnt.newValue.search(/active/i) == -1) { // "active" is the class name you search for inside "class" attribute
+                            $(".section.active").animate({"opacity":"1"},1500); //fade in the section with class active
+                        }
+                    }
+                }
+            });
+
+        }); //end of document ready
+    </script>
 
 {% endblock %}
 
