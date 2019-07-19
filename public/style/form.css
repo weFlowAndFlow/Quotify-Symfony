@@ -131,3 +131,17 @@
 }
 
 
+label {
+    font-variant: small-caps;
+}
+
+legend {
+    font-variant: small-caps;
+}
+
+/* SELECT */
+
+.form-control {
+
+}
+

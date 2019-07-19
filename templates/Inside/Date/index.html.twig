@@ -28,6 +28,8 @@
             {% if dates is empty %}
                 {{ "No dated quote available."|trans }}
             {% endif %}
+        {% else %}
+            {{ "No dated quote available."|trans }}
         {% endfor %}
 
 

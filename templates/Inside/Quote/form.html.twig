@@ -13,6 +13,7 @@
 
 {% block quote_body %}
 
+
     <div class="formSize">
         {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
 
@@ -23,7 +24,7 @@
         <div class="addFieldData"><a href="{{ path('qtf_author_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new author'|trans }}</a></div>
         {{ form_row(form.originalWork, {'label': 'In'}) }}
         <div class="addFieldData"><a href="{{ path('qtf_work_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new original work'|trans }}</a></div>
-        {{ form_row(form.categories) }}
+        {{ form_row(form.categories, {'label': 'Categories'}) }}
         <div class="addFieldData"><a href="{{ path('qtf_category_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new category'|trans }}</a></div>
         <br/>
         {{ form_row(form.text, {'label': 'Text'}) }}

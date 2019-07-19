@@ -173,6 +173,8 @@ class QuoteRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('q')
             ->select('COUNT(q)')
             ->andWhere('q.author is NULL')
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
             ->getQuery()
             ->getSingleScalarResult();
     }

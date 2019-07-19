@@ -71,11 +71,12 @@ class AuthorRepository extends ServiceEntityRepository
     public function search($keywords, $user)
     {
         return $this->createQueryBuilder('a')
+            ->andWhere('a.forename like :val')
+            ->setParameter('val', '%'.$keywords.'%')
+            ->orWhere('a.name like :val2')
+            ->setParameter('val2', '%'.$keywords.'%')
             ->andWhere('a.user = :user')
             ->setParameter('user', $user)
-            ->andWhere('a.forename like :val')
-            ->orWhere('a.name like :val')
-            ->setParameter('val', '%'.$keywords.'%')
             ->getQuery()
             ->getResult()
             ;
