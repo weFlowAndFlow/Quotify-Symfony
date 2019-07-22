@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/out")
@@ -68,17 +69,19 @@ class WelcomeController extends AbstractController
     /**
      * @Route("/verify/51{id}84_{email}", name="qtf_welcome_verify", requirements={"id" = "\d+"})
      */
-    public function verify(Request $request)
+    public function verify(Request $request, TranslatorInterface $translator)
     {
         $email = $request->get('email');
         $id = $request->get('id');
         $user = $this->getDoctrine()->getRepository(User::class)->getOne($id, $email);
 
         if ($user == null) {
-            $this->addFlash('error', 'Oops! Something went wrong. Please try to confirm your address again.');
+            $translated = $translator->trans('Oops! Something went wrong. Please try to confirm your address again.');
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_welcome_index');
         } else if ($user->isVerified()) {
-            $this->addFlash('success', 'Your email was already confirmed. You can log-in.');
+            $translated = $translator->trans('Your email was already confirmed. You can log-in.');
+            $this->addFlash('success', $translated);
             return $this->redirectToRoute('qtf_login');
         }
         {
@@ -86,7 +89,8 @@ class WelcomeController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            $this->addFlash('success', 'Your email address has been successfully confirmed. You can now log-in.');
+            $translated = $translator->trans('Your email address has been successfully confirmed. You can now log-in.');
+            $this->addFlash('success', $translated);
             return $this->redirectToRoute('qtf_login');
         }
 

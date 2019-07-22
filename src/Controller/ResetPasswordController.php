@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/out/reset")
@@ -37,7 +38,7 @@ class ResetPasswordController extends AbstractController
     /**
      * @Route("/message", name="qtf_reset_message")
      */
-    public function message(Request $request, Swift_Mailer $mailer)
+    public function message(Request $request, Swift_Mailer $mailer, TranslatorInterface $translator)
     {
         $email = $request->get('email');
 
@@ -47,7 +48,8 @@ class ResetPasswordController extends AbstractController
 
             if ($user == null)
             {
-                $this->addFlash('error', 'Email not found');
+                $translated = $translator->trans('Email not found');
+                $this->addFlash('error', $translated);
                 return $this->redirectToRoute('qtf_reset_email');
             }
             else
@@ -65,7 +67,8 @@ class ResetPasswordController extends AbstractController
         }
         else
         {
-            $this->addFlash('error', 'Please enter a valid email address.');
+            $translated = $translator->trans('Please enter a valid email address.');
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_reset_email');
         }
 
@@ -75,7 +78,7 @@ class ResetPasswordController extends AbstractController
     /**
      * @Route("/password", name="qtf_reset_password")
      */
-    public function password(Request $request, Security $security, UserPasswordEncoderInterface $encoder)
+    public function password(Request $request, Security $security, UserPasswordEncoderInterface $encoder, TranslatorInterface $translator)
     {
         $id = $request->get('id');
         $email = $request->get('email');
@@ -83,7 +86,8 @@ class ResetPasswordController extends AbstractController
 
         if ($user == null)
         {
-            $this->addFlash('error', 'Oops! Something went wrong : user could not be found.');
+            $translated = $translator->trans('Oops! Something went wrong : user could not be found.');
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_login');
         }
         else
@@ -107,7 +111,8 @@ class ResetPasswordController extends AbstractController
                 $em->persist($user);
                 $em->flush();
 
-                $this->addFlash('success', 'The password has been modified. You can now log-in');
+                $translated = $translator->trans('The password has been modified. You can now log-in');
+                $this->addFlash('success', $translated);
 
                 return $this->redirectToRoute('qtf_login');
             }

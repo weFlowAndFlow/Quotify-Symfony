@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/in/password")
@@ -22,7 +23,7 @@ class ChangePasswordController extends AbstractController
     /**
      * @Route("/{id}/change", name="qtf_password_edit")
      */
-    public function changePassword($id, Request $request, PaginatorInterface $paginator, Security $security, UserPasswordEncoderInterface $encoder)
+    public function changePassword($id, Request $request, TranslatorInterface $translator, Security $security, UserPasswordEncoderInterface $encoder)
     {
         $user = $this->getUser();
         $changePassword = new ChangePassword();
@@ -46,11 +47,13 @@ class ChangePasswordController extends AbstractController
                     $em->persist($user);
                     $em->flush();
 
-                    $this->addFlash('success', 'The password has been modified.');
+                    $translated = $translator->trans('The password has been modified.');
+                    $this->addFlash('success', $translated);
 
                     return $this->redirectToRoute('qtf_user_index');
                 } else {
-                    $this->addFlash('error', 'Oops! The old password is wrong.');
+                    $translated = $translator->trans('Oops! The old password is wrong.');
+                    $this->addFlash('error', $translated);
                 }
 
             }
@@ -58,7 +61,8 @@ class ChangePasswordController extends AbstractController
             return $this->render('Inside/User/passwordForm.html.twig', ['form' => $form->createView()]);
 
         } else {
-            $this->addFlash('error', "Oops! There's been a problem : the user could not be found.");
+            $translated = $translator->trans("Oops! There's been a problem : the user could not be found.");
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_user_index');
         }
 

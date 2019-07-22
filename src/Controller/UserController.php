@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/in/user")
@@ -32,7 +33,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="qtf_user_edit")
      */
-    public function edit($id, Request $request, Security $security, UserPasswordEncoderInterface $encoder)
+    public function edit($id, Request $request, Security $security, UserPasswordEncoderInterface $encoder, TranslatorInterface $translator)
     {
         $user = $this->getUser();
 
@@ -46,14 +47,16 @@ class UserController extends AbstractController
                 $em->persist($user);
                 $em->flush();
 
-                $this->addFlash('success', 'The user has been modified.');
+                $translated = $translator->trans('The user has been modified.');
+                $this->addFlash('success', $translated);
 
                 return $this->redirectToRoute('qtf_user_index');
 
             }
             return $this->render('Inside/User/form.html.twig', ['form' => $form->createView()]);
         } else {
-            $this->addFlash('error', "Oops! There's been a problem : the user could not be found.");
+            $translated = $translator->trans("Oops! There's been a problem : the user could not be found.");
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_user_index');
         }
 
@@ -63,7 +66,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/delete", name="qtf_user_delete")
      */
-    public function delete($id, Request $request, Security $security, UserPasswordEncoderInterface $encoder)
+    public function delete($id, Request $request, Security $security, UserPasswordEncoderInterface $encoder, TranslatorInterface $translator)
     {
         $user = $this->getUser();
 
@@ -78,10 +81,12 @@ class UserController extends AbstractController
             $em->remove($userEntity);
             $em->flush();
 
-            $this->addFlash('success', "Your account has been successfully deleted.");
+            $translated = $translator->trans("Your account has been successfully deleted.");
+            $this->addFlash('success', $translated);
             return $this->redirectToRoute('qtf_welcome_index');
         } else {
-            $this->addFlash('error', "Oops! There's been a problem : the account could not be found.");
+            $translated = $translator->trans("Oops! There's been a problem : the account could not be found.");
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_user_index');
         }
 

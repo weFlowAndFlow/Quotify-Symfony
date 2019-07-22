@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/in/quote")
@@ -20,15 +21,17 @@ class QuoteController extends AbstractController
     /**
      * @Route("/", name="qtf_quote_index")
      */
-    public function index(Request $request, PaginatorInterface $paginator)
+    public function index(Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAll($user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
-        $displayTitle = "All quotes";
+        $translated = $translator->trans("All quotes");
+        $displayTitle = $translated;
 
         if ($this->getDoctrine()->getRepository(Quote::class)->getAll($user) == null) {
-            $this->addFlash('warning', "It seems you don't have any quote in your account yet. Add one by clicking the '+' button");
+            $translated = $translator->trans("It seems you don't have any quote in your account yet. Add one by clicking the '+' button");
+            $this->addFlash('warning', $translated);
 
         }
 
@@ -38,12 +41,13 @@ class QuoteController extends AbstractController
     /**
      * @Route("/view/{id}", name="qtf_quote_view", requirements={"id" = "\d+"})
      */
-    public function view($id)
+    public function view($id, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $quote = $this->getDoctrine()->getRepository(Quote::class)->getQuoteById($id, $user);
         if ($quote == null) {
-            $this->addFlash('error', 'Oops! Something went wrong. The quote could not be found.');
+            $translated = $translator->trans('Oops! Something went wrong. The quote could not be found.');
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_quote_index');
         } else {
 
@@ -54,7 +58,7 @@ class QuoteController extends AbstractController
     /**
      * @Route("/create", name="qtf_quote_create")
      */
-    public function create(Request $request)
+    public function create(Request $request, TranslatorInterface $translator)
     {
         $id = 0; //fake id for the cancel button
         $user = $this->getUser();
@@ -69,7 +73,8 @@ class QuoteController extends AbstractController
             $em->persist($quote);
             $em->flush();
 
-            $this->addFlash('success', 'The quote has been added.');
+            $translated = $translator->trans('The quote has been added.');
+            $this->addFlash('success', $translated);
 
             return $this->redirectToRoute('qtf_quote_view', array('id' => $quote->getId()));
         }
@@ -81,13 +86,14 @@ class QuoteController extends AbstractController
     /**
      * @Route("/edit/{id}_{caller}", name="qtf_quote_edit", requirements={"id" = "\d+"})
      */
-    public function edit($id, $caller, Request $request)
+    public function edit($id, $caller, Request $request, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $currentQuote = $this->getDoctrine()->getRepository(Quote::class)->getQuoteById($id, $user);
 
         if ($currentQuote == null) {
-            $this->addFlash('error', 'Oops! Something went wrong. The quote could not be found.');
+            $translated = $translator->trans('Oops! Something went wrong. The quote could not be found.');
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_quote_index');
         } else {
             $form = $this->createForm(QuoteType::class, $currentQuote);
@@ -100,7 +106,8 @@ class QuoteController extends AbstractController
                     $em->persist($currentQuote);
                     $em->flush();
 
-                    $this->addFlash('success', 'The quote has been modified and saved.');
+                    $translated = $translator->trans('The quote has been modified and saved.');
+                    $this->addFlash('success', $translated);
 
                     return $this->redirectToRoute($caller, array('id' => $id));
                 }
@@ -116,18 +123,20 @@ class QuoteController extends AbstractController
     /**
      * @Route("/{id}/delete", name="qtf_quote_delete", requirements={"id" = "\d+"})
      */
-    public function delete($id)
+    public function delete($id, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $quote = $this->getDoctrine()->getRepository(Quote::class)->getQuoteById($id, $user);
 
         if ($quote == null) {
-            $this->addFlash('error', 'Oops! Something went wrong. The quote could not be found.');
+            $translated = $translator->trans('Oops! Something went wrong. The quote could not be found.');
+            $this->addFlash('error', $translated);
         } else {
             $em = $this->getDoctrine()->getManager();
             $em->remove($quote);
             $em->flush();
-            $this->addFlash('success', 'The quote has been deleted.');
+            $translated = $translator->trans('The quote has been deleted.');
+            $this->addFlash('success', $translated);
         }
 
 
@@ -137,7 +146,7 @@ class QuoteController extends AbstractController
     /**
      * @Route("/view/random", name="qtf_quote_random")
      */
-    public function viewRandom()
+    public function viewRandom(TranslatorInterface $translator)
     {
         $user = $this->getUser();
         try {
@@ -149,7 +158,8 @@ class QuoteController extends AbstractController
 
             return $this->render('Inside/Quote/singleView.html.twig', array('quote' => $quote));
         } catch (Exception $ex) {
-            $this->addFlash('error', 'Oops! Something went wrong : could not generate a random quote.');
+            $translated = $translator->trans('Oops! Something went wrong : could not generate a random quote.');
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_quote_index');
         }
     }

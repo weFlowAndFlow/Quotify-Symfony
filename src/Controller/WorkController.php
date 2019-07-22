@@ -10,6 +10,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 /**
@@ -34,19 +35,21 @@ class WorkController extends AbstractController
     /**
      * @Route("/{id}/quotes", name="qtf_work_quotes", requirements={"id" = "\d+"})
      */
-    public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator)
+    public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
 
         if ($work == null) {
-            $this->addFlash('error', 'Oops! Something went wrong. The original work could not be found.');
+            $translated = $translator->trans('Oops! Something went wrong. The original work could not be found.');
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_work_index');
         } else {
             $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindByOriginalWork($work, $user);
             $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
-            $displayTitle = "All quotes for " . $work->getTitle();
+            $translated = $translator->trans("All quotes for ");
+            $displayTitle = $translated . $work->getTitle();
 
             return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
         }
@@ -55,12 +58,13 @@ class WorkController extends AbstractController
     /**
      * @Route("/undefined/quotes", name="qtf_work_quotes_undefined")
      */
-    public function listUndefinedQuotes(Request $request, PaginatorInterface $paginator)
+    public function listUndefinedQuotes(Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedWork($user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
-        $displayTitle = "All quotes with undefined original work";
+        $translated = $translator->trans("All quotes with undefined original work");
+        $displayTitle = $translated;
 
         return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
@@ -79,13 +83,15 @@ class WorkController extends AbstractController
     /**
      * @Route("/dates/{year}/quotes", name="qtf_work_year", requirements={"year" = "^-?[1-9]\d*$"})
      */
-    public function viewQuotesByYear($year, Environment $twig, Request $request, PaginatorInterface $paginator)
+    public function viewQuotesByYear($year, Environment $twig, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByYear($year, $user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
-        $year = $year == 9999 ? 'undefined date' : $year;
-        $displayTitle = "All quotes for " . $year;
+        $translatedYear = $translator->trans('undefined date');
+        $year = $year == 9999 ? $translatedYear : $year;
+        $translated = $translator->trans("All quotes for ");
+        $displayTitle = $translated . $year;
 
         return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
@@ -93,7 +99,7 @@ class WorkController extends AbstractController
     /**
      * @Route("/create_{caller}", name="qtf_work_create")
      */
-    public function create($caller, Request $request, PaginatorInterface $paginator)
+    public function create($caller, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $work = new OriginalWork();
@@ -107,7 +113,8 @@ class WorkController extends AbstractController
             $em->persist($work);
             $em->flush();
 
-            $this->addFlash('success', 'The original work has been added.');
+            $translated = $translator->trans('The original work has been added.');
+            $this->addFlash('success', $translated);
 
             return $this->redirectToRoute($caller);
         }
@@ -119,13 +126,14 @@ class WorkController extends AbstractController
     /**
      * @Route("/{id}/edit_{caller}", name="qtf_work_edit", requirements={"id" = "\d+"})
      */
-    public function edit($id, $caller, Request $request, PaginatorInterface $paginator)
+    public function edit($id, $caller, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
         if ($work == null) {
-            $this->addFlash('error', 'Oops! Something went wrong. The original work could not be found.');
+            $translated = $translator->trans('Oops! Something went wrong. The original work could not be found.');
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_work_index');
         } else {
 
@@ -137,7 +145,8 @@ class WorkController extends AbstractController
                 $em->persist($work);
                 $em->flush();
 
-                $this->addFlash('success', 'The original work has been added.');
+                $translated = $translator->trans('The original work has been added.');
+                $this->addFlash('success', $translated);
 
                 return $this->redirectToRoute($caller);
             }
@@ -150,20 +159,23 @@ class WorkController extends AbstractController
     /**
      * @Route("/{id}/delete", name="qtf_work_delete", requirements={"id" = "\d+"})
      */
-    public function delete($id, Request $request, PaginatorInterface $paginator)
+    public function delete($id, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
         if ($work == null) {
-            $this->addFlash('error', 'Oops! Something went wrong. The original work could not be found.');
+            $translated = $translator->trans('Oops! Something went wrong. The original work could not be found.');
+            $this->addFlash('error', $translated);
         } elseif (count($work->getQuotes()) > 0) {
-            $this->addFlash('warning', 'This original work can not be deleted : it references quotes in the database.');
+            $translated = $translator->trans('This original work can not be deleted : it references quotes in the database.');
+            $this->addFlash('warning', $translated);
         } else {
             $em = $this->getDoctrine()->getManager();
             $em->remove($work);
             $em->flush();
-            $this->addFlash('success', 'The original work has been deleted.');
+            $translated = $translator->trans('The original work has been deleted.');
+            $this->addFlash('success', $translated);
         }
 
 

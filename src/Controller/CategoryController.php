@@ -10,6 +10,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 /**
@@ -36,20 +37,22 @@ class CategoryController extends AbstractController
     /**
      * @Route("/{id}/quotes", name="qtf_category_quotes", requirements={"id" = "\d+"})
      */
-    public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator)
+    public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
         if ($category == null) {
-            $this->addFlash('error', 'Oops! Something went wrong. The category could not be found.');
+            $translated = $translator->trans('Oops! Something went wrong. The category could not be found.');
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_category_index');
         } else {
 
             $user = $this->getUser();
             $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByCategory($category, $user);
             $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
-            $displayTitle = "All quotes for " . $category->getName() . " category";
+            $translated = $translator->trans("All quotes for ");
+            $displayTitle = $translated . $category->getName();
 
             return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
         }
@@ -59,12 +62,13 @@ class CategoryController extends AbstractController
     /**
      * @Route("/undefined/quotes", name="qtf_category_quotes_undefined")
      */
-    public function listUndefinedQuotes(Environment $twig, Request $request, PaginatorInterface $paginator)
+    public function listUndefinedQuotes(Environment $twig, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedCategory($user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
-        $displayTitle = "All uncategorized quotes";
+        $translated = $translator->trans("All uncategorized quotes");
+        $displayTitle = $translated;
 
         return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
@@ -72,7 +76,7 @@ class CategoryController extends AbstractController
     /**
      * @Route("/create_{caller}", name="qtf_category_create")
      */
-    public function create($caller, Request $request, PaginatorInterface $paginator)
+    public function create($caller, Request $request, TranslatorInterface $translator)
     {
         $category = new Category();
         $user = $this->getUser();
@@ -86,7 +90,8 @@ class CategoryController extends AbstractController
             $em->persist($category);
             $em->flush();
 
-            $this->addFlash('success', 'The category has been added.');
+            $translated = $translator->trans('The category has been added.');
+            $this->addFlash('success', $translated);
 
             return $this->redirectToRoute($caller);
         }
@@ -98,13 +103,14 @@ class CategoryController extends AbstractController
     /**
      * @Route("/{id}/edit_{caller}", name="qtf_category_edit", requirements={"id" = "\d+"})
      */
-    public function edit($id, $caller, Request $request, PaginatorInterface $paginator)
+    public function edit($id, $caller, Request $request, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
         if ($category == null) {
-            $this->addFlash('error', 'Oops! Something went wrong. The category could not be found.');
+            $translated = $translator->trans('Oops! Something went wrong. The category could not be found.');
+            $this->addFlash('error', $translated);
             return $this->redirectToRoute('qtf_category_index');
         } else {
 
@@ -116,7 +122,8 @@ class CategoryController extends AbstractController
                 $em->persist($category);
                 $em->flush();
 
-                $this->addFlash('success', 'The category has been modified.');
+                $translated = $translator->trans('The category has been modified.');
+                $this->addFlash('success', $translated);
 
                 return $this->redirectToRoute($caller);
             }
@@ -129,20 +136,23 @@ class CategoryController extends AbstractController
     /**
      * @Route("/{id}/delete", name="qtf_category_delete", requirements={"id" = "\d+"})
      */
-    public function delete($id, Request $request, PaginatorInterface $paginator)
+    public function delete($id, Request $request, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
         if ($category == null) {
-            $this->addFlash('error', 'Oops! Something went wrong. The category could not be found.');
+            $translated = $translator->trans('Oops! Something went wrong. The category could not be found.');
+            $this->addFlash('error', $translated);
         } elseif (count($category->getQuotes()) > 0) {
-            $this->addFlash('warning', 'This category can not be deleted : it references quotes in the database.');
+            $translated = $translator->trans('This category can not be deleted : it references quotes in the database.');
+            $this->addFlash('warning', $translated);
         } else {
             $em = $this->getDoctrine()->getManager();
             $em->remove($category);
             $em->flush();
-            $this->addFlash('success', 'The category has been deleted.');
+            $translated = $translator->trans('The category has been deleted.');
+            $this->addFlash('success', $translated);
         }
 
 
