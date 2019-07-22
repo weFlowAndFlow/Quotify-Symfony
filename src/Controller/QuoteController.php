@@ -13,7 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @Route("/in/quote")
+ * @Route("/{_locale}/in/quote", requirements={
+ *     "_locale"="%app.locales%"
+ * }))
  */
 class QuoteController extends AbstractController
 {

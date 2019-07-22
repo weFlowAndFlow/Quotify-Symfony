@@ -14,7 +14,9 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @Route("/in/password")
+ * @Route("/{_locale}/in/password", requirements={
+ *     "_locale"="%app.locales%"
+ * }))
  */
 class ChangePasswordController extends AbstractController
 {

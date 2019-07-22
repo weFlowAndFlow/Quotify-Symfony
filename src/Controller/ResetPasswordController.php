@@ -18,7 +18,9 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @Route("/out/reset")
+ * @Route("/{_locale}/out/reset", requirements={
+ *     "_locale"="%app.locales%"
+ * }))
  */
 class ResetPasswordController extends AbstractController
 {

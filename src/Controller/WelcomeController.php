@@ -14,7 +14,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @Route("/out")
+ * @Route("/{_locale}/out", requirements={
+ *     "_locale"="%app.locales%"
+ * }))
  */
 class WelcomeController extends AbstractController
 {

@@ -15,7 +15,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/in/search")
+ * @Route("/{_locale}/in/search", requirements={
+ *     "_locale"="%app.locales%"
+ * }))
  */
 class SearchController extends AbstractController
 {

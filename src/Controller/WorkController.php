@@ -20,7 +20,9 @@ class WorkController extends AbstractController
 {
 
     /**
-     * @Route("/", name="qtf_work_index")
+     * @Route("/{_locale}/", name="qtf_work_index", requirements={
+     *     "_locale"="%app.locales%"
+     * }))
      */
     public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
     {

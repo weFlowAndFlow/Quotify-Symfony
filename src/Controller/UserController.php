@@ -15,7 +15,9 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @Route("/in/user")
+ * @Route("/{_locale}/in/user", requirements={
+ *     "_locale"="%app.locales%"
+ * }))
  */
 class UserController extends AbstractController
 {
