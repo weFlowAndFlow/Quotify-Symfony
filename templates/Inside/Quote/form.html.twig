@@ -21,11 +21,11 @@
 
         {{ form_start(form) }}
         {{ form_row(form.author, {'label': 'By'}) }}
-        <div class="addFieldData"><a href="{{ path('qtf_author_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new author'|trans }}</a></div>
+        <div class="addFieldData"><a href="{{ path('qtf_author_create', {'caller' : 'qtf_quote_create'}) }}" class="btn btn-sm btn-outline-primary">{{ 'Add new author'|trans }}</a></div>
         {{ form_row(form.originalWork, {'label': 'In'}) }}
-        <div class="addFieldData"><a href="{{ path('qtf_work_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new original work'|trans }}</a></div>
+        <div class="addFieldData"><a href="{{ path('qtf_work_create', {'caller' : 'qtf_quote_create'}) }}" class="btn btn-sm btn-outline-primary">{{ 'Add new original work'|trans }}</a></div>
         {{ form_row(form.categories, {'label': 'Categories'}) }}
-        <div class="addFieldData"><a href="{{ path('qtf_category_create', {'caller' : 'qtf_quote_create'}) }}">{{ 'Add new category'|trans }}</a></div>
+        <div class="addFieldData"><a href="{{ path('qtf_category_create', {'caller' : 'qtf_quote_create'}) }}" class="btn btn-sm btn-outline-primary">{{ 'Add new category'|trans }}</a></div>
         <br/>
         {{ form_row(form.text, {'label': 'Text'}) }}
         {{ form_row(form.notes, {'label': 'Notes'}) }}
@@ -34,6 +34,7 @@
             <div class="col-2">{{ form_row(form.save) }}</div>
             <div class="col-5"></div>
         </div>
+        <p class="mandatory">* {{ 'Mandatory field'|trans }}</p>
         {{ form_end(form) }}
     </div>
 

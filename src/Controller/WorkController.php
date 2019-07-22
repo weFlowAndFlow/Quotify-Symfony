@@ -14,15 +14,15 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 /**
- * @Route("/in/work")
+ * @Route("/{_locale}/in/work", requirements={
+ *     "_locale"="%app.locales%"
+ * }))
  */
 class WorkController extends AbstractController
 {
 
     /**
-     * @Route("/{_locale}/", name="qtf_work_index", requirements={
-     *     "_locale"="%app.locales%"
-     * }))
+     * @Route("/", name="qtf_work_index")
      */
     public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
     {

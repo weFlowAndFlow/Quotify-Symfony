@@ -16,12 +16,16 @@
 
 
     <p class="undefined">
-        <a href="{{ path('qtf_work_quotes_undefined') }}">
-            {% if undefined == 1 %}
-                {{ undefined }} {{ 'undefined quote'|trans }}
-            {% elseif undefined > 1 %}
-                {{ undefined }} {{ 'undefined quotes'|trans }}
+
+        {% if undefined >= 1 %}
+            <a href="{{ path('qtf_work_quotes_undefined') }}" class="btn btn-sm btn-outline-primary">
+                {% if undefined == 1 %}
+                    {{ undefined }} {{ 'undefined quote'|trans }}
+                {% elseif undefined > 1 %}
+                    {{ undefined }} {{ 'undefined quotes'|trans }}
+                {% endif %}
             {% endif %}
+        </a>
     </p>
 
 
@@ -30,79 +34,87 @@
     </div>
 
     <div class="list">
-        {% for work in works %}
-            <div class="row entry">
-                <div class="col-sm-4">
-                    <p class="workTitle">
-                        {{ work.title }}
-                    </p>
-                    <p class="byAuthor">
-                        {% if work.authors is defined %}
-                            {% for author in work.authors %}
-                                {% if loop.first %}
-                                    {{ 'By'|trans }}
-                                {% endif %}
-                                {{ author.displayName }}
-                                {% if not loop.last %}
-                                    &
-                                {% endif %}
-                            {% endfor %}
+        <div class="card-columns">
+            {% for work in works %}
+
+
+                <div class="card text-center">
+                    <h5 class="card-header">{{ work.title }}</h5>
+                    <div class="card-body">
+                        <p class="byAuthor">
+                            {% if work.authors is defined %}
+                                {% for author in work.authors %}
+                                    {% if loop.first %}
+                                        {{ 'By'|trans }}
+                                    {% endif %}
+                                    {{ author.displayName }}
+                                    {% if not loop.last %}
+                                        &
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </p>
+                        <p class="card-text">
+                            {% if work.quotes|length == 0 %}
+                                <a href="{{ path('qtf_work_quotes', {'id': work.id}) }}" class="btn btn-info disabled">
+                                    {{ work.quotes|length }} {{ 'quote'|trans }}
+                                </a>
+                            {% endif %}
+
+                            {% if work.quotes|length == 1 %}
+                                <a href="{{ path('qtf_work_quotes', {'id': work.id}) }}" class="btn btn-info">
+                                    {{ work.quotes|length }} {{ 'quote'|trans }}
+                                </a>
+                            {% elseif work.quotes|length > 1 %}
+                                <a href="{{ path('qtf_work_quotes', {'id': work.id}) }}" class="btn btn-info">
+                                    {{ work.quotes|length }} {{ 'quotes'|trans }}
+                                </a>
+                            {% endif %}
+                        </p>
+                        <a href="{{ path('qtf_work_edit', {'id': work.id, 'caller' : 'qtf_author_index'}) }}"
+                           class="btn btn-sm btn-outline-warning">{{ 'Edit'|trans }}</a>
+                        {% if work.quotes|length == 0 %}
+                            <a href="#" class="btn btn-sm btn-outline-danger " data-toggle="modal"
+                               data-target="#deleteModal-{{ work.id }}">{{ 'Delete'|trans }}</a>
                         {% endif %}
-                    </p>
-                </div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2 quoteNumber">
-                    {% if work.quotes|length == 0 %}
-                        {{ work.quotes|length }} {{ 'quote'|trans }}
-                    {% endif %}
-
-                    <a href="{{ path('qtf_work_quotes', {'id': work.id}) }}">
-                        {% if work.quotes|length == 1 %}
-                            {{ work.quotes|length }} {{ 'quote'|trans }}
-                        {% elseif work.quotes|length > 1 %}
-                            {{ work.quotes|length }} {{ 'quotes'|trans }}
-                        {% endif %}
-                    </a>
-                </div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-4 buttons">
-                    <a href="{{ path('qtf_work_edit', {'id': work.id, 'caller' : 'qtf_author_index'}) }}"
-                       class="btn btn-outline-warning buttonSize">{{ 'Edit'|trans }}</a>
-                    {% if work.quotes|length == 0 %}
-                        <a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal"
-                           data-target="#deleteModal-{{ work.id }}">{{ 'Delete'|trans }}</a>
-                    {% endif %}
-                </div>
-            </div>
-
-            <!-- Delete Modal -->
-            <div class="modal fade" id="deleteModal-{{ work.id }}">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">{{ 'Warning'|trans }}</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            {% trans %}You are about to permanently delete{% endtrans %} {{ work.title }} {% trans %}from the database. You won't be able to
-                            retrieve it. Do you wish to proceed ?{% endtrans %}
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'No, cancel'|trans }}</button>
-                            <a href="{{ path('qtf_work_delete', {'id': work.id}) }}" class="btn btn-outline-danger">{{ 'Yes, delete'|trans }}</a>
-                        </div>
 
                     </div>
                 </div>
-            </div>
 
-        {% endfor %}
+
+
+
+
+
+
+                <!-- Delete Modal -->
+                <div class="modal fade" id="deleteModal-{{ work.id }}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">{{ 'Warning'|trans }}</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                {% trans %}You are about to permanently delete{% endtrans %} {{ work.title }} {% trans %}from the database. You won't be able to retrieve it. Do you wish to proceed?{% endtrans %}
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'No, cancel'|trans }}</button>
+                                <a href="{{ path('qtf_work_delete', {'id': work.id}) }}" class="btn btn-outline-danger">{{ 'Yes, delete'|trans }}</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
     </div>
 
 

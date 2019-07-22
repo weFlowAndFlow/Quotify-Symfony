@@ -33,6 +33,16 @@
 <div id="fullpage">
 
     <div class="section">
+
+        <div class="flags">
+            <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">
+                <img src="{{ asset('./img/flags/en.png') }}" alt="English" height="30px" />
+            </a>
+            <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
+                <img src="{{ asset('./img/flags/fr.png') }}" alt="Français" height="30px" />
+            </a>
+        </div>
+
         <div class="content">
             <p>{{ 'Quotify'|trans }}</p>
             {% trans %}Your personal notebook for quotes.{% endtrans %}

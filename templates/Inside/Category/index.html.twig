@@ -17,11 +17,13 @@
 
 
     <p class="undefined">
-        <a href="{{ path('qtf_category_quotes_undefined') }}">
+        {% if undefined >= 1 %}
+        <a href="{{ path('qtf_category_quotes_undefined') }}" class="btn btn-sm btn-outline-primary">
             {% if undefined == 1 %}
                 ({{ undefined }} {{ 'uncategorized quote'|trans }})
             {% elseif undefined > 1 %}
                 ({{ undefined }} {{ 'uncategorized quotes'|trans }})
+            {% endif %}
             {% endif %}
         </a>
     </p>
@@ -31,64 +33,73 @@
         <a href="{{ path('qtf_category_create', {'caller' : 'qtf_category_index'}) }}" class="btn btn-outline-success">{{ 'Add new category'|trans }}</a>
     </div>
 
+
     <div class="list">
-        {% for category in categories %}
-            <div class="row entry">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-3">{{ category.name }}</div>
-                <div class="col-sm-2">
-                    {% if category.quotes|length == 0 %}
-                        {{ category.quotes|length }} {{ 'quote'|trans }}
-                    {% endif %}
+        <div class="card-columns">
+            {% for category in categories %}
 
-                    <a href="{{ path('qtf_category_quotes', {'id': category.id}) }}">
-                        {% if category.quotes|length == 1 %}
-                            {{ category.quotes|length }} {{ 'quote'|trans }}
-                        {% elseif category.quotes|length > 1 %}
-                            {{ category.quotes|length }} {{ 'quotes'|trans }}
+                <div class="card text-center">
+                    <h5 class="card-header">{{ category.name }}</h5>
+                    <div class="card-body">
+                        <p class="card-text">
+
+                            {% if category.quotes|length == 0 %}
+                                <a href="{{ path('qtf_category_quotes', {'id': category.id}) }}" class="btn btn-info disabled">
+                                    {{ category.quotes|length }} {{ 'quote'|trans }}
+                                </a>
+                            {% endif %}
+
+                            {% if category.quotes|length == 1 %}
+                                <a href="{{ path('qtf_category_quotes', {'id': category.id}) }}" class="btn btn-info">
+                                    {{ category.quotes|length }} {{ 'quote'|trans }}
+                                </a>
+                            {% elseif category.quotes|length > 1 %}
+                                <a href="{{ path('qtf_category_quotes', {'id': category.id}) }}" class="btn btn-info">
+                                    {{ category.quotes|length }} {{ 'quotes'|trans }}
+                                </a>
+                            {% endif %}
+                            </a>
+                        </p>
+                        <a href="{{ path('qtf_category_edit', {'id' : category.id, 'caller' : 'qtf_category_index'}) }}"
+                           class="btn btn-outline-warning btn-sm">{{ 'Edit'|trans }}</a>
+                        {% if category.quotes|length == 0 %}
+                            <a href="#" class="btn btn-outline-danger btn-sm" data-toggle="modal"
+                               data-target="#deleteModal-{{ category.id }}">{{ 'Delete'|trans }}</a>
                         {% endif %}
-                    </a>
-                </div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-4">
-                    <a href="{{ path('qtf_category_edit', {'id' : category.id, 'caller' : 'qtf_category_index'}) }}"
-                       class="btn btn-outline-warning buttonSize">{{ 'Edit'|trans }}</a>
-                    {% if category.quotes|length == 0 %}
-                        <a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal"
-                           data-target="#deleteModal-{{ category.id }}">{{ 'Delete'|trans }}</a>
-                    {% endif %}
-                </div>
-            </div>
-
-
-            <!-- Delete Modal -->
-            <div class="modal fade" id="deleteModal-{{ category.id }}">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">{{ 'Warning'|trans }}</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            {% trans %}You are about to permanently delete the{% endtrans %} {{ category.name }} {% trans %}category. You won't be able to retrieve it. Do you wish to proceed ?{% endtrans %}
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'No, cancel'|trans }}</button>
-                            <a href="{{ path('qtf_category_delete', {'id' : category.id}) }}"
-                               class="btn btn-outline-danger">{{ 'Yes, delete'|trans }}</a>
-                        </div>
 
                     </div>
                 </div>
-            </div>
 
-        {% endfor %}
+
+                <!-- Delete Modal -->
+                <div class="modal fade" id="deleteModal-{{ category.id }}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">{{ 'Warning'|trans }}</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                {% trans %}You are about to permanently delete the{% endtrans %} {{ category.name }} {% trans %}category. You won't be able to retrieve it. Do you wish to proceed ?{% endtrans %}
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'No, cancel'|trans }}</button>
+                                <a href="{{ path('qtf_category_delete', {'id' : category.id}) }}"
+                                   class="btn btn-outline-danger">{{ 'Yes, delete'|trans }}</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
     </div>
 
 

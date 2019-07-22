@@ -24,8 +24,8 @@
             <p>{{ 'First name'|trans }} : <span>{{ app.user.firstname }}</span></p>
             <p>{{ 'Last name'|trans }} : <span>{{ app.user.lastname }}</span></p>
 
-            <a href="{{ path('qtf_user_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">{{ 'Edit'|trans }}</a>
-            <a href="{{ path('qtf_password_edit', {'id': app.user.id}) }}" class="btn btn-outline-success">{{ 'Change password'|trans }}</a>
+            <a href="{{ path('qtf_user_edit', {'id': app.user.id}) }}" class="btn btn-outline-warning">{{ 'Edit'|trans }}</a>
+            <a href="{{ path('qtf_password_edit', {'id': app.user.id}) }}" class="btn btn-outline-info">{{ 'Change password'|trans }}</a>
             <p class="deleteAccount"><a href="#" data-toggle="modal" data-target="#deleteModal">{{ 'Delete my account'|trans }}</a></p>
         </div>
 

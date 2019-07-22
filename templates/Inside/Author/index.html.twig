@@ -14,11 +14,13 @@
 {% block quote_body %}
 
     <p class="undefined">
-        <a href="{{ path('qtf_author_quotes_undefined') }}">
+        {% if undefined >= 1 %}
+        <a href="{{ path('qtf_author_quotes_undefined') }}" class="btn btn-sm btn-outline-primary">
             {% if undefined == 1 %}
                 {{ undefined }} {{ 'anonymous quote'|trans }}
             {% elseif undefined > 1 %}
                 {{ undefined }} {{ 'anonymous quotes'|trans }}
+            {% endif %}
             {% endif %}
         </a>
     </p>
@@ -33,32 +35,46 @@
 
 
     <div class="list">
+    <div class="card-columns">
         {% for author in authors %}
-            <div class="row entry">
-                <div class="col-sm-3">{{ author.forename }}</div>
-                <div class="col-sm-3">{{ author.name }}</div>
-                <div class="col-sm-2">
-                    {% if author.quotes|length == 0 %}
-                        {{ author.quotes|length }} {{ 'quote'|trans }}
-                    {% endif %}
 
-                    <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}">
-                        {% if author.quotes|length == 1 %}
+            <div class="card text-center">
+                <h5 class="card-header">{{ author.displayName }}</h5>
+                <div class="card-body">
+                    <p class="card-text">
+                        {% if author.quotes|length == 0 %}
+                        <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}" class="btn btn-info disabled">
                             {{ author.quotes|length }} {{ 'quote'|trans }}
-                        {% elseif author.quotes|length > 1 %}
-                            {{ author.quotes|length }} {{ 'quotes'|trans }}
+                        </a>
                         {% endif %}
-                    </a>
-                </div>
-                <div class="col-sm-4">
+
+                            {% if author.quotes|length == 1 %}
+                        <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}" class="btn btn-info">
+                                {{ author.quotes|length }} {{ 'quote'|trans }}
+                        </a>
+                            {% elseif author.quotes|length > 1 %}
+                            <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}" class="btn btn-info">
+                                {{ author.quotes|length }} {{ 'quotes'|trans }}
+                            </a>
+                            {% endif %}
+                    </p>
                     <a href="{{ path('qtf_author_edit', {'id': author.id, 'caller' : 'qtf_author_index'}) }}"
-                       class="btn btn-outline-warning buttonSize">{{ 'Edit'|trans }}</a>
+                       class="btn btn-sm btn-outline-warning">{{ 'Edit'|trans }}</a>
                     {% if author.quotes|length == 0 %}
-                        <a href="#" class="btn btn-outline-danger buttonSize" data-toggle="modal"
+                        <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                            data-target="#deleteModal-{{ author.id }}">{{ 'Delete'|trans }}</a>
                     {% endif %}
+
                 </div>
             </div>
+
+
+
+
+
+
+
+
 
 
             <!-- Delete Modal -->
@@ -74,7 +90,7 @@
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            {% trans %}You are about to permanently delete{% endtrans %} {{ author.displayName }} {% trans %}from the database. You won't be able to retrieve it. Do you wish to proceed ?{% endtrans %}
+                            {% trans %}You are about to permanently delete{% endtrans %} {{ author.displayName }} {% trans %}from the database. You won't be able to retrieve it. Do you wish to proceed?{% endtrans %}
                         </div>
 
                         <!-- Modal footer -->
@@ -88,6 +104,7 @@
             </div>
 
         {% endfor %}
+    </div>
     </div>
 
 

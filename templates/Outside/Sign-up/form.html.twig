@@ -19,21 +19,13 @@
     <div class="form">
         <div class="formTitle">{{ 'Create account'|trans }}</div>
 
-        {{ form_start(form)}}
+        {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-        {{ form_errors(form.email) }}
-        {{ form_widget(form.email, { 'attr': {'placeholder': 'Email'|trans} }) }}
+        {{ form(form) }}
+        <p class="mandatory">* {{ 'Mandatory field'|trans }}</p>
 
-        {{ form_errors(form.firstname) }}
-        {{ form_widget(form.firstname, { 'attr': {'placeholder': 'Firstname'|trans} }) }}
+        <p class="message">{{ 'Have an account?'|trans }} <a href="{{ path('qtf_login') }}">{{ 'Sign-in'|trans }}</a></p>
 
-        {{ form_errors(form.lastname) }}
-        {{ form_widget(form.lastname, { 'attr': {'placeholder': 'Lastname'|trans} }) }}
-
-        {{ form_errors(form.password) }}
-        {{ form_widget(form.password.first, { 'attr': {'placeholder': 'Password'|trans} }) }}
-        {{ form_widget(form.password.second, { 'attr': {'placeholder': 'Re-enter password'|trans} }) }}
-        {{ form_end(form)}}
     </div>
 </div>
 

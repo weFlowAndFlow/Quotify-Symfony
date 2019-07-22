@@ -14,7 +14,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 /**
- * @Route("/in/author")
+ * @Route("/{_locale}/in/author", requirements={
+ *     "_locale"="%app.locales%"
+ * }))
  */
 class AuthorController extends AbstractController
 {

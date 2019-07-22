@@ -18,7 +18,6 @@ class ChangePasswordType extends AbstractType
             ->add('oldPassword', PasswordType::class, array('required' => true))
             ->add('newPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'The new password fields must match.',
                 'required' => true,
                 'first_options' => ['label' => 'New password'],
                 'second_options' => ['label' => 'Repeat Password'],

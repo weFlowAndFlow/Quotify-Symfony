@@ -19,8 +19,8 @@
             {% for d in date %}
                 <div class="timelineElement">
                     {% if d is not empty %}
-                        <a href="{{ path('qtf_work_year', {'year': d}) }}">
-                            <span class="year">{{ d }}</span>
+                        <a href="{{ path('qtf_work_year', {'year': d}) }}" class="btn btn-info">
+                            {{ d }}
                         </a>
                     {% endif %}
                 </div>

@@ -14,15 +14,15 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 /**
- * @Route("/in/category")
+ * @Route("/{_locale}/in/category", requirements={
+ *     "_locale"="%app.locales%"
+ * }))
  */
 class CategoryController extends AbstractController
 {
 
     /**
-     * @Route("/{_locale}/", name="qtf_category_index", requirements={
-     *     "_locale"="%app.locales%"
-     * }))
+     * @Route("/", name="qtf_category_index")
      */
     public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
     {

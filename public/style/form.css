@@ -118,6 +118,15 @@
     color: #EF3B3A;
 }
 
+label.required:after {
+    content: " *";
+}
+
+.mandatory {
+    text-align: right;
+    font-size: small;
+    font-style: italic;
+}
 
 @media all and (max-width: 768px) {
     .login-page {

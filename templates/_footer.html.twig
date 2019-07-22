@@ -3,4 +3,13 @@
         <p>© {{ website_name }} {{ 'now'|date('Y') }}</p>
         <p>{{ 'Disclaimer'|trans }}</p>
         <p>{{ 'Help'|trans }}</p>
+        <p>
+                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">
+                        <img src="{{ asset('./img/flags/en.png') }}" alt="English" height="30px" />
+                </a>
+                |
+                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
+                        <img src="{{ asset('./img/flags/fr.png') }}" alt="Français" height="30px" />
+                </a>
+        </p>
 

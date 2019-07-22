@@ -33,7 +33,10 @@ class QuoteType extends AbstractType
 
         $builder
             ->add('text', TextareaType::class, [
-                'empty_data' => ''
+                'empty_data' => '',
+                'attr' => [
+                    'rows' => '15'
+                ]
             ])
             ->add('author', EntityType::class, array(
                 'class' => 'App\Entity\Author',
@@ -63,7 +66,12 @@ class QuoteType extends AbstractType
                 'label_attr' => ['class' => 'checkbox-inline'],
                 'required' => false
             ))
-            ->add('notes', TextareaType::class, array('required' => false))
+            ->add('notes', TextareaType::class, [
+                'required' => false,
+                'attr' => [
+                    'rows' => '5'
+                ]
+            ])
             ->add('save', SubmitType::class);
 
         // Display original works from the selected author

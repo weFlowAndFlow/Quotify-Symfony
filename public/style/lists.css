@@ -3,12 +3,8 @@
 }
 
 .list {
-    width: 100%;
+    width: 98%;
     margin: auto;
-}
-
-.buttonSize {
-    font-size: 12px;
 }
 
 
@@ -23,8 +19,8 @@
 
 
 .addNew {
-    margin-bottom: 10%;
-    margin-top: 7%;
+    margin-bottom: 5%;
+    margin-top: 4%;
     text-align: center;
 }
 
@@ -35,6 +31,7 @@
 
 .byAuthor {
     font-size: smaller;
+    margin-top: -10px;
 }
 
 .quoteNumber {
@@ -56,13 +53,10 @@
         padding-bottom: 6%;
     }
 
-    .buttonSize {
-        margin-top: 6%;
+    .addNew {
+        margin-bottom: 15%;
+        margin-top: 12%;
     }
+
 }
 
-@media all and (max-width: 590px) {
-    .buttons {
-        text-align: center;
-    }
-}
