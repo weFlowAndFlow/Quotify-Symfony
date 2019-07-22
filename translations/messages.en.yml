@@ -1,0 +1,158 @@
+'Created by': 'Created by'
+Disclaimer: Disclaimer
+Help: Help
+'Sign in': 'Sign in'
+'Lost password?': 'Lost password?'
+'Reset password': 'Reset password'
+'Not registered?': 'Not registered?'
+'Create account': 'Create account'
+'Account created': 'Account created'
+"Your account has been created.\n        You should receive very shortly a message to confirm your email address.\n        Please make sure to check your spam folder.": "Your account has been created.\n        You should receive very shortly a message to confirm your email address.\n        Please make sure to check your spam folder."
+Sign-up: Sign-up
+Email: Email
+Firstname: Firstname
+Lastname: Lastname
+Password: Password
+'Re-enter password': 'Re-enter password'
+Hello: Hello
+'You are receiving this email because you lost your password. Please click the link below to enter a new password.': 'You are receiving this email because you lost your password. Please click the link below to enter a new password.'
+'CHANGE PASSWORD': 'CHANGE PASSWORD'
+'The Quotify Team': 'The Quotify Team'
+'You''re almost done. Please confirm your address by clicking the link below': 'You''re almost done. Please confirm your address by clicking the link below'
+'CONFIRM ADDRESS': 'CONFIRM ADDRESS'
+'Enter your email address': 'Enter your email address'
+Send: Send
+"A message has been sent to your email address ; it contains a link to reset your password.\n        Please make sure to check your spam folder.": "A message has been sent to your email address ; it contains a link to reset your password.\n        Please make sure to check your spam folder."
+Welcome: Welcome
+Sign-in: Sign-in
+Quotify: Quotify
+'Your personal notebook for quotes.': 'Your personal notebook for quotes.'
+'A diary of quotes': 'A diary of quotes'
+"Whether you're reading a book, listening to a song or watching a movie, keep track of all the quotes you\n            encounter in your daily life.": "Whether you're reading a book, listening to a song or watching a movie, keep track of all the quotes you\n            encounter in your daily life."
+'Simple and easy to use': 'Simple and easy to use'
+'Sort your quotes by author, by source or by categories.': 'Sort your quotes by author, by source or by categories.'
+'Available everywhere, everytime': 'Available everywhere, everytime'
+'Consult your quotes or store new ones on your desktop or your mobile.': 'Consult your quotes or store new ones on your desktop or your mobile.'
+'100% free': '100% free'
+'No fee. No add. No credit-card required.': 'No fee. No add. No credit-card required.'
+'Sign-up now': 'Sign-up now'
+Category: Category
+Categories: Categories
+'uncategorized quote': 'uncategorized quote'
+'uncategorized quotes': 'uncategorized quotes'
+'Add new category': 'Add new category'
+quote: quote
+quotes: quotes
+Edit: Edit
+Delete: Delete
+Warning: Warning
+'You are about to permanently delete the': 'You are about to permanently delete the'
+'category. You won''t be able to retrieve it. Do you wish to proceed ?': 'category. You won''t be able to retrieve it. Do you wish to proceed?'
+'No, cancel': 'No, cancel'
+'Yes, delete': 'Yes, delete'
+Quotes: Quotes
+Undefined: Undefined
+'Add notes': 'Add notes'
+"You are about to permanently delete this quote. You won't be able to retrieve it. Do you wish to\n                    proceed ?": "You are about to permanently delete this quote. You won't be able to retrieve it. Do you wish to\n                    proceed?"
+Quote: Quote
+'Add new author': 'Add new author'
+'Add new original work': 'Add new source'
+'No result': 'No result'
+'see more': 'see more'
+View: View
+Author: Author
+Cancel: Cancel
+Authors: Authors
+'anonymous quote': 'anonymous quote'
+'anonymous quotes': 'anonymous quotes'
+'You are about to permanently delete': 'You are about to permanently delete'
+Dates: Dates
+'No dated quote available.': 'No dated quote available.'
+'Edit profile': 'Edit profile'
+Profile: Profile
+'My Profile': 'My Profile'
+'First name': 'First name'
+'Last name': 'Last name'
+'Change password': 'Change password'
+'Delete my account': 'Delete my account'
+'My Stats': 'My Stats'
+by: by
+authors: authors
+from: from
+'original works': sources
+in: in
+In: In
+categories: categories
+"You are about to permanently delete your account and all its data. You won't be able to\n                    retrieve it. Do you wish to proceed ?": "You are about to permanently delete your account and all its data. You won't be able to\n                    retrieve it. Do you wish to proceed?"
+'Re-enter new password': 'Re-enter new password'
+'Search results': 'Search results'
+'Search results for': 'Search results for'
+category: category
+author: author
+sources: sources
+source: source
+By: By
+'View quotes': 'View quotes'
+Sources: Sources
+'Original works': Sources
+'undefined quote': 'undefined quote'
+'undefined quotes': 'undefined quotes'
+"from the database. You won't be able to retrieve it. Do you wish to proceed?": "from the database. You won't be able to retrieve it. Do you wish to proceed?"
+Menu: Menu
+'All quotes': 'All quotes'
+Date: Date
+'Random quote': 'Random quote'
+Logout: Logout
+Login: Login
+Text: Text
+Notes: Notes
+Title: Title
+Year: Year
+'Old password': 'Old password'
+'New password': 'New password'
+Search: Search
+'Add new quote': 'Add new quote'
+'Add new source': 'Add new source'
+Save: Save
+'Oops! Something went wrong. The author could not be found.': ' Oops! Something went wrong. The author could not be found.'
+'All quotes for ': 'All quotes for '
+'All anonymous quotes ': 'All anonymous quotes '
+'The author has been added.': 'The author has been added.'
+'The author has been modified.': 'The author has been modified.'
+'This author can not be deleted : it references quotes in the database.': 'This author can not be deleted : it references quotes in the database.'
+'The author has been deleted.': 'The author has been deleted.'
+'Oops! Something went wrong. The category could not be found.': 'Oops! Something went wrong. The category could not be found.'
+'All uncategorized quotes': 'All uncategorized quotes'
+'The category has been added.': 'The category has been added.'
+'The category has been modified.': 'The category has been modified.'
+'This category can not be deleted : it references quotes in the database.': 'This category can not be deleted : it references quotes in the database.'
+'The category has been deleted.': 'The category has been deleted.'
+'The password has been modified.': 'The password has been modified.'
+'Oops! The old password is wrong.': 'Oops! The old password is wrong.'
+'Oops! There''s been a problem : the user could not be found.': 'Oops! There''s been a problem : the user could not be found.'
+'It seems you don''t have any quote in your account yet. Add one by clicking the ''+'' button': 'It seems you don''t have any quote in your account yet. Add one by clicking the ''+'' button'
+'Oops! Something went wrong. The quote could not be found.': 'Oops! Something went wrong. The quote could not be found.'
+'The quote has been added.': 'The quote has been added.'
+'The quote has been modified and saved.': 'The quote has been modified and saved.'
+'The quote has been deleted.': 'The quote has been deleted.'
+'Oops! Something went wrong : could not generate a random quote.': 'Oops! Something went wrong : could not generate a random quote.'
+'Email not found': 'Email not found'
+'Please enter a valid email address.': 'Please enter a valid email address.'
+'Oops! Something went wrong : user could not be found.': 'Oops! Something went wrong : user could not be found.'
+'The password has been modified. You can now log-in': 'The password has been modified. You can now log-in'
+'The user has been modified.': 'The user has been modified.'
+'Your account has been successfully deleted.': 'Your account has been successfully deleted.'
+'Oops! There''s been a problem : the account could not be found.': 'Oops! There''s been a problem : the account could not be found.'
+'Oops! Something went wrong. Please try to confirm your address again.': 'Oops! Something went wrong. Please try to confirm your address again.'
+'Your email was already confirmed. You can log-in.': 'Your email was already confirmed. You can log-in.'
+'Your email address has been successfully confirmed. You can now log-in.': 'Your email address has been successfully confirmed. You can now log-in.'
+'Oops! Something went wrong. The original work could not be found.': 'Oops! Something went wrong. The original work could not be found.'
+'All quotes with undefined original work': 'All quotes with undefined original work'
+'undefined date': 'undefined date'
+'The original work has been added.': 'The original work has been added.'
+'This original work can not be deleted : it references quotes in the database.': 'This original work can not be deleted : it references quotes in the database.'
+'The original work has been deleted.': 'The original work has been deleted.'
+'Have an account?': 'Have an account?'
+'Repeat password': 'Repeat password'
+'Repeat email': 'Repeat email'
+'Mandatory field': 'Mandatory field'

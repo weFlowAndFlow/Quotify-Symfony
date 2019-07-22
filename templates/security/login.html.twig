@@ -1,0 +1,42 @@
+{% extends 'security/layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ 'Sign in'|trans }}{% endblock %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
+    {% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+
+
+    <div class="login-page">
+        <div class="form">
+            <div class="formTitle">{{ 'Sign in'|trans }}</div>
+            <form class="login-form" method="post">
+
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="Email" required autofocus />
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required />
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+                <button class="btn btn-lg btn-primary" type="submit">
+                    {{ 'Login'|trans }}
+                </button>
+                <p class="message">{{ 'Lost password?'|trans }} <a href="{{ path('qtf_reset_email') }}">{{ 'Reset password'|trans }}</a></p>
+                <p class="message">{{ 'Not registered?'|trans }} <a href="{{ path('qtf_welcome_create') }}">{{ 'Create account'|trans }}</a></p>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+	{% block javascripts %}
+        {{ parent() }}
+
+
+    {% endblock %}

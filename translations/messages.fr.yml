@@ -1,0 +1,162 @@
+Firstname: Prénom
+Forename: Prénom
+Name: Nom
+Save: Sauvegarder
+Cancel: Annuler
+'anonymous quote': 'citation anonyme'
+'anonymous quotes': 'citations anonymes'
+'Add new author': 'Ajouter un auteur'
+quote: citation
+quotes: citations
+Edit: Éditer
+Delete: Supprimer
+'No, cancel': 'Non, annuler'
+'Yes, delete': 'Oui, supprimer'
+Warning: Attention
+'You are about to permanently delete': 'Vous êtes sur le point de supprimer définitivement'
+"from the database. You won't be able to retrieve it. Do you wish to proceed?": 'de la base de données. Vous ne pourrez pas annuler cette opération. Souhaitez-vous continuer ?'
+'uncategorized quote': 'citation non catégorisée'
+'uncategorized quotes': 'citations non catégorisées'
+'Add new category': 'Ajouter une catégorie'
+'You are about to permanently delete the': 'Vous êtes sur le point de supprimer définitivement la catégorie'
+'category. You won''t be able to retrieve it. Do you wish to proceed ?': 'de la base de données. Vous ne pourrez pas annuler cette opération. Souhaitez-vous continuer ?'
+'Created by': 'Créé par'
+Disclaimer: Disclaimer
+Help: Aide
+'Sign in': 'Se connecter'
+'Lost password?': 'Mot de passe oublié ?'
+'Reset password': Réinitialiser
+'Not registered?': 'Pas encore de compte ?'
+'Create account': 'S''inscrire'
+'Account created': 'Compte créé'
+"Your account has been created.\n        You should receive very shortly a message to confirm your email address.\n        Please make sure to check your spam folder.": "Votre compte a été créé.\n        Vous allez bientôt recevoir un email vous permettant de confirmer votre adresse.\n        Pensez à vérifier votre dossier spams."
+Sign-up: 'S''inscrire'
+Email: Email
+Lastname: Nom
+Password: 'Mot de passe'
+'Re-enter password': 'Re-taper le mot de passe'
+Hello: Bonjour
+'You are receiving this email because you lost your password. Please click the link below to enter a new password.': 'Vous recevez cet email car vous avez oublié votre mot de passe. Veuillez cliquer sur le lien ci-dessous pour le réinitialiser.'
+'CHANGE PASSWORD': 'REINITIALISER LE MOT DE PASSE'
+'The Quotify Team': 'L''équipe Quotify'
+'You''re almost done. Please confirm your address by clicking the link below': 'Vous y êtes presque. Veuillez confirmer votre adresse en cliquant sur le lien ci-dessous.'
+'CONFIRM ADDRESS': 'CONFIRMER L''ADRESSE'
+'Enter your email address': 'Entrez votre email'
+"A message has been sent to your email address ; it contains a link to reset your password.\n        Please make sure to check your spam folder.": "Un message a été envoyé à votre adresse email ; il contient un lien permettant de réinitialiser votre mot de passe.\n        Pensez à vérifier votre dossier spams."
+Welcome: Bienvenue
+Sign-in: 'Se connecter'
+Quotify: Quotify
+'Your personal notebook for quotes.': 'Votre carnet personnel de citations.'
+'A diary of quotes': 'Un journal de citations'
+"Whether you're reading a book, listening to a song or watching a movie, keep track of all the quotes you\n            encounter in your daily life.": "Que vous lisiez un livre, écoutiez une chanson ou bien regardiez un film, gardez une trace de toutes les citations\n            que vous rencontrez au quotidien."
+'Simple and easy to use': 'Simple et facile d''accès'
+'Sort your quotes by author, by source or by categories.': 'Classez vos citations par auteur, source ou catégorie.'
+'Available everywhere, everytime': 'Disponible partout, tout le temps'
+'Consult your quotes or store new ones on your desktop or your mobile.': 'Consultez vos citations depuis votre ordinateur, tablette ou mobile.'
+'100% free': '100% gratuit'
+'No fee. No add. No credit-card required.': 'Pas de frais caché. Pas de publicité. Pas besoin de carte bancaire.'
+'Sign-up now': 'S''inscrire maintenant'
+Category: Catégorie
+Categories: Catégories
+Quotes: Citations
+Undefined: 'Non défini'
+'Add notes': 'Ajouter une note'
+"You are about to permanently delete this quote. You won't be able to retrieve it. Do you wish to\n                    proceed ?": 'Vous êtes sur le point de supprimer définitivement cette citation. Vous ne pourrez pas annuler cette opération. Voulez-vous continuer ?'
+Quote: Citation
+'Add new original work': 'Ajouter une source'
+'No result': 'Aucun résultat'
+'see more': plus
+View: Voir
+Author: Auteur
+Authors: Auteurs
+Dates: Dates
+'No dated quote available.': 'Aucune citation datée n''est disponible.'
+'Edit profile': 'Éditer le profil'
+Profile: Profil
+'My Profile': 'Mon Profil'
+'First name': Prénom
+'Last name': Nom
+'Change password': 'Modifier le mot de passe'
+'Delete my account': 'Supprimer mon compte'
+'My Stats': 'Mes statistiques'
+by: par
+authors: auteurs
+from: de
+'original works': sources
+in: in
+In: In
+categories: catégories
+"You are about to permanently delete your account and all its data. You won't be able to\n                    retrieve it. Do you wish to proceed ?": 'Vous êtes sur le point de supprimer définitivement votre compte et toutes les données qu''il contient. Vous ne pourrez pas annuler cette opération. Souhaitez-vous continuer ?'
+'Re-enter new password': 'Re-taper le nouveau mot de passe'
+'Search results': 'Résultats de la recherche'
+'Search results for': 'Résultats de la recherche pour'
+category: catégorie
+author: auteur
+sources: sources
+source: source
+By: Par
+'View quotes': 'Voir les citations'
+Sources: Sources
+'Original works': Sources
+'undefined quote': 'citation non définie'
+'undefined quotes': 'citations non définies'
+"from the database. You won't be able to\n                            retrieve it. Do you wish to proceed ?": 'de la base de donnée. Vous ne pourrez pas annuler cette opération. Souhaitez-vous continuer ?'
+Menu: Menu
+'All quotes': 'Toutes les citations'
+Date: Date
+'Random quote': 'Citation aléatoire'
+Logout: 'Se déconnecter'
+Send: Envoyer
+"Wheter you're reading a book, listening to a song or watching a movie, keep track of all the quotes you\n            encounter in your daily life.": "Que vous lisiez un livre, écoutiez une chanson ou bien regardiez un film, gardez une trace de toutes les citations\n            que vous rencontrez au quotidien."
+Login: 'Se connecter'
+Text: Texte
+Notes: Notes
+Title: Titre
+Year: Année
+'Old password': 'Ancien mot de passe'
+'New password': 'Nouveau mot de passe'
+Search: Recherche
+'Add new quote': 'Ajouter une citation'
+'Add new source': 'Ajouter une source'
+'Oops! Something went wrong. The author could not be found.': 'Oops ! Erreur : auteur introuvable.'
+'All quotes for ': 'Toutes les citations de '
+'All anonymous quotes ': 'Toutes les citations anonymes '
+'The author has been added.': 'L''auteur a été ajouté.'
+'The author has been modified.': 'L''auteur a été modifié.'
+'This author can not be deleted : it references quotes in the database.': 'Cet auteur ne peut pas être modifié car il est lié à des citations.'
+'The author has been deleted.': 'L''auteur a été supprimé.'
+'Oops! Something went wrong. The category could not be found.': 'Oops! Erreur : catégorie introuvable.'
+'All uncategorized quotes': 'Toutes les citations non catégorisées'
+'The category has been added.': 'La catégorie a été ajoutée.'
+'The category has been modified.': 'La catégorie a été modifiée.'
+'This category can not be deleted : it references quotes in the database.': 'Cette catégorie de peut pas être modifiée car elle est liée à des citations.'
+'The category has been deleted.': 'La catégorie a été supprimée.'
+'The password has been modified.': 'Le mot de passe a été modifiée.'
+'Oops! The old password is wrong.': 'Oops ! L''ancien mot de passe est erroné'
+'Oops! There''s been a problem : the user could not be found.': 'Oops ! Erreur : utilisateur inconnu.'
+'It seems you don''t have any quote in your account yet. Add one by clicking the ''+'' button': 'Il semblerait que votre compte ne contienne pas encore de citation. Ajoutez-en une dès maintenant en cliquant sur le bouton ''+''.'
+'Oops! Something went wrong. The quote could not be found.': 'Oops! Erreur : citation introuvable.'
+'The quote has been added.': 'La citation a été ajoutée'
+'The quote has been modified and saved.': 'La citation a été modifiée.'
+'The quote has been deleted.': 'La citation a été supprimée'
+'Oops! Something went wrong : could not generate a random quote.': 'Oops ! Erreur : impossible de générer une citation aléatoire.'
+'Email not found': 'Email introuvable'
+'Please enter a valid email address.': 'Veuillez entrer une adresse email valide.'
+'Oops! Something went wrong : user could not be found.': 'Oops ! Erreur : utilisateur introuvable.'
+'The password has been modified. You can now log-in': 'Le mot de passe a été modifiée. Vous pouvez à présent vous connecter.'
+'The user has been modified.': 'L''utilisateur a été modifié.'
+'Your account has been successfully deleted.': 'Votre compte a été supprimé.'
+'Oops! There''s been a problem : the account could not be found.': 'Oops ! Erreur : compte introuvable.'
+'Oops! Something went wrong. Please try to confirm your address again.': 'Oops ! Erreur : veuillez réessayer.'
+'Your email was already confirmed. You can log-in.': 'Votre adresse email a déjà été validé. Vous pouvez dès à présent vous connecter.'
+'Your email address has been successfully confirmed. You can now log-in.': 'Votre adresse email est validée. Vous pouvez dès à présent vous connecter.'
+'Oops! Something went wrong. The original work could not be found.': '__Oops! Something went wrong. The original work could not be found.'
+'All quotes with undefined original work': 'Toutes les citations non sourcées'
+'undefined date': 'date indéfinie'
+'The original work has been added.': 'La source a été ajoutée.'
+'This original work can not be deleted : it references quotes in the database.': 'Cette source ne peut pas être supprimée : elle est liée à des citations.'
+'The original work has been deleted.': 'La source a été supprimée.'
+'Have an account?': 'Déjà inscrit ?'
+'Repeat password': 'Re-taper le mot de passe'
+'Repeat email': 'Re-taper l''email'
+'Mandatory field': 'Champ obligatoire'
