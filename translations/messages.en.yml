@@ -83,7 +83,7 @@ from: from
 in: in
 In: In
 categories: categories
-"You are about to permanently delete your account and all its data. You won't be able to\n                    retrieve it. Do you wish to proceed ?": "You are about to permanently delete your account and all its data. You won't be able to\n                    retrieve it. Do you wish to proceed?"
+"You are about to permanently delete your account and all its data. You won't be able to retrieve it. Do you wish to proceed ?": "You are about to permanently delete your account and all its data. You won't be able to retrieve it. Do you wish to proceed?"
 'Re-enter new password': 'Re-enter new password'
 'Search results': 'Search results'
 'Search results for': 'Search results for'
@@ -97,7 +97,7 @@ Sources: Sources
 'Original works': Sources
 'undefined quote': 'undefined quote'
 'undefined quotes': 'undefined quotes'
-"from the database. You won't be able to retrieve it. Do you wish to proceed?": "from the database. You won't be able to retrieve it. Do you wish to proceed?"
+'from the database. You won''t be able to retrieve it. Do you wish to proceed?': 'from the database. You won''t be able to retrieve it. Do you wish to proceed?'
 Menu: Menu
 'All quotes': 'All quotes'
 Date: Date
@@ -156,3 +156,13 @@ Save: Save
 'Repeat password': 'Repeat password'
 'Repeat email': 'Repeat email'
 'Mandatory field': 'Mandatory field'
+'Oops! - The page you requested could not be found.': 'Oops! The page you requested could not be found.'
+'Home': 'Home'
+'Error': 'Error'
+'Version': 'Version'
+'Contact us': 'Contact us'
+'Site map': 'Site map'
+'Legal notice': 'Legal notice'
+'Uncategorized quotes': 'Uncategorized quotes'
+'Anonymous quotes': 'Anonymous quotes'
+'Unsourced quotes': 'Unsourced quotes'

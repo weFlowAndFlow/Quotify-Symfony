@@ -15,18 +15,6 @@
 {% block quote_body %}
 
 
-    <p class="undefined">
-
-        {% if undefined >= 1 %}
-            <a href="{{ path('qtf_work_quotes_undefined') }}" class="btn btn-sm btn-outline-primary">
-                {% if undefined == 1 %}
-                    {{ undefined }} {{ 'undefined quote'|trans }}
-                {% elseif undefined > 1 %}
-                    {{ undefined }} {{ 'undefined quotes'|trans }}
-                {% endif %}
-            {% endif %}
-        </a>
-    </p>
 
 
     <div class="addNew">
@@ -35,6 +23,29 @@
 
     <div class="list">
         <div class="card-columns">
+
+
+            {% if undefined >= 1 %}
+                <div class="card text-center">
+                    <h5 class="card-header">{{ 'Unsourced quotes'|trans }}</h5>
+                    <div class="card-body">
+                        <p class="byAuthor hidden">disabled</p>
+                        <p class="card-text">
+                            <a href="{{ path('qtf_work_quotes_undefined') }}" class="btn btn btn-info">
+                                {% if undefined == 1 %}
+                                    {{ undefined }} {{ 'quote'|trans }}
+                                {% elseif undefined > 1 %}
+                                    {{ undefined }} {{ 'quotes'|trans }}
+                                {% endif %}
+                            </a>
+                            </a>
+                        </p>
+                        <a href="#" class="btn btn-sm btn-info hidden" >disabled</a>
+                    </div>
+                </div>
+            {% endif %}
+
+
             {% for work in works %}
 
 

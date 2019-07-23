@@ -42,6 +42,9 @@
     text-align: left;
 }
 
+.hidden {
+    visibility: hidden;
+}
 
 @media all and (max-width: 768px) {
 

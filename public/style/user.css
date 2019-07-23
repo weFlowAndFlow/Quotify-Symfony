@@ -1,39 +1,45 @@
 .user {
-    width: 90%;
-    margin: auto;
-}
-
-.userInfo {
-    margin-top: 6%;
-    background-color: #e5edff;
-    padding: 5%;
-    border: 5px solid white;
-    border-radius: 10px;
-}
-
-.userInfo p span {
-    font-weight: bold;
-}
-
-.userInfo a {
+    max-width: 50em;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10%;
-
-}
-
-.userStats {
-    margin-top: 6%;
-    border: 5px solid white;
-    border-radius: 10px;
-}
-
-.stats {
-    padding: 10%;
-    background-color: #fff9df;
-}
-
-h4 {
     margin-bottom: 10%;
 }
+
+.user a {
+    margin-top: 5px;
+}
+
+/*.userInfo {*/
+/*    margin-top: 6%;*/
+/*    border: 1px solid #5f4669;*/
+/*    padding: 5%;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+/*.userInfo p span {*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.userInfo a {*/
+/*    margin-top: 10%;*/
+
+/*}*/
+
+/*.userStats {*/
+/*    margin-top: 6%;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+/*.stats {*/
+/*    padding: 10%;*/
+/*    border: 1px solid #5f4669;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+/*h4 {*/
+/*    margin-bottom: 10%;*/
+/*}*/
 
 .deleteAccount {
     padding-top: 6%;

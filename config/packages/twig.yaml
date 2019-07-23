@@ -5,5 +5,6 @@ twig:
   globals:
     webmaster: "%env(WEBMASTER)%"
     website_name: "%env(WEBSITE_NAME)%"
+    website_version: "%env(WEBSITE_VERSION)%"
 #  form_themes: ['bootstrap_4_horizontal_layout.html.twig']
     

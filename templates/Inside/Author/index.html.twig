@@ -13,18 +13,6 @@
 
 {% block quote_body %}
 
-    <p class="undefined">
-        {% if undefined >= 1 %}
-        <a href="{{ path('qtf_author_quotes_undefined') }}" class="btn btn-sm btn-outline-primary">
-            {% if undefined == 1 %}
-                {{ undefined }} {{ 'anonymous quote'|trans }}
-            {% elseif undefined > 1 %}
-                {{ undefined }} {{ 'anonymous quotes'|trans }}
-            {% endif %}
-            {% endif %}
-        </a>
-    </p>
-
 
     <div class="addNew">
         <a href="{{ path('qtf_author_create', {'caller' : 'qtf_author_index'}) }}" class="btn btn-outline-success">
@@ -36,6 +24,30 @@
 
     <div class="list">
     <div class="card-columns">
+
+
+        {% if undefined >= 1 %}
+            <div class="card text-center">
+                <h5 class="card-header">{{ 'Anonymous quotes'|trans }}</h5>
+                <div class="card-body">
+                    <p class="card-text">
+                        <a href="{{ path('qtf_author_quotes_undefined') }}" class="btn btn btn-info">
+                            {% if undefined == 1 %}
+                                {{ undefined }} {{ 'quote'|trans }}
+                            {% elseif undefined > 1 %}
+                                {{ undefined }} {{ 'quotes'|trans }}
+                            {% endif %}
+                        </a>
+                        </a>
+                    </p>
+                    <a href="#" class="btn btn-sm btn-info hidden" >disabled</a>
+                </div>
+            </div>
+        {% endif %}
+
+
+
+
         {% for author in authors %}
 
             <div class="card text-center">

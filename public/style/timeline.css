@@ -13,23 +13,6 @@
     padding: 30px;
 }
 
-.year {
-    font-size: 16px;
-    margin-left: 4%;
-    margin-right: 4%;
-    padding: 10px;
-    font-weight: bold;
-    color: rgb(77, 168, 3, 1);
-    border: 1px solid rgb(77, 168, 3, 1);
-    border-radius: 10px;
-}
-
-.year:hover {
-    background-color: rgb(45, 99, 0);
-    color: white;
-    border: none;
-}
-
 
 .timelineElement:nth-child(even) {
     border-left: 2px dashed;

@@ -42,7 +42,7 @@
                         href="{{ path('qtf_work_quotes', {'id': quote.originalWork.id}) }}">{{ quote.originalWork.title }}</a>'
                 {% endif %}
                 {% if quote.originalWork.year is defined and quote.originalWork.year is not null %}
-                    ({{ quote.originalWork.year }})
+                    (<a href="{{ path('qtf_work_year', {'year': quote.originalWork.year}) }}">{{ quote.originalWork.year }}</a>)
                 {% endif %}
             </p>
         {% endif %}

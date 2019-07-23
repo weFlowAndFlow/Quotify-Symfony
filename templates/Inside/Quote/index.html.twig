@@ -25,10 +25,12 @@
             {% for quote in quotes %}
 
 
-                <div class="card">
+                <div class="card ">
                     <div class="card-header quoteCategories">
                         {% for category in quote.categories %}
                             <a href="{{ path('qtf_category_quotes', {'id': category.id}) }}"> #{{ category.name }} </a>
+                        {% else %}
+                            <span class="hidden">hidden</span>
                         {% endfor %}
                     </div>
                     <div class="card-body">
@@ -56,8 +58,7 @@
                                     href="{{ path('qtf_work_quotes', {'id': quote.originalWork.id}) }}">{{ quote.originalWork.title }}</a>'
                             {% endif %}
                             {% if quote.originalWork.year is defined and quote.originalWork.year is not null %}
-                                (
-                                <a href="{{ path('qtf_work_year', {'year': quote.originalWork.year}) }}">{{ quote.originalWork.year }}</a>)
+                                (<a href="{{ path('qtf_work_year', {'year': quote.originalWork.year}) }}">{{ quote.originalWork.year }}</a>)
                             {% endif %}
                         </p>
                             {% endif %}

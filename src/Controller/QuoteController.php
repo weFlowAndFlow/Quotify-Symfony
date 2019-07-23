@@ -26,6 +26,12 @@ class QuoteController extends AbstractController
     public function index(Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
+
+        if ($user == null)
+        {
+            return $this->redirectToRoute('qtf_welcome_index');
+        }
+
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAll($user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
         $translated = $translator->trans("All quotes");

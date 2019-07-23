@@ -16,27 +16,34 @@
 {% block quote_body %}
 
 
-    <div class="row user">
+    <div class="card-deck user">
 
-        <div class="col-sm-6 userInfo">
-            <h4>{{ 'My Profile'|trans }}</h4>
-            <p><span>{{ app.user.email }}</span></p>
-            <p>{{ 'First name'|trans }} : <span>{{ app.user.firstname }}</span></p>
-            <p>{{ 'Last name'|trans }} : <span>{{ app.user.lastname }}</span></p>
 
-            <a href="{{ path('qtf_user_edit', {'id': app.user.id}) }}" class="btn btn-outline-warning">{{ 'Edit'|trans }}</a>
-            <a href="{{ path('qtf_password_edit', {'id': app.user.id}) }}" class="btn btn-outline-info">{{ 'Change password'|trans }}</a>
-            <p class="deleteAccount"><a href="#" data-toggle="modal" data-target="#deleteModal">{{ 'Delete my account'|trans }}</a></p>
+        <div class="card text-white bg-info mb-3" style="max-width: 30rem;">
+            <div class="card-header">{{ 'My Profile'|trans }}</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ app.user.email }}</h5>
+                <p class="card-text">
+                <p>{{ 'First name'|trans }} : <span>{{ app.user.firstname }}</span></p>
+                <p>{{ 'Last name'|trans }} : <span>{{ app.user.lastname }}</span></p>
+                </p>
+            </div>
+            <div class="card-footer text-center">
+                <a href="{{ path('qtf_user_edit', {'id': app.user.id}) }}" class="btn btn-light">{{ 'Edit'|trans }}</a><br />
+                <a href="{{ path('qtf_password_edit', {'id': app.user.id}) }}" class="btn btn-secondary">{{ 'Change password'|trans }}</a><br />
+                <a href="#" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">{{ 'Delete my account'|trans }}</a>
+            </div>
         </div>
 
-
-        <div class="col-sm-6 userStats">
-            <div class="stats">
-                <h4>{{ 'My Stats'|trans }}</h4>
+        <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+            <div class="card-header">{{ 'My Stats'|trans }}</div>
+            <div class="card-body">
+                <p class="card-text">
                 <p>{{ app.user.quotes|length }} {{ 'quotes'|trans }}</p>
-                <p>{{ 'by'|trans }} {{ app.user.authors|length }} {{ 'authors'|trans }}</p>
-                <p>{{ 'from'|trans }} {{ app.user.originalWorks|length }} {{ 'original works'|trans }}</p>
-                <p>{{ 'in'|trans }} {{ app.user.categories|length }} {{ 'categories'|trans }}</p>
+                <p>{{ app.user.authors|length }} {{ 'authors'|trans }}</p>
+                <p>{{ app.user.originalWorks|length }} {{ 'original works'|trans }}</p>
+                <p>{{ app.user.categories|length }} {{ 'categories'|trans }}</p>
+                </p>
             </div>
         </div>
 
@@ -57,8 +64,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    {% trans %}You are about to permanently delete your account and all its data. You won't be able to
-                    retrieve it. Do you wish to proceed ?{% endtrans %}
+                    {% trans %}You are about to permanently delete your account and all its data. You won't be able to retrieve it. Do you wish to proceed ?{% endtrans %}
                 </div>
 
                 <!-- Modal footer -->

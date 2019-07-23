@@ -14,7 +14,7 @@ Delete: Supprimer
 'Yes, delete': 'Oui, supprimer'
 Warning: Attention
 'You are about to permanently delete': 'Vous êtes sur le point de supprimer définitivement'
-"from the database. You won't be able to retrieve it. Do you wish to proceed?": 'de la base de données. Vous ne pourrez pas annuler cette opération. Souhaitez-vous continuer ?'
+'from the database. You won''t be able to retrieve it. Do you wish to proceed?': 'de la base de données. Vous ne pourrez pas annuler cette opération. Souhaitez-vous continuer ?'
 'uncategorized quote': 'citation non catégorisée'
 'uncategorized quotes': 'citations non catégorisées'
 'Add new category': 'Ajouter une catégorie'
@@ -86,7 +86,7 @@ from: de
 in: in
 In: In
 categories: catégories
-"You are about to permanently delete your account and all its data. You won't be able to\n                    retrieve it. Do you wish to proceed ?": 'Vous êtes sur le point de supprimer définitivement votre compte et toutes les données qu''il contient. Vous ne pourrez pas annuler cette opération. Souhaitez-vous continuer ?'
+"You are about to permanently delete your account and all its data. You won't be able to retrieve it. Do you wish to proceed ?": 'Vous êtes sur le point de supprimer définitivement votre compte et toutes les données qu''il contient. Vous ne pourrez pas annuler cette opération. Souhaitez-vous continuer ?'
 'Re-enter new password': 'Re-taper le nouveau mot de passe'
 'Search results': 'Résultats de la recherche'
 'Search results for': 'Résultats de la recherche pour'
@@ -160,3 +160,13 @@ Search: Recherche
 'Repeat password': 'Re-taper le mot de passe'
 'Repeat email': 'Re-taper l''email'
 'Mandatory field': 'Champ obligatoire'
+'Oops! - The page you requested could not be found.': 'Oops ! La page demandée n''existe pas.'
+'Home': 'Accueil'
+'Error': 'Erreur'
+'Version': 'Version'
+'Contact us': 'Nous contacter'
+'Site map': 'Plan du site'
+'Legal notice': 'Mentions légales'
+'Uncategorized quotes': 'Citations non catégorisées'
+'Anonymous quotes': 'Citations anonymes'
+'Unsourced quotes': 'Citations non sourcées'

@@ -4,10 +4,11 @@ html {
 
 body {
     font-family: Verdana, Arial, sans-serif;
-    background-color: rgb(247, 247, 247);
+    background-color: #F8F7F5;
     height: 100%;
     display: flex;
     flex-direction: column;
+    color: #1E1E24;
 }
 
 .wrapper {
@@ -16,17 +17,65 @@ body {
 
 footer {
     width: 100%;
-    background-color: rgb(51, 51, 51);
-    color: rgb(229, 229, 229);
+    background-color: #363636;
+    color: #F8F7F5;
 
     flex-shrink: 0;
-    margin-top: 5%;
+    margin-top: 4%;
 }
 
 .footerContent {
     max-width: 1440px;
     margin: auto;
-    padding: 3%;
+    padding-top: 0;
+    margin-top: -30px;
 }
+
+footer p {
+    padding-left: 10%;
+}
+
+.upButton {
+    font-size: 45px;
+    border: 1px solid #363636;
+    border-radius: 40px;
+    width: 55px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4%;
+    background-color: #F8F7F5;
+    padding-left: 4px;
+    margin-top: 0px;
+}
+
+.upButton a {
+    text-decoration: none;
+    color: #363636;
+}
+
+.upButton:hover  {
+    background-color: #363636;
+    border-color: #F8F7F5;
+    transition: 0.3s;
+}
+
+.upButton:hover a  {
+    color: #F8F7F5;
+}
+
+.upButton a:hover {
+    color: #F8F7F5;
+}
+
+
+@media all and (max-width: 768px) {
+
+    footer {
+        margin-top: 10%;
+    }
+
+
+}
+
 
 
