@@ -1,0 +1,104 @@
+<div class="list">
+    <div class="card-columns">
+
+
+        {% if undefined >= 1 %}
+            <div class="card text-center">
+                <h5 class="card-header">{{ 'Anonymous quotes'|trans }}</h5>
+                <div class="card-body">
+                    <p class="card-text">
+                        <a href="{{ path('qtf_author_quotes_undefined') }}" class="btn btn btn-info">
+                            {% if undefined == 1 %}
+                                {{ undefined }} {{ 'quote'|trans }}
+                            {% elseif undefined > 1 %}
+                                {{ undefined }} {{ 'quotes'|trans }}
+                            {% endif %}
+                        </a>
+                        </a>
+                    </p>
+                    <a href="#" class="btn btn-sm btn-info hidden" >disabled</a>
+                </div>
+            </div>
+        {% endif %}
+
+
+
+
+        {% for author in authors %}
+
+            <div class="card text-center">
+                <h5 class="card-header text-reset">{{ author.displayName }}</h5>
+                <div class="card-body">
+                    <p class="card-text">
+                        {% if author.quotes|length == 0 %}
+                            <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}" class="btn btn-info disabled">
+                                {{ author.quotes|length }} {{ 'quote'|trans }}
+                            </a>
+                        {% endif %}
+
+                        {% if author.quotes|length == 1 %}
+                            <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}" class="btn btn-info">
+                                {{ author.quotes|length }} {{ 'quote'|trans }}
+                            </a>
+                        {% elseif author.quotes|length > 1 %}
+                            <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}" class="btn btn-info">
+                                {{ author.quotes|length }} {{ 'quotes'|trans }}
+                            </a>
+                        {% endif %}
+                    </p>
+                    <a href="{{ path('qtf_author_edit', {'id': author.id, 'caller' : 'qtf_author_index'}) }}"
+                       class="btn btn-sm btn-outline-warning">{{ 'Edit'|trans }}</a>
+                    {% if author.quotes|length == 0 %}
+                        <a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal"
+                           data-target="#deleteModal-{{ author.id }}">{{ 'Delete'|trans }}</a>
+                    {% endif %}
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <!-- Delete Modal -->
+            <div class="modal fade" id="deleteModal-{{ author.id }}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{ 'Warning'|trans }}</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            {% trans %}You are about to permanently delete{% endtrans %} {{ author.displayName }} {% trans %}from the database. You won't be able to retrieve it. Do you wish to proceed?{% endtrans %}
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ 'No, cancel'|trans }}</button>
+                            <a href="{{ path('qtf_author_delete', {'id': author.id}) }}" class="btn btn-outline-danger">{{ 'Yes, delete'|trans }}</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<div class="paginator">
+    {{ knp_pagination_render(authors) }}
+</div>
+
+

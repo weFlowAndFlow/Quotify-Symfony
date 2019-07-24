@@ -234,7 +234,7 @@ class QuoteRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function search($keywords, $user)
+    public function createQuerySearch($keywords, $user)
     {
         return $this->createQueryBuilder('q')
             ->andWhere('q.text like :val')
@@ -242,9 +242,21 @@ class QuoteRepository extends ServiceEntityRepository
             ->andWhere('q.user = :user')
             ->setParameter('user', $user)
             ->getQuery()
-            ->getResult()
             ;
+    }
 
+
+    public function searchResultsSize($keywords, $user)
+    {
+        return $this->createQueryBuilder('q')
+            ->select('count(q)')
+            ->andWhere('q.text like :val')
+            ->setParameter('val', '%'.$keywords.'%')
+            ->andWhere('q.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
     }
 
 }

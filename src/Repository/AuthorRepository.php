@@ -68,7 +68,7 @@ class AuthorRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function search($keywords, $user)
+    public function createQuerySearch($keywords, $user)
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.forename like :val')
@@ -78,7 +78,22 @@ class AuthorRepository extends ServiceEntityRepository
             ->andWhere('a.user = :user')
             ->setParameter('user', $user)
             ->getQuery()
-            ->getResult()
+            ;
+
+    }
+
+    public function searchResultsSize($keywords, $user)
+    {
+        return $this->createQueryBuilder('a')
+            ->select('count(a)')
+            ->andWhere('a.forename like :val')
+            ->setParameter('val', '%'.$keywords.'%')
+            ->orWhere('a.name like :val2')
+            ->setParameter('val2', '%'.$keywords.'%')
+            ->andWhere('a.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getSingleScalarResult()
             ;
 
     }

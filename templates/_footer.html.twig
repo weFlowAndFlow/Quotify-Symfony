@@ -1,35 +1,36 @@
 
+<div class="makeHorizontalBarDisappear">
+        <div class="row">
+                <div class="col-md">
+                        <p>© {{ website_name }} {{ 'now'|date('Y') }}</p>
+                        <p>{{ 'Version'|trans }} {{ website_version }}</p>
+                        <p>{{ 'Created by'|trans }} {{ webmaster }} </p>
+                        <p>✉️ {{ 'Contact us'|trans }}</p>
+                </div>
 
-<div class="row">
-        <div class="col-lg">
-                <p>© {{ website_name }} {{ 'now'|date('Y') }}</p>
-                <p>{{ 'Version'|trans }} {{ website_version }}</p>
-                <p>{{ 'Created by'|trans }} {{ webmaster }} </p>
-                <p>{{ 'Contact us'|trans }}</p>
+                <div class="col-md">
+                        <p>
+                                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">
+                                        <img src="{{ asset('./img/flags/en.png') }}" alt="English" height="30px" />
+                                </a>
+                                |
+                                <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
+                                        <img src="{{ asset('./img/flags/fr.png') }}" alt="Français" height="30px" />
+                                </a>
+                        </p>
+                        <p>🏠 {{ 'Home'|trans }}</p>
+                        <p>🗺 {{ 'Site map'|trans }}</p>
+                </div>
+
+                <div class="col-md">
+                        <p>{{ 'Legal notice'|trans }}</p>
+                        <p>{{ 'Help'|trans }}</p>
+                </div>
+
+
         </div>
-
-        <div class="col-lg">
-                <p>
-                        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">
-                                <img src="{{ asset('./img/flags/en.png') }}" alt="English" height="30px" />
-                        </a>
-                        |
-                        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
-                                <img src="{{ asset('./img/flags/fr.png') }}" alt="Français" height="30px" />
-                        </a>
-                </p>
-                <p>{{ 'Home'|trans }}</p>
-                <p>{{ 'Site map'|trans }}</p>
-        </div>
-
-        <div class="col-lg">
-                <p>{{ 'Legal notice'|trans }}</p>
-                <p>{{ 'Help'|trans }}</p>
-        </div>
-
 
 </div>
-
 
 
 

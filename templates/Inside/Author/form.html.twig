@@ -14,24 +14,29 @@
 {% block quote_body %}
 
 
-<div class="formSize">
-    {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+    <div class="formSize">
 
-    <p class="formTitle">{{ 'Add new author'|trans }}</p>
+        <div class="card">
+            {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
 
-    {{ form_start(form) }}
-    {{ form_row(form.forename) }}
-    {{ form_row(form.name) }}
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-2"><a href="{{ path(previousPage) }}" class="btn btn-outline-secondary">{{ 'Cancel'|trans }}</a></div>
-        <div class="col-1"></div>
-        <div class="col-2">{{ form_row(form.save) }}</div>
-        <div class="col-5"></div>
+            <div class="card-header formTitle">{{ 'Add new author'|trans }}</div>
+
+            <div class="card-body">
+                {{ form_start(form) }}
+                {{ form_row(form.forename) }}
+                {{ form_row(form.name) }}
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-2"><a href="{{ path(previousPage) }}" class="btn btn-outline-secondary">{{ 'Cancel'|trans }}</a></div>
+                    <div class="col-1"></div>
+                    <div class="col-2">{{ form_row(form.save) }}</div>
+                    <div class="col-5"></div>
+                </div>
+                <p class="mandatory">* {{ 'Mandatory field'|trans }}</p>
+                {{ form_end(form) }}
+            </div>
+        </div>
     </div>
-    <p class="mandatory">* {{ 'Mandatory field'|trans }}</p>
-    {{ form_end(form) }}
-</div>
 
 
 

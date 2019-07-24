@@ -31,12 +31,18 @@ footer {
     margin-top: -30px;
 }
 
+.makeHorizontalBarDisappear {
+    width: 91%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 footer p {
     padding-left: 10%;
 }
 
 .upButton {
-    font-size: 45px;
+    font-size: 35px;
     border: 1px solid #363636;
     border-radius: 40px;
     width: 55px;
@@ -44,7 +50,7 @@ footer p {
     margin-right: auto;
     margin-bottom: 4%;
     background-color: #F8F7F5;
-    padding-left: 4px;
+    padding-left: 9px;
     margin-top: 0px;
 }
 

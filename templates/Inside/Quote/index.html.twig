@@ -21,59 +21,10 @@
             <p class="quoteListTitle">{{ displayTitle }}</p>
         {% endif %}
 
-        <div class="card-columns">
-            {% for quote in quotes %}
 
 
-                <div class="card ">
-                    <div class="card-header quoteCategories">
-                        {% for category in quote.categories %}
-                            <a href="{{ path('qtf_category_quotes', {'id': category.id}) }}"> #{{ category.name }} </a>
-                        {% else %}
-                            <span class="hidden">hidden</span>
-                        {% endfor %}
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text quoteText centered">
-                            {{ quote.text|length > 250 ? quote.text|slice(0, 250) : quote.text }}
+        {{ include('Inside/Quote/_list.html.twig') }}
 
-                            {% if quote.text|length > 250 %}
-                                <a href="{{ path('qtf_quote_view', {'id': quote.id}) }}">({{ 'see more'|trans }})</a>
-                            {% endif %}
-                        </p>
-
-
-                        <p class="quoteAuthor">
-                            {% if quote.author is not null %}
-                                <a href="{{ path('qtf_author_quotes', {'id': quote.author.id}) }}">{{ quote.author.displayName }} </a>
-                            {% else %}
-                                {{ 'Undefined'|trans }}
-                            {% endif %}
-                        </p>
-
-                        {% if quote.originalWork is defined %}
-                        <p class="quoteOriginalWork">
-                            {% if quote.originalWork.title is defined and quote.originalWork.title is not null %}
-                                in '<a
-                                    href="{{ path('qtf_work_quotes', {'id': quote.originalWork.id}) }}">{{ quote.originalWork.title }}</a>'
-                            {% endif %}
-                            {% if quote.originalWork.year is defined and quote.originalWork.year is not null %}
-                                (<a href="{{ path('qtf_work_year', {'year': quote.originalWork.year}) }}">{{ quote.originalWork.year }}</a>)
-                            {% endif %}
-                        </p>
-                            {% endif %}
-                    </div>
-                    <div class="quoteButtons"><a href="{{ path('qtf_quote_view', {'id': quote.id}) }}" class="btn btn-sm btn-outline-info">{{ 'View'|trans }}</a></div>
-                </div>
-
-
-
-            {% endfor %}
-        </div>
-
-        <div class="paginator">
-            {{ knp_pagination_render(quotes) }}
-        </div>
 
     {% endif %}
 

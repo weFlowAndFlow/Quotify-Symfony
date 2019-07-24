@@ -92,7 +92,7 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function search($keywords, $user)
+    public function createQuerySearch($keywords, $user)
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.title like :val')
@@ -100,7 +100,20 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ->andWhere('o.user = :user')
             ->setParameter('user', $user)
             ->getQuery()
-            ->getResult()
+            ;
+
+    }
+
+    public function searchResultsSize($keywords, $user)
+    {
+        return $this->createQueryBuilder('o')
+            ->select('count(o)')
+            ->andWhere('o.title like :val')
+            ->setParameter('val', '%'.$keywords.'%')
+            ->andWhere('o.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getSingleScalarResult()
             ;
 
     }

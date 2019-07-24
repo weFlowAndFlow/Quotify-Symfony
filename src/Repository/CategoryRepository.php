@@ -72,7 +72,7 @@ class CategoryRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function search($keywords, $user)
+    public function createQuerySearch($keywords, $user)
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.name like :val')
@@ -80,7 +80,20 @@ class CategoryRepository extends ServiceEntityRepository
             ->andWhere('c.user = :user')
             ->setParameter('user', $user)
             ->getQuery()
-            ->getResult()
+            ;
+
+    }
+
+    public function searchResultsSize($keywords, $user)
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c)')
+            ->andWhere('c.name like :val')
+            ->setParameter('val', '%'.$keywords.'%')
+            ->andWhere('c.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getSingleScalarResult()
             ;
 
     }

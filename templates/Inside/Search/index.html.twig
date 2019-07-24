@@ -3,193 +3,117 @@
 {% extends "Inside/layout.html.twig" %}
 
 {% block title %}
-    {{ parent() }} - {{ 'Search results'|trans }}
+    {{ parent() }} - {{ 'Search results for'|trans }} "{{ keywords }}"
 {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('style/quote.css') }}" rel="stylesheet"/>
     <link href="{{ asset('style/search.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/lists.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block quote_body %}
 
-    <p class="quoteListTitle">{{ 'Search results for'|trans }} "{{ keywords }}"</p>
+    <div class="card">
 
-    <div class="row searchHeader">
-        <div class="searchTitle col-sm-3">
+        <div class=" card-header quoteListTitle">{{ 'Search results for'|trans }} "{{ keywords }}"</div>
 
-            {% if results.quotes|length > 1 %}
-                <a href="#quotes">
-                    {{ results.quotes|length }} {{ 'quotes'|trans }}
-                </a>
-            {% elseif results.quotes|length == 1 %}
-                <a href="#quotes">
-                    {{ results.quotes|length }} {{ 'quote'|trans }}
-                </a>
-            {% else %}
-                {{ results.quotes|length }} {{ 'quote'|trans }}
-            {% endif %}
-        </div>
-        <div class="searchTitle col-sm-3">
 
-            {% if results.categories|length > 1 %}
-                <a href="#categories">
-                    {{ results.categories|length }} {{ 'categories'|trans }}
-                </a>
-            {% elseif results.categories|length == 1 %}
-                <a href="#categories">
-                    {{ results.categories|length }} {{ 'category'|trans }}
-                </a>
-            {% else %}
-                {{ results.categories|length }} {{ 'category'|trans }}
-            {% endif %}
-        </div>
-        <div class="searchTitle col-sm-3">
 
-            {% if results.authors|length > 1 %}
-                <a href="#authors">
-                    {{ results.authors|length }} {{ 'authors'|trans }}
-                </a>
-            {% elseif results.authors|length == 1 %}
-                <a href="#authors">
-                    {{ results.authors|length }} {{ 'author'|trans }}
-                </a>
-            {% else %}
-                {{ results.authors|length }} {{ 'author'|trans }}
-            {% endif %}
-        </div>
-        <div class="searchTitle col-sm-3">
+        {# TABS #}
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a href="{{ path('qtf_search_index', {'keywords': keywords, 'requestedTab': 'quoteTab'}) }}" class="nav-link
+                {% if counts.quotes == 0 %} disabled{% endif %}
+                {% if tab is same as ('quoteTab') %} active{% endif %}
+                 ">
 
-            {% if results.works|length > 1 %}
-                <a href="#sources">
-                    {{ results.works|length }} {{ 'sources'|trans }}
+                    {% if counts.quotes > 1 %}
+                        {{ counts.quotes }} {{ 'quotes'|trans }}
+                    {% elseif counts.quotes == 1 %}
+                        {{ counts.quotes }} {{ 'quote'|trans }}
+                    {% else %}
+                        {{ counts.quotes }} {{ 'quote'|trans }}
+                    {% endif %}
+
                 </a>
-            {% elseif results.works|length == 1 %}
-                <a href="#sources">
-                    {{ results.works|length }} {{ 'source'|trans }}
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('qtf_search_index', {'keywords': keywords, 'requestedTab': 'categoryTab'}) }}" class="nav-link
+                       {% if counts.categories == 0 %} disabled{% endif %}
+                    {% if tab is same as ('categoryTab') %} active{% endif %}
+                ">
+
+                    {% if counts.categories > 1 %}
+                        {{ counts.categories }} {{ 'categories'|trans }}
+                    {% elseif counts.categories == 1 %}
+                        {{ counts.categories }} {{ 'category'|trans }}
+                    {% else %}
+                        {{ counts.categories }} {{ 'category'|trans }}
+                    {% endif %}
+
                 </a>
-            {% else %}
-                {{ results.works|length }} {{ 'source'|trans }}
-            {% endif %}
-        </div>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('qtf_search_index', {'keywords': keywords, 'requestedTab': 'authorTab'}) }}" class="nav-link
+                        {% if counts.authors == 0 %}  disabled{% endif %}
+                    {% if tab is same as ('authorTab') %} active{% endif %}
+                ">
+
+                    {% if counts.authors > 1 %}
+                        {{ counts.authors }} {{ 'authors'|trans }}
+                    {% elseif counts.authors == 1 %}
+                        {{ counts.authors }} {{ 'author'|trans }}
+                    {% else %}
+                        {{ counts.authors }} {{ 'author'|trans }}
+                    {% endif %}
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ path('qtf_search_index', {'keywords': keywords, 'requestedTab': 'workTab'}) }}" class="nav-link
+                    {% if counts.works == 0 %} disabled{% endif %}
+                    {% if tab is same as ('workTab') %} active{% endif %}
+                ">
+
+                    {% if counts.works > 1 %}
+                        {{ counts.works }} {{ 'sources'|trans }}
+                    {% elseif counts.works == 1 %}
+                        {{ counts.works }} {{ 'source'|trans }}
+                    {% else %}
+                        {{ counts.works }} {{ 'source'|trans }}
+                    {% endif %}
+
+                </a>
+            </li>
+        </ul>
+
+        <br />
+        <br />
+
+        {# DISPLAY THE CORRECT LIST DEPENDING ON THE TAB SELECTED #}
+
+        {% if tab is same as ('quoteTab') %}
+            {% set quotes = results.quotes %}
+            {{ include('Inside/Quote/_list.html.twig') }}
+        {% elseif tab is same as ('categoryTab') %}
+            {% set categories = results.categories %}
+            {{ include('Inside/Category/_list.html.twig') }}
+        {% elseif tab is same as ('authorTab') %}
+            {% set authors = results.authors %}
+            {{ include('Inside/Author/_list.html.twig') }}
+        {% elseif tab is same as ('workTab') %}
+            {% set works = results.works %}
+            {{ include('Inside/Work/_list.html.twig') }}
+        {% elseif tab is same as ('void') %}
+            <br />
+            <p class="quoteListTitle">{{ 'No result'|trans }}</p>
+        {% endif %}
+
+
+
     </div>
-
-
-
-
-    {% if results.quotes|length > 0 %}
-        <div class="resultBlock" id="quotes">
-            <h5>{{ 'Quotes'|trans }}</h5>
-            <div class="resultContent">
-                {% for quote in results.quotes %}
-                    <a href="{{ path('qtf_quote_view', {'id': quote.id }) }}">
-                        <div class="resultQuote">
-                            <div class="resultQuoteText">
-                                {{ quote.text|length > 150 ? quote.text|slice(0, 150) ~"(...)" : quote.text }}
-                            </div>
-                            <div class="resultQuoteInfo">
-                                {% if quote.author.displayName is defined %}
-                                    {{ 'By'|trans }} <span>{{ quote.author.displayName }}</span>
-                                {% endif %}
-                                {% if quote.originalWork.title is defined %}
-                                    in <span>{{ quote.originalWork.title }}</span>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </a>
-                {% else %}
-                    {{ 'No result'|trans }}
-                {% endfor %}
-            </div>
-        </div>
-    {% endif %}
-
-    {% if results.categories|length > 0 %}
-        <div class="resultBlock" id="categories">
-            <h5>{{ 'Categories'|trans }}</h5>
-            <div class="resultContent">
-                {% for category in results.categories %}
-                    {% if category.name is defined %}
-                        <div class="row resultCategory">
-                            <div class="col-sm-1"></div>
-                            <div class="col-sm-6 categoryName"> {{ category.name }}</div>
-                            <div class="col-sm-5 categoryButtons"> <a href="{{ path('qtf_category_quotes', {'id': category.id}) }}" class="btn btn-outline-success">{{ 'View quotes'|trans }}</a>
-                                <a href="{{ path('qtf_category_edit', {'id': category.id, 'caller': 'qtf_category_index'}) }}" class="btn btn-outline-warning">{{ 'Edit'|trans }}</a></div>
-                        </div>
-                    {% endif %}
-                {% else %}
-                    {{ 'No result'|trans }}
-                {% endfor %}
-            </div>
-        </div>
-    {% endif %}
-
-    {% if results.authors|length > 0 %}
-        <div class="resultBlock" id="authors">
-            <h5>{{ 'Authors'|trans }}</h5>
-            <div class="resultContent">
-                {% for author in results.authors %}
-                    {% if author.name is defined %}
-                        <div class="row resultCategory">
-                            <div class="col-sm-1"></div>
-                            <div class="col-sm-6 categoryName"> {{ author.displayName }}</div>
-                            <div class="col-sm-5 categoryButtons"> <a href="{{ path('qtf_author_quotes', {'id': author.id}) }}" class="btn btn-outline-success">{{ 'View quotes'|trans }}</a>
-                                <a href="{{ path('qtf_author_edit', {'id': author.id, 'caller': 'qtf_author_index'}) }}" class="btn btn-outline-warning">{{ 'Edit'|trans }}</a></div>
-                        </div>
-                    {% endif %}
-                {% else %}
-                    {{ 'No result'|trans }}
-                {% endfor %}
-
-            </div>
-        </div>
-    {% endif %}
-
-    {% if results.works|length > 0 %}
-        <div class="resultBlock" id="sources">
-            <h5>{{ 'Sources'|trans }}</h5>
-            <div class="resultContent">
-                {% for work in results.works %}
-                    {% if work.title is defined %}
-                        <div class="row resultCategory">
-                            <div class="col-sm-1"></div>
-                            <div class="col-sm-6">
-                                <span class="categoryName">{{ work.title }}</span>
-                                {% if work.authors is defined %}
-                                    {% for author in work.authors %}
-                                        {% if loop.first %}
-                                            {{ 'By'|trans }}
-                                        {% endif %}
-                                        {{ author.displayName }}
-                                        {% if not loop.last %}
-                                            &
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-                            <div class="col-sm-5 categoryButtons">
-                                <a href="{{ path('qtf_work_quotes', {'id': work.id}) }}" class="btn btn-outline-success">{{ 'View quotes'|trans }}</a>
-                                <a href="{{ path('qtf_work_edit', {'id': work.id, 'caller': 'qtf_work_index'}) }}" class="btn btn-outline-warning">{{ 'Edit'|trans }}</a>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% else %}
-                    {{ 'No result'|trans }}
-                {% endfor %}
-
-            </div>
-        </div>
-    {% endif %}
-
-
-
-
-
-
-
-
-
 
 
 {% endblock %}

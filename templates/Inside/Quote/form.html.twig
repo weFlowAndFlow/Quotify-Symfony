@@ -14,30 +14,36 @@
 {% block quote_body %}
 
 
+
     <div class="formSize">
-        {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+        <div class="card">
+            {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
 
-        <p class="formTitle">{{ 'Add new quote'|trans }}</p>
+            <div class="card-header formTitle">
+                {{ 'Add new quote'|trans }}
+            </div>
 
-        {{ form_start(form) }}
-        {{ form_row(form.author, {'label': 'By'}) }}
-        <div class="addFieldData"><a href="{{ path('qtf_author_create', {'caller' : 'qtf_quote_create'}) }}" class="btn btn-sm btn-outline-primary">{{ 'Add new author'|trans }}</a></div>
-        {{ form_row(form.originalWork, {'label': 'In'}) }}
-        <div class="addFieldData"><a href="{{ path('qtf_work_create', {'caller' : 'qtf_quote_create'}) }}" class="btn btn-sm btn-outline-primary">{{ 'Add new original work'|trans }}</a></div>
-        {{ form_row(form.categories, {'label': 'Categories'}) }}
-        <div class="addFieldData"><a href="{{ path('qtf_category_create', {'caller' : 'qtf_quote_create'}) }}" class="btn btn-sm btn-outline-primary">{{ 'Add new category'|trans }}</a></div>
-        <br/>
-        {{ form_row(form.text, {'label': 'Text'}) }}
-        {{ form_row(form.notes, {'label': 'Notes'}) }}
-        <div class="row">
-            <div class="col-5"></div>
-            <div class="col-2">{{ form_row(form.save) }}</div>
-            <div class="col-5"></div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                {{ form_row(form.author, {'label': 'By'}) }}
+                <div class="addFieldData"><a href="{{ path('qtf_author_create', {'caller' : 'qtf_quote_create'}) }}" class="btn btn-sm btn-outline-primary">{{ 'Add new author'|trans }}</a></div>
+                {{ form_row(form.originalWork, {'label': 'In'}) }}
+                <div class="addFieldData"><a href="{{ path('qtf_work_create', {'caller' : 'qtf_quote_create'}) }}" class="btn btn-sm btn-outline-primary">{{ 'Add new original work'|trans }}</a></div>
+                {{ form_row(form.categories, {'label': 'Categories'}) }}
+                <div class="addFieldData"><a href="{{ path('qtf_category_create', {'caller' : 'qtf_quote_create'}) }}" class="btn btn-sm btn-outline-primary">{{ 'Add new category'|trans }}</a></div>
+                <br/>
+                {{ form_row(form.text, {'label': 'Text'}) }}
+                {{ form_row(form.notes, {'label': 'Notes'}) }}
+                <div class="row">
+                    <div class="col-5"></div>
+                    <div class="col-2">{{ form_row(form.save) }}</div>
+                    <div class="col-5"></div>
+                </div>
+                <p class="mandatory">* {{ 'Mandatory field'|trans }}</p>
+                {{ form_end(form) }}
+            </div>
         </div>
-        <p class="mandatory">* {{ 'Mandatory field'|trans }}</p>
-        {{ form_end(form) }}
     </div>
-
 
 {% endblock %}
 
