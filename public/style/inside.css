@@ -56,7 +56,7 @@
     }
 
     .contentHead input[type=search] {
-        background: #E2E1DF url(../img/search-icon.png) no-repeat 9px center;
+        background: #E2E1DF url(../../public/img/search-icon.png) no-repeat 9px center;
         border: solid 1px #ccc;
         padding: 5px 10px 5px 32px;
         width: 160px;

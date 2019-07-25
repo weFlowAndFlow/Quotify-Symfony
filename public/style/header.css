@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: "charlotte";
-    src: url('charlotte.otf');
+    src: url('../../public/style/charlotte.otf');
 }
 
 header {
@@ -65,6 +65,7 @@ header {
     margin: auto;
     border: 1px solid #528769;
     margin-top: 15px;
+    transition: 0.3s;
 }
 
 .addButtonDiv:hover {
@@ -110,7 +111,7 @@ input::-webkit-search-cancel-button {
 
 
 input[type=search] {
-    background: #E2E1DF url(../img/search-icon.png) no-repeat 9px center;
+    background: #E2E1DF url(../../public/img/search-icon.png) no-repeat 9px center;
     border: solid 1px #ccc;
     padding: 5px 10px 5px 32px;
     width: 75px;

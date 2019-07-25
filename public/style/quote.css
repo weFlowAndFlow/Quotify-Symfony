@@ -22,7 +22,7 @@
     box-shadow: 17px 12px 24px -27px rgba(173, 173, 173, 0.87);
     border-radius: 3px;
     background-color: white;
-    background-image: url('../img/quotationMarks.png');
+    background-image: url('../../public/img/quotationMarks.png');
     background-size: 150px;
     background-position: left top;
     background-repeat: no-repeat;

@@ -15,6 +15,7 @@
               crossorigin="anonymous"/>
         <link href="{{ asset('style/welcome.css') }}" rel="stylesheet"/>
         <link href="{{ asset('style/fullpage.css') }}" rel="stylesheet"/>
+{#        {{ encore_entry_link_tags('app') }}#}
     {% endblock %}
 
 </head>
@@ -120,6 +121,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/fullpage.js') }}"></script>
     <script type="text/javascript"  src="{{ asset('js/attrchange.js') }}"></script>
+
+{#    {{ encore_entry_script_tags('app') }}#}
+{#    {{ encore_entry_script_tags('attrchange') }}#}
+{#    {{ encore_entry_script_tags('fullpageJS') }}#}
 
     <script type="text/javascript">
         var myFullpage = new fullpage('#fullpage', {
