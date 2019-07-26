@@ -1,4 +1,5 @@
 <?php
+
 // src/Controller/QuoteController.php
 
 namespace App\Controller;
@@ -7,10 +8,8 @@ use App\Entity\Author;
 use App\Entity\Category;
 use App\Entity\OriginalWork;
 use App\Entity\Quote;
-use App\Form\QuoteType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,7 +20,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SearchController extends AbstractController
 {
-
     /**
      * @Route("/", name="qtf_search_index")
      */
@@ -30,8 +28,7 @@ class SearchController extends AbstractController
         $user = $this->getUser();
         $keywords = $request->get('searchInput');
 
-        if ($keywords == null)
-        {
+        if (null == $keywords) {
             $keywords = $request->get('keywords');
         }
 
@@ -51,26 +48,16 @@ class SearchController extends AbstractController
         $results['works'] = $paginator->paginate($originalWorksQuery, $request->query->getInt('page', 1), 10);
 
         $tab = $request->get('requestedTab');
-        if ($tab == null)
-        {
-            if ($counts['quotes'] > 0)
-            {
+        if (null == $tab) {
+            if ($counts['quotes'] > 0) {
                 $tab = 'quoteTab';
-            }
-            elseif ($counts['categories'] > 0)
-            {
+            } elseif ($counts['categories'] > 0) {
                 $tab = 'categoryTab';
-            }
-            elseif ($counts['authors'] > 0)
-            {
+            } elseif ($counts['authors'] > 0) {
                 $tab = 'authorTab';
-            }
-            elseif ($counts['works'] > 0)
-            {
+            } elseif ($counts['works'] > 0) {
                 $tab = 'workTab';
-            }
-            else
-            {
+            } else {
                 $tab = 'void';
             }
         }
@@ -80,8 +67,8 @@ class SearchController extends AbstractController
             'results' => $results,
             'tab' => $tab,
             'counts' => $counts,
-            'undefined' => 0 // used to prevent from displaying the undefined card that's shown in the menu list view
-        ] );
+            'undefined' => 0, // used to prevent from displaying the undefined card that's shown in the menu list view
+        ]);
     }
 
     /**
@@ -89,8 +76,6 @@ class SearchController extends AbstractController
      */
     public function viewQuotes($keywords, Request $request, PaginatorInterface $paginator)
     {
-
-
     }
 
     /**
@@ -98,7 +83,6 @@ class SearchController extends AbstractController
      */
     public function viewCategories(Request $request, PaginatorInterface $paginator)
     {
-
     }
 
     /**
@@ -106,7 +90,6 @@ class SearchController extends AbstractController
      */
     public function viewAuthors(Request $request, PaginatorInterface $paginator)
     {
-
     }
 
     /**
@@ -114,9 +97,5 @@ class SearchController extends AbstractController
      */
     public function viewWorks(Request $request, PaginatorInterface $paginator)
     {
-
     }
-
-
-
 }

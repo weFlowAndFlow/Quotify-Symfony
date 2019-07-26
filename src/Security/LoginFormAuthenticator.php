@@ -80,6 +80,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
         } else {
             throw new CustomUserMessageAuthenticationException('Your account has not yet been verified. Please check your messages to confirm your email adress');
+
             return false;
         }
     }

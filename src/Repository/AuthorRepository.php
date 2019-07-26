@@ -79,7 +79,6 @@ class AuthorRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->getQuery()
             ;
-
     }
 
     public function searchResultsSize($keywords, $user)
@@ -95,7 +94,5 @@ class AuthorRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult()
             ;
-
     }
-
 }

@@ -13,8 +13,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
-
-
     private $encoder;
 
     public function __construct(UserPasswordEncoderInterface $encoder)
@@ -24,7 +22,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $em)
     {
-
         // User
         $user1 = new User();
         $user1->setEmail('admin@admin.com');
@@ -44,7 +41,6 @@ class AppFixtures extends Fixture
 
         $em->persist($user1);
         $em->persist($user2);
-
 
         // Category
         $cat1 = new Category();
@@ -97,10 +93,10 @@ class AppFixtures extends Fixture
         // Quote
         $q1 = new Quote();
         $q1->setText("I'm beautiful in my way");
-        $q1->setNotes("This is a note for this quote");
+        $q1->setNotes('This is a note for this quote');
 
         $q2 = new Quote();
-        $q2->setText("I used to live in Walden, next to a lake, and this was so wonderful");
+        $q2->setText('I used to live in Walden, next to a lake, and this was so wonderful');
 
         $q3 = new Quote();
         $q3->setText("How often since then has she wondered what might have happened if she'd tried to remain with him; if she’d returned Richard's kiss on the corner of Bleeker and McDougal, gone off somewhere (where?) with him, never bought the packet of incense or the alpaca coat with rose-shaped buttons. Couldn’t they have discovered something larger and stranger than what they've got. It is impossible not to imagine that other future, that rejected future, as taking place in Italy or France, among big sunny rooms and gardens; as being full of infidelities and great battles; as a vast and enduring romance laid over friendship so searing and profound it would accompany them to the grave and possibly even beyond. She could, she thinks, have entered another world. She could have had a life as potent and dangerous as literature itself.
@@ -112,9 +108,8 @@ Still, there is this sense of missed opportunity. Maybe there is nothing, ever, 
 It had seemed like the beginning of happiness, and Clarissa is still sometimes shocked, more than thirty years later to realize that it was happiness; that the entire experience lay in a kiss and a walk. The anticipation of dinner and a book. The dinner is by now forgotten; Lessing has been long overshadowed by other writers. What lives undimmed in Clarissa's mind more than three decades later is a kiss at dusk on a patch of dead grass, and a walk around a pond as mosquitoes droned in the darkening air. There is still that singular perfection, and it's perfect in part because it seemed, at the time, so clearly to promise more. Now she knows: That was the moment, right then. There has been no other.");
 
         $q4 = new Quote();
-        $q4->setText("oh yeah yeah yeah yeah");
-        $q4->setNotes("This is a note for this quote, its another one just for example");
-
+        $q4->setText('oh yeah yeah yeah yeah');
+        $q4->setNotes('This is a note for this quote, its another one just for example');
 
         // ASSOCIATIONS
         $q1->setAuthor($aut2);
@@ -149,7 +144,7 @@ It had seemed like the beginning of happiness, and Clarissa is still sometimes s
         $em->persist($q2);
         $em->persist($q3);
         $em->persist($q4);
-//  	$em->persist($user1);
+        //  	$em->persist($user1);
 
         $em->flush();
     }

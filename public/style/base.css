@@ -24,6 +24,16 @@ footer {
     margin-top: 4%;
 }
 
+footer a {
+    text-decoration: none;
+    color: #F8F7F5;
+}
+
+footer a:hover {
+    text-decoration: none;
+    color: #8d80ad;
+}
+
 .footerContent {
     max-width: 1440px;
     margin: auto;

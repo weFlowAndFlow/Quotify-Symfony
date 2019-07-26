@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-
 use App\Entity\Quote;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -58,7 +57,6 @@ class QuoteRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->getQuery()
             ->getSingleResult();
-
     }
 
     /*
@@ -153,7 +151,7 @@ class QuoteRepository extends ServiceEntityRepository
      */
     public function createQueryFindAllByYear($year)
     {
-        if ($year == 9999) {
+        if (9999 == $year) {
             return $this->createQueryBuilder('q')
                 ->join('q.originalWork', 'og')
                 ->andWhere('og.year is NULL')
@@ -167,7 +165,6 @@ class QuoteRepository extends ServiceEntityRepository
         }
     }
 
-
     public function countQuotesForUndefinedAuthor($user)
     {
         return $this->createQueryBuilder('q')
@@ -178,7 +175,6 @@ class QuoteRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
-
 
     public function countQuotesForUndefinedWork($user)
     {
@@ -203,7 +199,6 @@ class QuoteRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-
     public function createQueryGetQuotesForUndefinedAuthor($user)
     {
         return $this->createQueryBuilder('q')
@@ -212,7 +207,6 @@ class QuoteRepository extends ServiceEntityRepository
             ->andWhere('q.author is NULL')
             ->getQuery();
     }
-
 
     public function createQueryGetQuotesForUndefinedWork($user)
     {
@@ -245,7 +239,6 @@ class QuoteRepository extends ServiceEntityRepository
             ;
     }
 
-
     public function searchResultsSize($keywords, $user)
     {
         return $this->createQueryBuilder('q')
@@ -258,5 +251,4 @@ class QuoteRepository extends ServiceEntityRepository
             ->getSingleScalarResult()
             ;
     }
-
 }

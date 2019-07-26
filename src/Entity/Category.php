@@ -39,7 +39,6 @@ class Category
      */
     private $user;
 
-
     public function __construct()
     {
         $this->quotes = new ArrayCollection();
@@ -100,6 +99,4 @@ class Category
 
         return $this;
     }
-
-
 }

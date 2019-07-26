@@ -1,6 +1,7 @@
 <?php
 
 // src/Form/OriginalWorkType.php
+
 namespace App\Form;
 
 use Doctrine\ORM\EntityRepository;
@@ -14,7 +15,6 @@ use Symfony\Component\Security\Core\Security;
 
 class OriginalWorkType extends AbstractType
 {
-
     private $security;
 
     public function __construct(Security $security)
@@ -39,14 +39,12 @@ class OriginalWorkType extends AbstractType
                 },
                 'choice_label' => 'displayName',
                 'multiple' => true,
-                'expanded' => false
+                'expanded' => false,
             ])
             ->add('title', TextType::class)
             ->add('year', IntegerType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('save', SubmitType::class);
     }
-
-
 }

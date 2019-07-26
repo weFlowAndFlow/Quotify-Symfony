@@ -1,4 +1,5 @@
 <?php
+
 // src/Controller/QuoteController.php
 
 namespace App\Controller;
@@ -28,7 +29,6 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
 
-
         return $this->render('Inside/User/index.html.twig');
     }
 
@@ -44,7 +44,6 @@ class UserController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
                 $em->flush();
@@ -53,16 +52,15 @@ class UserController extends AbstractController
                 $this->addFlash('success', $translated);
 
                 return $this->redirectToRoute('qtf_user_index');
-
             }
+
             return $this->render('Inside/User/form.html.twig', ['form' => $form->createView()]);
         } else {
             $translated = $translator->trans("Oops! There's been a problem : the user could not be found.");
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_user_index');
         }
-
-
     }
 
     /**
@@ -83,17 +81,15 @@ class UserController extends AbstractController
             $em->remove($userEntity);
             $em->flush();
 
-            $translated = $translator->trans("Your account has been successfully deleted.");
+            $translated = $translator->trans('Your account has been successfully deleted.');
             $this->addFlash('success', $translated);
+
             return $this->redirectToRoute('qtf_welcome_index');
         } else {
             $translated = $translator->trans("Oops! There's been a problem : the account could not be found.");
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_user_index');
         }
-
-
     }
-
-
 }

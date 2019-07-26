@@ -49,7 +49,6 @@ class Author
      */
     private $user;
 
-
     public function __construct()
     {
         $this->quotes = new ArrayCollection();
@@ -142,11 +141,10 @@ class Author
     public function getDisplayName()
     {
         if (isset($this->name)) {
-            return $this->forename . " " . $this->name;
+            return $this->forename.' '.$this->name;
         } else {
-            return "Unknown";
+            return 'Unknown';
         }
-
     }
 
     public function getUser(): ?User
@@ -160,6 +158,4 @@ class Author
 
         return $this;
     }
-
-
 }

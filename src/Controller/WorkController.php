@@ -1,4 +1,5 @@
 <?php
+
 // src/Controller/WorkController.php
 
 namespace App\Controller;
@@ -20,7 +21,6 @@ use Twig\Environment;
  */
 class WorkController extends AbstractController
 {
-
     /**
      * @Route("/", name="qtf_work_index")
      */
@@ -42,16 +42,16 @@ class WorkController extends AbstractController
         $user = $this->getUser();
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
-
-        if ($work == null) {
+        if (null == $work) {
             $translated = $translator->trans('Oops! Something went wrong. The original work could not be found.');
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_work_index');
         } else {
             $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindByOriginalWork($work, $user);
             $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
-            $translated = $translator->trans("All quotes for ");
-            $displayTitle = $translated . $work->getTitle();
+            $translated = $translator->trans('All quotes for ');
+            $displayTitle = $translated.$work->getTitle();
 
             return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
         }
@@ -65,7 +65,7 @@ class WorkController extends AbstractController
         $user = $this->getUser();
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedWork($user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
-        $translated = $translator->trans("All quotes with undefined original work");
+        $translated = $translator->trans('All quotes with undefined original work');
         $displayTitle = $translated;
 
         return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
@@ -91,9 +91,9 @@ class WorkController extends AbstractController
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByYear($year, $user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
         $translatedYear = $translator->trans('undefined date');
-        $year = $year == 9999 ? $translatedYear : $year;
-        $translated = $translator->trans("All quotes for ");
-        $displayTitle = $translated . $year;
+        $year = 9999 == $year ? $translatedYear : $year;
+        $translated = $translator->trans('All quotes for ');
+        $displayTitle = $translated.$year;
 
         return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
     }
@@ -121,7 +121,6 @@ class WorkController extends AbstractController
             return $this->redirectToRoute($caller);
         }
 
-
         return $this->render('Inside/Work/form.html.twig', ['form' => $form->createView(), 'previousPage' => $caller]);
     }
 
@@ -133,12 +132,12 @@ class WorkController extends AbstractController
         $user = $this->getUser();
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
-        if ($work == null) {
+        if (null == $work) {
             $translated = $translator->trans('Oops! Something went wrong. The original work could not be found.');
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_work_index');
         } else {
-
             $form = $this->createForm(OriginalWorkType::class, $work);
             $form->handleRequest($request);
 
@@ -153,7 +152,6 @@ class WorkController extends AbstractController
                 return $this->redirectToRoute($caller);
             }
 
-
             return $this->render('Inside/Work/form.html.twig', ['form' => $form->createView(), 'previousPage' => $caller]);
         }
     }
@@ -166,7 +164,7 @@ class WorkController extends AbstractController
         $user = $this->getUser();
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
 
-        if ($work == null) {
+        if (null == $work) {
             $translated = $translator->trans('Oops! Something went wrong. The original work could not be found.');
             $this->addFlash('error', $translated);
         } elseif (count($work->getQuotes()) > 0) {
@@ -180,9 +178,6 @@ class WorkController extends AbstractController
             $this->addFlash('success', $translated);
         }
 
-
         return $this->redirectToRoute('qtf_work_index');
     }
-
-
 }

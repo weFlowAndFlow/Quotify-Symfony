@@ -1,11 +1,11 @@
 <?php
+
 // src/Controller/QuoteController.php
 
 namespace App\Controller;
 
 use App\Entity\ChangePassword;
 use App\Form\ChangePasswordType;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,8 +20,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class ChangePasswordController extends AbstractController
 {
-
-
     /**
      * @Route("/{id}/change", name="qtf_password_edit")
      */
@@ -37,7 +35,6 @@ class ChangePasswordController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $oldPasswordEntered = $form->getData()->getOldPassword();
                 $newPasswordEntered = $form->getData()->getNewPassword();
 
@@ -57,19 +54,14 @@ class ChangePasswordController extends AbstractController
                     $translated = $translator->trans('Oops! The old password is wrong.');
                     $this->addFlash('error', $translated);
                 }
-
             }
 
             return $this->render('Inside/User/passwordForm.html.twig', ['form' => $form->createView()]);
-
         } else {
             $translated = $translator->trans("Oops! There's been a problem : the user could not be found.");
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_user_index');
         }
-
     }
-
-
-
 }

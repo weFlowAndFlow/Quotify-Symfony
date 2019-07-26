@@ -1,4 +1,5 @@
 <?php
+
 // src/Controller/WelcomeController.php
 
 namespace App\Controller;
@@ -20,7 +21,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class WelcomeController extends AbstractController
 {
-
     /**
      * @Route("/welcome", name="qtf_welcome_index")
      */
@@ -40,7 +40,6 @@ class WelcomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $password = $form->getData()->getPassword();
             $encodedPassword = $encoder->encodePassword($user, $password);
             $user->setPassword($encodedPassword);
@@ -58,15 +57,12 @@ class WelcomeController extends AbstractController
 
             $mailer->send($message);
 
-
             // Redirect to confirm account creation page
             return $this->render('Outside/Sign-up/confirmed.html.twig');
-
         }
 
         return $this->render('Outside/Sign-up/Form.html.twig', ['form' => $form->createView()]);
     }
-
 
     /**
      * @Route("/verify/51{id}84_{email}", name="qtf_welcome_verify", requirements={"id" = "\d+"})
@@ -77,27 +73,25 @@ class WelcomeController extends AbstractController
         $id = $request->get('id');
         $user = $this->getDoctrine()->getRepository(User::class)->getOne($id, $email);
 
-        if ($user == null) {
+        if (null == $user) {
             $translated = $translator->trans('Oops! Something went wrong. Please try to confirm your address again.');
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_welcome_index');
-        } else if ($user->isVerified()) {
+        } elseif ($user->isVerified()) {
             $translated = $translator->trans('Your email was already confirmed. You can log-in.');
             $this->addFlash('success', $translated);
-            return $this->redirectToRoute('qtf_login');
-        }
-        {
-            $user->setVerified(true);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-            $translated = $translator->trans('Your email address has been successfully confirmed. You can now log-in.');
-            $this->addFlash('success', $translated);
+
             return $this->redirectToRoute('qtf_login');
         }
 
+        $user->setVerified(true);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+        $translated = $translator->trans('Your email address has been successfully confirmed. You can now log-in.');
+        $this->addFlash('success', $translated);
 
+        return $this->redirectToRoute('qtf_login');
     }
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 // src/Controller/AuthorController.php
 
 namespace App\Controller;
@@ -20,7 +21,6 @@ use Twig\Environment;
  */
 class AuthorController extends AbstractController
 {
-
     /**
      * @Route("/", name="qtf_author_index")
      */
@@ -43,9 +43,10 @@ class AuthorController extends AbstractController
         $user = $this->getUser();
         $author = $this->getDoctrine()->getRepository(Author::class)->getAuthorById($id, $user);
 
-        if ($author == null) {
+        if (null == $author) {
             $translated = $translator->trans('Oops! Something went wrong. The author could not be found.');
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_author_index');
         } else {
             $user = $this->getUser();
@@ -53,7 +54,7 @@ class AuthorController extends AbstractController
             $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
 
             $translated = $translator->trans('All quotes for ');
-            $displayTitle = $translated . $author->getDisplayName();
+            $displayTitle = $translated.$author->getDisplayName();
 
             return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
         }
@@ -96,7 +97,6 @@ class AuthorController extends AbstractController
             return $this->redirectToRoute($caller);
         }
 
-
         return $this->render('Inside/Author/form.html.twig', ['form' => $form->createView(), 'previousPage' => $caller]);
     }
 
@@ -108,9 +108,10 @@ class AuthorController extends AbstractController
         $user = $this->getUser();
         $author = $this->getDoctrine()->getRepository(Author::class)->getAuthorById($id, $user);
 
-        if ($author == null) {
+        if (null == $author) {
             $translated = $translator->trans('Oops! Something went wrong. The author could not be found.');
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_author_index');
         } else {
             $form = $this->createForm(AuthorType::class, $author);
@@ -127,7 +128,6 @@ class AuthorController extends AbstractController
                 return $this->redirectToRoute($caller);
             }
 
-
             return $this->render('Inside/Author/form.html.twig', ['form' => $form->createView(), 'previousPage' => $caller]);
         }
     }
@@ -140,7 +140,7 @@ class AuthorController extends AbstractController
         $user = $this->getUser();
         $author = $this->getDoctrine()->getRepository(Author::class)->getAuthorById($id, $user);
 
-        if ($author == null) {
+        if (null == $author) {
             $translated = $translator->trans('Oops! Something went wrong. The author could not be found.');
             $this->addFlash('error', $translated);
         } elseif (count($author->getQuotes()) > 0) {
@@ -154,9 +154,6 @@ class AuthorController extends AbstractController
             $this->addFlash('success', $translated);
         }
 
-
         return $this->redirectToRoute('qtf_author_index');
     }
-
-
 }

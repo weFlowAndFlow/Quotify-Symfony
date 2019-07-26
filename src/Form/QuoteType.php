@@ -1,6 +1,7 @@
 <?php
 
 // src/Form/QuoteType.php
+
 namespace App\Form;
 
 use App\Entity\Author;
@@ -28,15 +29,14 @@ class QuoteType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $user = $this->security->getUser();
 
         $builder
             ->add('text', TextareaType::class, [
                 'empty_data' => '',
                 'attr' => [
-                    'rows' => '15'
-                ]
+                    'rows' => '15',
+                ],
             ])
             ->add('author', EntityType::class, array(
                 'class' => 'App\Entity\Author',
@@ -50,7 +50,7 @@ class QuoteType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => '',
-                'required' => false
+                'required' => false,
             ))
             ->add('categories', EntityType::class, array(
                 'class' => 'App\Entity\Category',
@@ -64,13 +64,13 @@ class QuoteType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
                 'label_attr' => ['class' => 'checkbox-inline'],
-                'required' => false
+                'required' => false,
             ))
             ->add('notes', TextareaType::class, [
                 'required' => false,
                 'attr' => [
-                    'rows' => '5'
-                ]
+                    'rows' => '5',
+                ],
             ])
             ->add('save', SubmitType::class);
 
@@ -91,25 +91,23 @@ class QuoteType extends AbstractType
                 'expanded' => false,
                 'placeholder' => '',
                 'choices' => $works,
-                'required' => false
+                'required' => false,
             ]);
         };
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA,
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
             function (FormEvent $event) use ($formModifier) {
                 $formModifier($event->getForm(), $event->getData()->getAuthor());
             }
         );
 
-        $builder->get('author')->addEventListener(FormEvents::POST_SUBMIT,
+        $builder->get('author')->addEventListener(
+            FormEvents::POST_SUBMIT,
             function (FormEvent $event) use ($formModifier) {
                 $author = $event->getForm()->getData();
                 $formModifier($event->getForm()->getParent(), $author);
             }
         );
-
-
     }
-
-
 }

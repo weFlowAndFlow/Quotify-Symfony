@@ -1,4 +1,5 @@
 <?php
+
 // src/Controller/CategoryController.php
 
 namespace App\Controller;
@@ -20,13 +21,11 @@ use Twig\Environment;
  */
 class CategoryController extends AbstractController
 {
-
     /**
      * @Route("/", name="qtf_category_index")
      */
     public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
     {
-
         $user = $this->getUser();
         $categoriesQuery = $this->getDoctrine()->getRepository(Category::class)->createQueryFindAll($user);
         $categories = $paginator->paginate($categoriesQuery, $request->query->getInt('page', 1), 15);
@@ -34,7 +33,6 @@ class CategoryController extends AbstractController
 
         return $this->render('Inside/Category/index.html.twig', array('categories' => $categories, 'undefined' => $undefinedCount));
     }
-
 
     /**
      * @Route("/{id}/quotes", name="qtf_category_quotes", requirements={"id" = "\d+"})
@@ -44,22 +42,21 @@ class CategoryController extends AbstractController
         $user = $this->getUser();
         $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
-        if ($category == null) {
+        if (null == $category) {
             $translated = $translator->trans('Oops! Something went wrong. The category could not be found.');
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_category_index');
         } else {
-
             $user = $this->getUser();
             $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByCategory($category, $user);
             $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
-            $translated = $translator->trans("All quotes for ");
-            $displayTitle = $translated . $category->getName();
+            $translated = $translator->trans('All quotes for ');
+            $displayTitle = $translated.$category->getName();
 
             return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
         }
     }
-
 
     /**
      * @Route("/undefined/quotes", name="qtf_category_quotes_undefined")
@@ -69,7 +66,7 @@ class CategoryController extends AbstractController
         $user = $this->getUser();
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedCategory($user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);
-        $translated = $translator->trans("All uncategorized quotes");
+        $translated = $translator->trans('All uncategorized quotes');
         $displayTitle = $translated;
 
         return $this->render('Inside/Quote/index.html.twig', ['quotes' => $quotes, 'displayTitle' => $displayTitle]);
@@ -98,7 +95,6 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute($caller);
         }
 
-
         return $this->render('Inside/Category/form.html.twig', ['form' => $form->createView(), 'previousPage' => $caller]);
     }
 
@@ -110,12 +106,12 @@ class CategoryController extends AbstractController
         $user = $this->getUser();
         $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
-        if ($category == null) {
+        if (null == $category) {
             $translated = $translator->trans('Oops! Something went wrong. The category could not be found.');
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_category_index');
         } else {
-
             $form = $this->createForm(CategoryType::class, $category);
             $form->handleRequest($request);
 
@@ -130,7 +126,6 @@ class CategoryController extends AbstractController
                 return $this->redirectToRoute($caller);
             }
 
-
             return $this->render('Inside/Category/form.html.twig', ['form' => $form->createView(), 'previousPage' => $caller]);
         }
     }
@@ -143,7 +138,7 @@ class CategoryController extends AbstractController
         $user = $this->getUser();
         $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
 
-        if ($category == null) {
+        if (null == $category) {
             $translated = $translator->trans('Oops! Something went wrong. The category could not be found.');
             $this->addFlash('error', $translated);
         } elseif (count($category->getQuotes()) > 0) {
@@ -157,9 +152,6 @@ class CategoryController extends AbstractController
             $this->addFlash('success', $translated);
         }
 
-
         return $this->redirectToRoute('qtf_category_index');
     }
-
-
 }

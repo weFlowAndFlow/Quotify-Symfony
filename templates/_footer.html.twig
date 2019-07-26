@@ -4,7 +4,7 @@
                 <div class="col-md">
                         <p>© {{ website_name }} {{ 'now'|date('Y') }}</p>
                         <p>{{ 'Version'|trans }} {{ website_version }}</p>
-                        <p>{{ 'Created by'|trans }} {{ webmaster }} </p>
+                        <p>{{ 'Created by'|trans }} <a href="http://www.weflowandflow.com">{{ webmaster }} </a></p>
                         <p>✉️ {{ 'Contact us'|trans }}</p>
                 </div>
 
@@ -18,7 +18,7 @@
                                         <img src="{{ asset('./img/flags/fr.png') }}" alt="Français" height="30px" />
                                 </a>
                         </p>
-                        <p>🏠 {{ 'Home'|trans }}</p>
+                        <p>🏠 <a href="{{ path('qtf_quote_index') }}">{{ 'Home'|trans }}</a></p>
                         <p>🗺 {{ 'Site map'|trans }}</p>
                 </div>
 

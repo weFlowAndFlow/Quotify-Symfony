@@ -20,7 +20,7 @@ final class Version20190610080843 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP TABLE quote_author');
         $this->addSql('ALTER TABLE quote ADD author_id INT DEFAULT NULL');
@@ -31,7 +31,7 @@ final class Version20190610080843 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE quote_author (quote_id INT NOT NULL, author_id INT NOT NULL, INDEX IDX_8717768BDB805178 (quote_id), INDEX IDX_8717768BF675F31B (author_id), PRIMARY KEY(quote_id, author_id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB COMMENT = \'\' ');
         $this->addSql('ALTER TABLE quote_author ADD CONSTRAINT FK_8717768BDB805178 FOREIGN KEY (quote_id) REFERENCES quote (id) ON DELETE CASCADE');

@@ -20,7 +20,7 @@ final class Version20190608134126 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE quote_category (quote_id INT NOT NULL, category_id INT NOT NULL, INDEX IDX_EC76B150DB805178 (quote_id), INDEX IDX_EC76B15012469DE2 (category_id), PRIMARY KEY(quote_id, category_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE quote_category ADD CONSTRAINT FK_EC76B150DB805178 FOREIGN KEY (quote_id) REFERENCES quote (id) ON DELETE CASCADE');
@@ -33,7 +33,7 @@ final class Version20190608134126 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP TABLE quote_category');
         $this->addSql('ALTER TABLE quote ADD category_id INT DEFAULT NULL');

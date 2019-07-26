@@ -1,11 +1,11 @@
 <?php
 
 // src/Form/AuthorType.php
+
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -28,9 +28,7 @@ class CreateUserType extends AbstractType
                 'second_options' => ['label' => 'Repeat password'],
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'Create account'
+                'label' => 'Create account',
             ]);
     }
-
-
 }

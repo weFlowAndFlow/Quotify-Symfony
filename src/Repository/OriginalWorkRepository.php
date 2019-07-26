@@ -101,7 +101,6 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->getQuery()
             ;
-
     }
 
     public function searchResultsSize($keywords, $user)
@@ -115,8 +114,5 @@ class OriginalWorkRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult()
             ;
-
     }
-
-
 }

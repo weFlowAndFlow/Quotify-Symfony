@@ -1,13 +1,12 @@
 <?php
+
 // src/Controller/QuoteController.php
 
 namespace App\Controller;
 
 use App\Entity\ChangePassword;
 use App\Entity\User;
-use App\Form\ChangePasswordType;
 use App\Form\ResetPasswordType;
-use Knp\Component\Pager\PaginatorInterface;
 use Swift_Mailer;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,19 +23,18 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class ResetPasswordController extends AbstractController
 {
-
     // STEP 1 : display the form to enter email address
+
     /**
      * @Route("/email", name="qtf_reset_email")
      */
     public function email()
     {
-
         return $this->render('Outside/Reset/resetPassword_email.html.twig');
-
     }
 
     // STEP 2 : Check email validity in DB + send message with link to reset password
+
     /**
      * @Route("/message", name="qtf_reset_message")
      */
@@ -44,18 +42,15 @@ class ResetPasswordController extends AbstractController
     {
         $email = $request->get('email');
 
-        if (isset($email))
-        {
+        if (isset($email)) {
             $user = $this->getDoctrine()->getRepository(User::class)->findOneByEmail($email);
 
-            if ($user == null)
-            {
+            if (null == $user) {
                 $translated = $translator->trans('Email not found');
                 $this->addFlash('error', $translated);
+
                 return $this->redirectToRoute('qtf_reset_email');
-            }
-            else
-            {
+            } else {
                 // Send email to confirm address
                 $message = (new Swift_Message('Quotify - Reset password'))
                     ->setFrom('no-reply@quotify-example.com')
@@ -66,17 +61,16 @@ class ResetPasswordController extends AbstractController
 
                 return $this->render('Outside/Reset/confirmed1.html.twig');
             }
-        }
-        else
-        {
+        } else {
             $translated = $translator->trans('Please enter a valid email address.');
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_reset_email');
         }
-
     }
 
     // STEP 3 : display form to reset password + reset password
+
     /**
      * @Route("/password", name="qtf_reset_password")
      */
@@ -86,14 +80,12 @@ class ResetPasswordController extends AbstractController
         $email = $request->get('email');
         $user = $this->getDoctrine()->getRepository(User::class)->getOne($id, $email);
 
-        if ($user == null)
-        {
+        if (null == $user) {
             $translated = $translator->trans('Oops! Something went wrong : user could not be found.');
             $this->addFlash('error', $translated);
+
             return $this->redirectToRoute('qtf_login');
-        }
-        else
-        {
+        } else {
             $changePassword = new ChangePassword();
             $oldPassword = $user->getPassword();
             $changePassword->setOldPassword($oldPassword);
@@ -101,9 +93,7 @@ class ResetPasswordController extends AbstractController
             $form = $this->createForm(ResetPasswordType::class, $changePassword);
             $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid())
-            {
-
+            if ($form->isSubmitted() && $form->isValid()) {
                 $newPasswordEntered = $form->getData()->getNewPassword();
 
                 $encodedNewPassword = $encoder->encodePassword($user, $newPasswordEntered);
@@ -121,9 +111,5 @@ class ResetPasswordController extends AbstractController
 
             return $this->render('Outside/Reset/resetPassword_password.html.twig', ['form' => $form->createView()]);
         }
-
-
     }
-
-
 }

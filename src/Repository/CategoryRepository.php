@@ -14,8 +14,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class CategoryRepository extends ServiceEntityRepository
 {
-
-
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Category::class);
@@ -50,7 +48,6 @@ class CategoryRepository extends ServiceEntityRepository
     }
     */
 
-
     public function getCategoryById($id, $user)
     {
         return $this->createQueryBuilder('c')
@@ -81,7 +78,6 @@ class CategoryRepository extends ServiceEntityRepository
             ->setParameter('user', $user)
             ->getQuery()
             ;
-
     }
 
     public function searchResultsSize($keywords, $user)
@@ -95,6 +91,5 @@ class CategoryRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult()
             ;
-
     }
 }
