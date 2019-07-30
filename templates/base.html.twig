@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width"/>
+    <meta name="description" content="{{ 'Quotify is a way to securely store all the quotes you encounter in your daily life.'|trans }}">
+
+    <meta property="og:title" content="Quotify" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://quotify.weflowandflow.com" />
+    <meta property="og:image" content="{{ asset('img/quotify_logo.png') }}" />
 
     <title>{% block title %}{{ website_name }}{% endblock %}</title>
 
     {% block stylesheets %}
+        <link rel="icon" type="image/png" href="{{ asset('img/quotify_icon.png') }}" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
               crossorigin="anonymous"/>
@@ -56,6 +63,7 @@
 {#    {{ encore_entry_script_tags('app') }}#}
 {#    {{ encore_entry_script_tags('attrchange') }}#}
 {#    {{ encore_entry_script_tags('fullpageJS') }}#}
+    <noscript>{% trans %}Warning : Your browser does not support JavaScript, or JavaScript has been deactivated. Activate JavaScript for a better browsing experience.{% endtrans %}</noscript>
 {% endblock %}
 </body>
 

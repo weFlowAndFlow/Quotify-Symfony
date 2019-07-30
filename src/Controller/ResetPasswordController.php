@@ -53,7 +53,7 @@ class ResetPasswordController extends AbstractController
             } else {
                 // Send email to confirm address
                 $message = (new Swift_Message('Quotify - Reset password'))
-                    ->setFrom('no-reply@quotify-example.com')
+                    ->setFrom('contact@quotify.weflowandflow.com')
                     ->setTo($user->getEmail())
                     ->setBody($this->renderView('Outside/Emails/resetPassword.html.twig', ['user' => $user]), 'text/html');
 

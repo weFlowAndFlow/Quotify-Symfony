@@ -13,11 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/{_locale}/in/work", requirements={
  *     "_locale"="%app.locales%"
  * }))
+ * @IsGranted("ROLE_USER")
  */
 class WorkController extends AbstractController
 {

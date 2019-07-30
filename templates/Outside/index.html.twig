@@ -6,10 +6,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width"/>
+    <meta name="description" content="{{ 'Quotify is a way to securely store all the quotes you encounter in your daily life.'|trans }}">
+    <meta name="google-site-verification" content="kMTIdrmXD2S28cGxLRMb_E-9FYTIt49lX4_5G1eXBcA" />
+
+    <meta property="og:title" content="Quotify" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://quotify.weflowandflow.com" />
+    <meta property="og:image" content="{{ asset('img/quotify_logo.png') }}" />
 
     <title>{{ website_name }} - {{ 'Welcome'|trans }}</title>
 
     {% block stylesheets %}
+        <link rel="icon" type="image/png" href="{{ asset('img/quotify_icon.png') }}" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
               crossorigin="anonymous"/>
@@ -45,49 +53,49 @@
         </div>
 
         <div class="content">
-            <p>{{ 'Quotify'|trans }}</p>
+            <h1>{{ 'Quotify'|trans }}</h1>
             {% trans %}Your personal notebook for quotes.{% endtrans %}
         </div>
-        <div class="icon"><img src="{{ asset('img/pen.png') }}" /></div>
+        <div class="icon"><img src="{{ asset('img/pen.png') }}" alt="Pen" /></div>
     </div>
 
     <div class="section">
         <div class="content">
-            <p>{{ 'A diary of quotes'|trans }}</p>
+            <h1>{{ 'A diary of quotes'|trans }}</h1>
             {% trans %}Whether you're reading a book, listening to a song or watching a movie, keep track of all the quotes you
             encounter in your daily life.{% endtrans %}
         </div>
-        <div class="icon"><img src="{{ asset('img/diary.png') }}" /></div>
+        <div class="icon"><img src="{{ asset('img/diary.png') }}" alt="Diary" /></div>
     </div>
 
 
     <div class="section">
         <div class="content">
-            <p>{{ 'Simple and easy to use'|trans }}</p>
+            <h1>{{ 'Simple and easy to use'|trans }}</h1>
             {% trans %}Sort your quotes by author, by source or by categories.{% endtrans %}
         </div>
-        <div class="icon"><img src="{{ asset('img/books.png') }}" /></div>
+        <div class="icon"><img src="{{ asset('img/books.png') }}" alt="Books" /></div>
     </div>
 
     <div class="section">
         <div class="content">
-            <p>{{ 'Available everywhere, everytime'|trans }}</p>
+            <h1>{{ 'Available everywhere, everytime'|trans }}</h1>
             {% trans %}Consult your quotes or store new ones on your desktop or your mobile.{% endtrans %}
         </div>
-        <div class="icon"><img src="{{ asset('img/devices.png') }}" /></div>
+        <div class="icon"><img src="{{ asset('img/devices.png') }}" alt="Devices" /></div>
     </div>
 
     <div class="section">
         <div class="content">
-            <p>{{ '100% free'|trans }}</p>
+            <h1>{{ '100% free'|trans }}</h1>
             {% trans %}No fee. No add. No credit-card required.{% endtrans %}
         </div>
-        <div class="icon"><img src="{{ asset('img/money.png') }}" /></div>
+        <div class="icon"><img src="{{ asset('img/money.png') }}" alt="Money" /></div>
     </div>
 
     <div class="section">
         <div class="content">
-            <p>{{ 'Sign-up now'|trans }}</p>
+            <h1>{{ 'Sign-up now'|trans }}</h1>
             <a href="{{ path('qtf_welcome_create') }}" class="btn btn-lg btn-light">{{ 'Sign-up'|trans }}</a>
         </div>
     </div>
@@ -151,7 +159,7 @@
 
         }); //end of document ready
     </script>
-
+    <noscript>{% trans %}Warning : Your browser does not support JavaScript, or JavaScript has been deactivated. Activate JavaScript for a better browsing experience.{% endtrans %}</noscript>
 {% endblock %}
 
 </body>

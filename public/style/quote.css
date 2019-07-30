@@ -60,7 +60,6 @@
 .justified {
     white-space: pre-line;
     text-align: justify;
-    -webkit-text-align: left;
 }
 
 .seeMore {

@@ -12,11 +12,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/{_locale}/in/password", requirements={
  *     "_locale"="%app.locales%"
  * }))
+ * @IsGranted("ROLE_USER")
  */
 class ChangePasswordController extends AbstractController
 {

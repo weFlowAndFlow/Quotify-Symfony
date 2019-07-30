@@ -12,11 +12,13 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/{_locale}/in/quote", requirements={
  *     "_locale"="%app.locales%"
  * }))
+ * @IsGranted("ROLE_USER")
  */
 class QuoteController extends AbstractController
 {
@@ -26,10 +28,6 @@ class QuoteController extends AbstractController
     public function index(Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
-
-        if (null == $user) {
-            return $this->redirectToRoute('qtf_welcome_index');
-        }
 
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAll($user);
         $quotes = $paginator->paginate($quotesQuery, $request->query->getInt('page', 1), 10);

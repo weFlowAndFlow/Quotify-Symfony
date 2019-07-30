@@ -1,0 +1,11 @@
+<div class="login-page">
+    <div class="form">
+        <div class="formTitle">{{ 'Contact us'|trans }}</div>
+
+        {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+        {{ form(form) }}
+        <p class="mandatory">* {{ 'Mandatory field'|trans }}</p>
+
+    </div>
+</div>

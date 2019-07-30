@@ -12,11 +12,13 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/{_locale}/in/search", requirements={
  *     "_locale"="%app.locales%"
  * }))
+ * @IsGranted("ROLE_USER")
  */
 class SearchController extends AbstractController
 {

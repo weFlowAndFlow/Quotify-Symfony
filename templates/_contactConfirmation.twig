@@ -1,0 +1,10 @@
+<div class="confirmMessage">
+    {% trans %}Your message has been sent. We'll get back to you as quickly as possible.{% endtrans %}
+    <br /><br /><br />
+    {% if is_granted('ROLE_USER') %}
+        <p><a href="{{ path('qtf_quote_index') }}">{{ 'Home'|trans }}</a></p>
+    {% else %}
+        <p><a href="{{ path('qtf_welcome_index') }}">{{ 'Home'|trans }}</a></p>
+    {% endif %}
+
+</div>

@@ -13,11 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/{_locale}/in/author", requirements={
  *     "_locale"="%app.locales%"
  * }))
+ * @IsGranted("ROLE_USER")
  */
 class AuthorController extends AbstractController
 {

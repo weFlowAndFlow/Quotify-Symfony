@@ -1,0 +1,25 @@
+{# templates/Outside/Contact/confirmation.html.twig #}
+
+{% extends "Outside/layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - {{ 'Message sent'|trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+        <link href="{{ asset('style/outside.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block quote_body %}
+
+
+
+
+
+    {{ include("_contactConfirmation.html.twig") }}
+
+
+
+
+{% endblock %}

@@ -5,6 +5,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\ContactType;
 use App\Form\CreateUserType;
 use Swift_Mailer;
 use Swift_Message;
@@ -51,7 +52,7 @@ class WelcomeController extends AbstractController
 
             // Send email to confirm address
             $message = (new Swift_Message('Quotify - Confirm email address'))
-                ->setFrom('no-reply@quotify-example.com')
+                ->setFrom('contact@quotify.weflowandflow.com')
                 ->setTo($user->getEmail())
                 ->setBody($this->renderView('Outside/Emails/confirmAddress.html.twig', ['user' => $user]), 'text/html');
 
@@ -61,7 +62,7 @@ class WelcomeController extends AbstractController
             return $this->render('Outside/Sign-up/confirmed.html.twig');
         }
 
-        return $this->render('Outside/Sign-up/Form.html.twig', ['form' => $form->createView()]);
+        return $this->render('Outside/Sign-up/form.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -94,4 +95,6 @@ class WelcomeController extends AbstractController
 
         return $this->redirectToRoute('qtf_login');
     }
+
+
 }

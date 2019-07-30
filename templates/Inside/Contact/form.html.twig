@@ -1,0 +1,31 @@
+{# templates/Inside/Contact/form.html.twig #}
+
+{% extends "Inside/layout.html.twig" %}
+
+{% block title %}
+    {{ parent() }} - {{ 'Contact us'|trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block quote_body %}
+
+
+
+    {{ include("_contactForm.html.twig") }}
+
+
+
+
+
+
+
+{% endblock %}
+
+	{% block javascripts %}
+        {{ parent() }}
+
+    {% endblock %}

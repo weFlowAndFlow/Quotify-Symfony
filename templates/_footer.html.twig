@@ -1,11 +1,10 @@
-
 <div class="makeHorizontalBarDisappear">
         <div class="row">
                 <div class="col-md">
                         <p>© {{ website_name }} {{ 'now'|date('Y') }}</p>
                         <p>{{ 'Version'|trans }} {{ website_version }}</p>
                         <p>{{ 'Created by'|trans }} <a href="http://www.weflowandflow.com">{{ webmaster }} </a></p>
-                        <p>✉️ {{ 'Contact us'|trans }}</p>
+                        <p>✉️ <a href="{{ path('qtf_contact') }}">{{ 'Contact us'|trans }}</a></p>
                 </div>
 
                 <div class="col-md">
@@ -18,8 +17,13 @@
                                         <img src="{{ asset('./img/flags/fr.png') }}" alt="Français" height="30px" />
                                 </a>
                         </p>
-                        <p>🏠 <a href="{{ path('qtf_quote_index') }}">{{ 'Home'|trans }}</a></p>
-                        <p>🗺 {{ 'Site map'|trans }}</p>
+                        {% if is_granted('ROLE_USER') %}
+                                <p>🏠 <a href="{{ path('qtf_quote_index') }}">{{ 'Home'|trans }}</a></p>
+                        {% else %}
+                                <p>🏠 <a href="{{ path('qtf_welcome_index') }}">{{ 'Home'|trans }}</a></p>
+                        {% endif %}
+
+                        <p>🗺 <a href="https://quotify.weflowandflow.com/public/html/sitemap.html" target="new">{{ 'Site map'|trans }}</a></p>
                 </div>
 
                 <div class="col-md">
