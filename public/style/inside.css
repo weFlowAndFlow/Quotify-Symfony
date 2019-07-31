@@ -14,8 +14,7 @@
 
 .flashMessage {
     max-width: 900px;
-    margin: auto;
-    margin-top: 3%;
+    margin: 3% auto auto;
 }
 
 .contentHeart {

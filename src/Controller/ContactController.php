@@ -4,7 +4,6 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Form\ContactType;
 use Swift_Mailer;
 use Swift_Message;
@@ -32,9 +31,8 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $data = $form->getData();
-            $message = (new Swift_Message($request->get('object')))
-                ->setFrom('contact@quotify.weflowandflow.com')
+            $message = (new Swift_Message('New message from Contact Form : ' . $form->get('object')->getData()))
+                ->setFrom($form->get('email')->getData())
                 ->setTo('contact@quotify.weflowandflow.com')
                 ->setBody($this->renderView('Outside/Emails/message.html.twig', [
                     'name' => $form->get('name')->getData(),

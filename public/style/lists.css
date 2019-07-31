@@ -8,34 +8,15 @@
 }
 
 
-.entry {
-    padding-bottom: 2%;
-    padding-top: 3%;
-}
-
-.entry:hover {
-    background-color: #f7f7f7;
-}
-
-
 .addNew {
     margin-bottom: 5%;
     margin-top: 4%;
     text-align: center;
 }
 
-.workTitle {
-    font-weight: bold;
-    margin: 0;
-}
-
 .byAuthor {
     font-size: smaller;
     margin-top: -10px;
-}
-
-.quoteNumber {
-    text-align: center;
 }
 
 .buttons {
@@ -48,13 +29,6 @@
 
 @media all and (max-width: 768px) {
 
-
-    .entry {
-        min-width: auto;
-        text-align: center;
-        padding-top: 6%;
-        padding-bottom: 6%;
-    }
 
     .addNew {
         margin-bottom: 15%;

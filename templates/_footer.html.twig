@@ -2,8 +2,13 @@
         <div class="row">
                 <div class="col-md">
                         <p>© {{ website_name }} {{ 'now'|date('Y') }}</p>
-                        <p>{{ 'Version'|trans }} {{ website_version }}</p>
-                    <p>{{ 'Created by'|trans }} <a href="http://agency.weflowandflow.com">{{ webmaster }} </a></p>
+                    <p>
+                        <a href="https://quotify.weflowandflow.com/public/html/versioning.html" target="new">
+                            {{ 'Version'|trans }} {{ website_version }}
+                        </a>
+                    </p>
+                    <p>{{ 'Created by'|trans }} <a href="https://agency.weflowandflow.com"
+                                                   target=new">{{ webmaster }} </a></p>
                         <p>✉️ <a href="{{ path('qtf_contact') }}">{{ 'Contact us'|trans }}</a></p>
                 </div>
 
@@ -27,8 +32,8 @@
                 </div>
 
                 <div class="col-md">
-                        <p>{{ 'Legal notice'|trans }}</p>
-                        <p>{{ 'Help'|trans }}</p>
+                    <p style="text-decoration: line-through">{{ 'Legal notice'|trans }}</p>
+                    <p style="text-decoration: line-through">{{ 'Help'|trans }}</p>
                 </div>
 
 

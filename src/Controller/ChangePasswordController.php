@@ -7,7 +7,9 @@ namespace App\Controller;
 use App\Entity\ChangePassword;
 use App\Form\ChangePasswordType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
@@ -24,8 +26,13 @@ class ChangePasswordController extends AbstractController
 {
     /**
      * @Route("/{id}/change", name="qtf_password_edit")
+     * @param $id
+     * @param Request $request
+     * @param TranslatorInterface $translator
+     * @param UserPasswordEncoderInterface $encoder
+     * @return RedirectResponse|Response
      */
-    public function changePassword($id, Request $request, TranslatorInterface $translator, Security $security, UserPasswordEncoderInterface $encoder)
+    public function changePassword($id, Request $request, TranslatorInterface $translator, UserPasswordEncoderInterface $encoder)
     {
         $user = $this->getUser();
         $changePassword = new ChangePassword();

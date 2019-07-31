@@ -10,7 +10,9 @@ use App\Form\ResetPasswordType;
 use Swift_Mailer;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
@@ -52,8 +54,9 @@ class ResetPasswordController extends AbstractController
                 return $this->redirectToRoute('qtf_reset_email');
             } else {
                 // Send email to confirm address
-                $message = (new Swift_Message('Quotify - Reset password'))
-                    ->setFrom('contact@quotify.weflowandflow.com')
+                $subject = $translator->trans('Confirm email address');
+                $message = (new Swift_Message($subject))
+                    ->setFrom('no-reply@quotify.weflowandflow.com')
                     ->setTo($user->getEmail())
                     ->setBody($this->renderView('Outside/Emails/resetPassword.html.twig', ['user' => $user]), 'text/html');
 
@@ -73,8 +76,12 @@ class ResetPasswordController extends AbstractController
 
     /**
      * @Route("/password", name="qtf_reset_password")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
+     * @param TranslatorInterface $translator
+     * @return RedirectResponse|Response
      */
-    public function password(Request $request, Security $security, UserPasswordEncoderInterface $encoder, TranslatorInterface $translator)
+    public function password(Request $request, UserPasswordEncoderInterface $encoder, TranslatorInterface $translator)
     {
         $id = $request->get('id');
         $email = $request->get('email');

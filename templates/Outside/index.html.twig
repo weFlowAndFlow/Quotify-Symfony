@@ -136,7 +136,7 @@
 
     <script type="text/javascript">
         var myFullpage = new fullpage('#fullpage', {
-            sectionsColor: ['#528769', '#b51d05', '#25a0f7', '#e89f20',
+            sectionsColor: ['#528769', '#B77A7A', '#306A8E', '#C79769',
                 '#8d80ad', '#528769', '#363636']
         });
     </script>
@@ -144,14 +144,14 @@
     <script>
         $(document).ready(function(){
 
-            $(".section").eq(0).animate({"opacity":"1"},1500);  //fade the first div.section in on page load
+            $(".section").eq(0).animate({"opacity": "1"}, 600);  //fade the first div.section in on page load
 
             $(".section").attrchange({
                 trackValues: true, // set to true so that the event object is updated with old & new values
                 callback: function(evnt) {
                     if(evnt.attributeName == "class") { // which attribute you want to watch for changes
                         if(evnt.newValue.search(/active/i) == -1) { // "active" is the class name you search for inside "class" attribute
-                            $(".section.active").animate({"opacity":"1"},1500); //fade in the section with class active
+                            $(".section.active").animate({"opacity": "1"}, 600); //fade in the section with class active
                         }
                     }
                 }

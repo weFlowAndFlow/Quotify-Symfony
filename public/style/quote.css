@@ -15,10 +15,8 @@
 }
 
 .quoteBlock {
-    margin: 5%;
-    margin-bottom: 0;
-    padding: 2%;
-    padding-bottom: 0;
+    margin: 5% 5% 0;
+    padding: 2% 2% 0;
     box-shadow: 17px 12px 24px -27px rgba(173, 173, 173, 0.87);
     border-radius: 3px;
     background-color: white;
@@ -87,7 +85,7 @@
 .quoteOriginalWork {
     font-family: Arial;
     text-align: right;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     font-style: italic;
 }
 

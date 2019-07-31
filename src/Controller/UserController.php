@@ -9,7 +9,9 @@ use App\Form\UserType;
 use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
@@ -27,9 +29,11 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/", name="qtf_user_index")
+     * @return Response
      */
-    public function index(Request $request, PaginatorInterface $paginator)
+    public function index()
     {
+        /** @noinspection PhpUnusedLocalVariableInspection */
         $user = $this->getUser();
 
         return $this->render('Inside/User/index.html.twig');
@@ -37,8 +41,12 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="qtf_user_edit")
+     * @param $id
+     * @param Request $request
+     * @param TranslatorInterface $translator
+     * @return RedirectResponse|Response
      */
-    public function edit($id, Request $request, Security $security, UserPasswordEncoderInterface $encoder, TranslatorInterface $translator)
+    public function edit($id, Request $request, TranslatorInterface $translator)
     {
         $user = $this->getUser();
 
@@ -75,7 +83,6 @@ class UserController extends AbstractController
 
         if ($id == $user->getId()) {
             // Invalidates the session (before deleting the current user) so that Symfony does not look for the logged-in current user
-            $session = $this->get('session');
             $session = new Session();
             $session->invalidate();
 

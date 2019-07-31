@@ -5,13 +5,13 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\ContactType;
 use App\Form\CreateUserType;
 use Psr\Log\LoggerInterface;
 use Swift_Mailer;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -25,8 +25,9 @@ class WelcomeController extends AbstractController
 {
     /**
      * @Route("/welcome", name="qtf_welcome_index")
+     * @return Response
      */
-    public function index(Request $request)
+    public function index()
     {
         return $this->render('Outside/index.html.twig');
     }
@@ -34,7 +35,7 @@ class WelcomeController extends AbstractController
     /**
      * @Route("/sign-up", name="qtf_welcome_create")
      */
-    public function create(Request $request, UserPasswordEncoderInterface $encoder, Swift_Mailer $mailer, LoggerInterface $logger)
+    public function create(Request $request, UserPasswordEncoderInterface $encoder, Swift_Mailer $mailer, LoggerInterface $logger, TranslatorInterface $translator)
     {
         $user = new User();
 
@@ -57,8 +58,9 @@ class WelcomeController extends AbstractController
             ]);
 
             // Send email to confirm address
-            $message = (new Swift_Message('Quotify - Confirm email address'))
-                ->setFrom('contact@quotify.weflowandflow.com')
+            $subject = $translator->trans('Confirm email address');
+            $message = (new Swift_Message('Quotify - ' . $subject))
+                ->setFrom('no-reply@quotify.weflowandflow.com')
                 ->setTo($user->getEmail())
                 ->setBody($this->renderView('Outside/Emails/confirmAddress.html.twig', ['user' => $user]), 'text/html');
 

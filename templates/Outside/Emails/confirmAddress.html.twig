@@ -1,12 +1,36 @@
+<!DOCTYPE html>
 <html>
 <body>
-{{ 'Hello'|trans }} {{ user.firstname }} {{ user.lastname }},
-<br><br>
+
+<style>
+    .footnote {
+        color: #868686;
+        font-size: small;
+    }
+</style>
+
+
+<p>
+    {{ 'Hello'|trans }} {{ user.firstname }} {{ user.lastname }},
+</p>
+
+<p>
 {% trans %}You're almost done. Please confirm your address by clicking the link below{% endtrans %} :
-<br><br>
+</p>
+
+<p>
 <a href="{{ absolute_url(path('qtf_welcome_verify', {'id' : user.id, 'email' : user.email} )) }}">{{ 'CONFIRM ADDRESS'|trans }}</a>
-<br><br>
+</p>
+
+<p>
 {{ 'The Quotify Team'|trans }}
+</p>
+
+
+<p class="footnote">
+    {% trans %}The email address used to send this message is not monitored. Please do not reply to this email, your message won't be read. If you need to contact us, please use the contact form on the website, or email us at{% endtrans %}
+    contact@quotify.weflowandflow.com
+</p>
 
 </body>
 </html>

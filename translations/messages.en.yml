@@ -173,3 +173,5 @@ Save: Save
 Name: Name
 Object: Object
 Message: Message
+'Confirm email address': 'Confirm email address'
+"The email address used to send this message is not monitored. Please do not reply to this email, your message won't be read. If you need to contact us, please use the contact form on the website, or email us at": "The email address used to send this message is not monitored. Please do not reply to this email, your message won't be read. If you need to contact us, please use the contact form on the website, or email us at"

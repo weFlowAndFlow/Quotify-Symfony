@@ -24,6 +24,7 @@ body {
     width: 300px;
 }
 
+/*noinspection ALL*/
 .headListContent {
     background-color: rgb(247, 247, 247, 0.2);
     height: 57px;
@@ -69,6 +70,7 @@ body {
     text-align: right;
     margin-right: 10%;
     margin-top: 10%;
+    opacity: 70%;
 }
 
 img {

@@ -9,7 +9,9 @@ use App\Entity\Quote;
 use App\Form\CategoryType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
@@ -25,8 +27,11 @@ class CategoryController extends AbstractController
 {
     /**
      * @Route("/", name="qtf_category_index")
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @return Response
      */
-    public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
+    public function index(Request $request, PaginatorInterface $paginator)
     {
         $user = $this->getUser();
         $categoriesQuery = $this->getDoctrine()->getRepository(Category::class)->createQueryFindAll($user);
@@ -38,8 +43,13 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/{id}/quotes", name="qtf_category_quotes", requirements={"id" = "\d+"})
+     * @param $id
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @param TranslatorInterface $translator
+     * @return RedirectResponse|Response
      */
-    public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
+    public function listQuotes($id, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);
@@ -62,8 +72,12 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/undefined/quotes", name="qtf_category_quotes_undefined")
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @param TranslatorInterface $translator
+     * @return Response
      */
-    public function listUndefinedQuotes(Environment $twig, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
+    public function listUndefinedQuotes(Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryGetQuotesForUndefinedCategory($user);
@@ -134,8 +148,11 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("/{id}/delete", name="qtf_category_delete", requirements={"id" = "\d+"})
+     * @param $id
+     * @param TranslatorInterface $translator
+     * @return RedirectResponse
      */
-    public function delete($id, Request $request, TranslatorInterface $translator)
+    public function delete($id, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $category = $this->getDoctrine()->getRepository(Category::class)->getCategoryById($id, $user);

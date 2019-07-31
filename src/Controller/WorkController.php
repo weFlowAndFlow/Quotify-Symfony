@@ -9,7 +9,9 @@ use App\Entity\Quote;
 use App\Form\OriginalWorkType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
@@ -25,8 +27,11 @@ class WorkController extends AbstractController
 {
     /**
      * @Route("/", name="qtf_work_index")
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @return Response
      */
-    public function index(Environment $twig, Request $request, PaginatorInterface $paginator)
+    public function index(Request $request, PaginatorInterface $paginator)
     {
         $user = $this->getUser();
         $worksQuery = $this->getDoctrine()->getRepository(OriginalWork::class)->createQueryFindAll($user);
@@ -38,8 +43,13 @@ class WorkController extends AbstractController
 
     /**
      * @Route("/{id}/quotes", name="qtf_work_quotes", requirements={"id" = "\d+"})
+     * @param $id
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @param TranslatorInterface $translator
+     * @return RedirectResponse|Response
      */
-    public function listQuotes($id, Environment $twig, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
+    public function listQuotes($id, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
@@ -75,8 +85,9 @@ class WorkController extends AbstractController
 
     /**
      * @Route("/dates", name="qtf_work_dates")
+     * @return Response
      */
-    public function indexDates(Environment $twig)
+    public function indexDates()
     {
         $user = $this->getUser();
         $dates = $this->getDoctrine()->getRepository(OriginalWork::class)->findDates($user);
@@ -86,8 +97,13 @@ class WorkController extends AbstractController
 
     /**
      * @Route("/dates/{year}/quotes", name="qtf_work_year", requirements={"year" = "^-?[1-9]\d*$"})
+     * @param $year
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @param TranslatorInterface $translator
+     * @return Response
      */
-    public function viewQuotesByYear($year, Environment $twig, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
+    public function viewQuotesByYear($year, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $quotesQuery = $this->getDoctrine()->getRepository(Quote::class)->createQueryFindAllByYear($year, $user);
@@ -102,8 +118,12 @@ class WorkController extends AbstractController
 
     /**
      * @Route("/create_{caller}", name="qtf_work_create")
+     * @param $caller
+     * @param Request $request
+     * @param TranslatorInterface $translator
+     * @return RedirectResponse|Response
      */
-    public function create($caller, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
+    public function create($caller, Request $request, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $work = new OriginalWork();
@@ -128,8 +148,13 @@ class WorkController extends AbstractController
 
     /**
      * @Route("/{id}/edit_{caller}", name="qtf_work_edit", requirements={"id" = "\d+"})
+     * @param $id
+     * @param $caller
+     * @param Request $request
+     * @param TranslatorInterface $translator
+     * @return RedirectResponse|Response
      */
-    public function edit($id, $caller, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
+    public function edit($id, $caller, Request $request, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);
@@ -160,8 +185,11 @@ class WorkController extends AbstractController
 
     /**
      * @Route("/{id}/delete", name="qtf_work_delete", requirements={"id" = "\d+"})
+     * @param $id
+     * @param TranslatorInterface $translator
+     * @return RedirectResponse
      */
-    public function delete($id, Request $request, PaginatorInterface $paginator, TranslatorInterface $translator)
+    public function delete($id, TranslatorInterface $translator)
     {
         $user = $this->getUser();
         $work = $this->getDoctrine()->getRepository(OriginalWork::class)->getWorkById($id, $user);

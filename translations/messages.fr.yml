@@ -176,3 +176,5 @@ Search: Recherche
 'Message sent': 'Message envoyé'
 Object: Objet
 Message: Message
+'Confirm email address': 'Confirmez votre adresse email'
+"The email address used to send this message is not monitored. Please do not reply to this email, your message won't be read. If you need to contact us, please use the contact form on the website, or email us at": "L'adresse email utilisée pour vous envoyer ce message n'est pas consultée. Merci de ne pas répondre à cet email, votre message ne sera pas lu. Si vous avez besoin de nous contacter, veuillez utiliser le formulaire de contact sur le site, ou nous écrire à"

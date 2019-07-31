@@ -18,9 +18,8 @@ footer a:hover {
 
 .footerContent {
     max-width: 1440px;
-    margin: auto;
     padding-top: 0;
-    margin-top: -30px;
+    margin: -30px auto auto;
 }
 
 .makeHorizontalBarDisappear {
@@ -38,12 +37,9 @@ footer p {
     border: 1px solid #363636;
     border-radius: 40px;
     width: 55px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 4%;
     background-color: #F8F7F5;
     padding-left: 9px;
-    margin-top: 0px;
+    margin: 0 auto 4%;
 }
 
 .upButton a {
