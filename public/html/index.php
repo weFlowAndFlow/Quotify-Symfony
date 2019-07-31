@@ -1,3 +1,3 @@
 <?php
-header('Location: https://quotify.weflowandflow.com/public/fr/out/welcome');
+header('Location: https://agency.weflowandflow.com/');
 ?>

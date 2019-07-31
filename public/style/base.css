@@ -27,6 +27,7 @@ footer {
 .beta {
     font-family: verdana;
     font-weight: bold;
+    font-size: 12px;
 }
 
 /*
@@ -100,6 +101,13 @@ footer p {
 
     footer {
         margin-top: 10%;
+    }
+
+    .beta {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 8px;
     }
 
 

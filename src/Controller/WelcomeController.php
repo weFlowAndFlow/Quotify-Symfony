@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\ContactType;
 use App\Form\CreateUserType;
+use Psr\Log\LoggerInterface;
 use Swift_Mailer;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,7 +34,7 @@ class WelcomeController extends AbstractController
     /**
      * @Route("/sign-up", name="qtf_welcome_create")
      */
-    public function create(Request $request, UserPasswordEncoderInterface $encoder, Swift_Mailer $mailer)
+    public function create(Request $request, UserPasswordEncoderInterface $encoder, Swift_Mailer $mailer, LoggerInterface $logger)
     {
         $user = new User();
 
@@ -49,6 +50,11 @@ class WelcomeController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+
+            $logger->alert('New user created', [
+                'id' => $user->getId(),
+                'email' => $user->getEmail()
+            ]);
 
             // Send email to confirm address
             $message = (new Swift_Message('Quotify - Confirm email address'))
@@ -68,7 +74,7 @@ class WelcomeController extends AbstractController
     /**
      * @Route("/verify/51{id}84_{email}", name="qtf_welcome_verify", requirements={"id" = "\d+"})
      */
-    public function verify(Request $request, TranslatorInterface $translator)
+    public function verify(Request $request, TranslatorInterface $translator, LoggerInterface $logger)
     {
         $email = $request->get('email');
         $id = $request->get('id');
@@ -90,6 +96,12 @@ class WelcomeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
+
+        $logger->alert('User has been verified verified', [
+            'id' => $user->getId(),
+            'email' => $user->getEmail()
+        ]);
+
         $translated = $translator->trans('Your email address has been successfully confirmed. You can now log-in.');
         $this->addFlash('success', $translated);
 

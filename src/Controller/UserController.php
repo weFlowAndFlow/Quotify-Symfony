@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use Knp\Component\Pager\PaginatorInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -68,7 +69,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/delete", name="qtf_user_delete")
      */
-    public function delete($id, Request $request, Security $security, UserPasswordEncoderInterface $encoder, TranslatorInterface $translator)
+    public function delete($id, LoggerInterface $logger, TranslatorInterface $translator)
     {
         $user = $this->getUser();
 
@@ -82,6 +83,11 @@ class UserController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($userEntity);
             $em->flush();
+
+            $logger->alert('User has been deleted', [
+                'id' => $userEntity->getId(),
+                'email' => $userEntity->getEmail()
+            ]);
 
             $translated = $translator->trans('Your account has been successfully deleted.');
             $this->addFlash('success', $translated);

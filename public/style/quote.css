@@ -59,7 +59,7 @@
 
 .justified {
     white-space: pre-line;
-    text-align: justify;
+    text-align: left;
 }
 
 .seeMore {
