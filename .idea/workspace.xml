@@ -5,43 +5,8 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5246a4b-2eda-4775-9ee2-a2d5f276410f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/html/versioning.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/html/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/html/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/html/sitemap.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/html/sitemap.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/books.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/books.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/devices.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/devices.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/diary.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/diary.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/money.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/money.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/pen.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/pen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/fullpage.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/fullpage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/inside.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/inside.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/lists.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/lists.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/outside.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/outside.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/pagination.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/pagination.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/quote.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/quote.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/search.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/search.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/user.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/user.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/welcome.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/welcome.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AuthorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AuthorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ChangePasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ChangePasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContactController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ResetPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/WelcomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/WelcomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/WorkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/WorkController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Outside/Emails/confirmAddress.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Outside/Emails/confirmAddress.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Outside/Emails/message.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Outside/Emails/message.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Outside/Emails/resetPassword.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Outside/Emails/resetPassword.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Outside/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Outside/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_footer.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translations/messages.en.yml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/messages.en.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/translations/messages.fr.yml" beforeDir="false" afterPath="$PROJECT_DIR$/translations/messages.fr.yml" afterDir="false" />
+    <list default="true" id="f5246a4b-2eda-4775-9ee2-a2d5f276410f" name="Default Changelist" comment="release 1.0b">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,10 +40,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/html/versioning.html">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="7" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+            <state relative-caret-position="105">
+              <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -147,7 +112,6 @@
         <option value="$PROJECT_DIR$/templates/workInProgress.html" />
         <option value="$PROJECT_DIR$/public/check.php" />
         <option value="$PROJECT_DIR$/.env.local" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/config/packages/security.yaml" />
         <option value="$PROJECT_DIR$/src/Controller/WorkController.php" />
         <option value="$PROJECT_DIR$/src/Controller/CategoryController.php" />
@@ -191,6 +155,7 @@
         <option value="$PROJECT_DIR$/public/style/welcome.css" />
         <option value="$PROJECT_DIR$/templates/Outside/index.html.twig" />
         <option value="$PROJECT_DIR$/public/html/versioning.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -337,31 +302,7 @@
             <path>
               <item name="Quotify-Symfony" type="b2602c69:ProjectViewProjectNode" />
               <item name="Quotify-Symfony" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Quotify-Symfony" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Quotify-Symfony" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Quotify-Symfony" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Quotify-Symfony" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="Outside" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Quotify-Symfony" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Quotify-Symfony" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="Outside" type="462c0819:PsiDirectoryNode" />
-              <item name="Emails" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Quotify-Symfony" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Quotify-Symfony" type="462c0819:PsiDirectoryNode" />
-              <item name="translations" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -429,7 +370,7 @@
       <workItem from="1563355222473" duration="83256000" />
       <workItem from="1563996298868" duration="2501000" />
       <workItem from="1563999994372" duration="23542000" />
-      <workItem from="1564382353535" duration="38313000" />
+      <workItem from="1564382353535" duration="38510000" />
     </task>
     <task id="LOCAL-00002" summary="first commit">
       <created>1561011629307</created>
@@ -655,11 +596,18 @@
       <option name="project" value="LOCAL" />
       <updated>1564560495463</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="release 1.0b">
+      <created>1564586013745</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1564586013745</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="385844000" />
+    <option name="totallyTimeSpent" value="386041000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -672,6 +620,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1387" y="48" width="1376" height="1105" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49946523" visible="true" weight="0.21064468" />
       <window_info id="Structure" order="1" sideWeight="0.5005348" side_tool="true" weight="0.20014825" />
@@ -712,7 +661,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="cancel link fixed&#10;+ bug fixes" />
     <MESSAGE value="login" />
     <MESSAGE value="profile page&#10;+change in menu/header&#10;+user login finished&#10;+bug fixes" />
     <MESSAGE value="sign up + confirmation email" />
@@ -737,7 +685,8 @@
     <MESSAGE value="env" />
     <MESSAGE value="deployement fixes &#10;+ contact&#10;+ beta" />
     <MESSAGE value="logs&#10;+ debug" />
-    <option name="LAST_COMMIT_MESSAGE" value="logs&#10;+ debug" />
+    <MESSAGE value="release 1.0b" />
+    <option name="LAST_COMMIT_MESSAGE" value="release 1.0b" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -753,16 +702,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Controller/CategoryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-          <folding>
-            <element signature="e#76#100#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-895">
@@ -772,13 +711,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Outside/Sign-up/confirmed.html.twig">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Inside/layout.html.twig">
       <provider selected="true" editor-type-id="text-editor">
@@ -1117,10 +1049,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Server/backup_db.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/html/versioning.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="7" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
         </state>
       </provider>
     </entry>
